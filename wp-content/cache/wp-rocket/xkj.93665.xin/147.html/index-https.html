@@ -1,0 +1,638 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head><meta charset="UTF-8" /><script>if(navigator.userAgent.match(/MSIE|Internet Explorer/i)||navigator.userAgent.match(/Trident\/7\..*?rv:11/i)){var href=document.location.href;if(!href.match(/[?&]nowprocket/)){if(href.indexOf("?")==-1){if(href.indexOf("#")==-1){document.location.href=href+"?nowprocket=1"}else{document.location.href=href.replace("#","?nowprocket=1#")}}else{if(href.indexOf("#")==-1){document.location.href=href+"&nowprocket=1"}else{document.location.href=href.replace("#","&nowprocket=1#")}}}}</script><script>class RocketLazyLoadScripts{constructor(){this.v="1.2.5.1",this.triggerEvents=["keydown","mousedown","mousemove","touchmove","touchstart","touchend","wheel"],this.userEventHandler=this._triggerListener.bind(this),this.touchStartHandler=this._onTouchStart.bind(this),this.touchMoveHandler=this._onTouchMove.bind(this),this.touchEndHandler=this._onTouchEnd.bind(this),this.clickHandler=this._onClick.bind(this),this.interceptedClicks=[],this.interceptedClickListeners=[],this._interceptClickListeners(this),window.addEventListener("pageshow",e=>{this.persisted=e.persisted,this.everythingLoaded&&this._triggerLastFunctions()}),document.addEventListener("DOMContentLoaded",()=>{this._preconnect3rdParties()}),this.delayedScripts={normal:[],async:[],defer:[]},this.trash=[],this.allJQueries=[]}_addUserInteractionListener(e){if(document.hidden){e._triggerListener();return}this.triggerEvents.forEach(t=>window.addEventListener(t,e.userEventHandler,{passive:!0})),window.addEventListener("touchstart",e.touchStartHandler,{passive:!0}),window.addEventListener("mousedown",e.touchStartHandler),document.addEventListener("visibilitychange",e.userEventHandler)}_removeUserInteractionListener(){this.triggerEvents.forEach(e=>window.removeEventListener(e,this.userEventHandler,{passive:!0})),document.removeEventListener("visibilitychange",this.userEventHandler)}_onTouchStart(e){"HTML"!==e.target.tagName&&(window.addEventListener("touchend",this.touchEndHandler),window.addEventListener("mouseup",this.touchEndHandler),window.addEventListener("touchmove",this.touchMoveHandler,{passive:!0}),window.addEventListener("mousemove",this.touchMoveHandler),e.target.addEventListener("click",this.clickHandler),this._disableOtherEventListeners(e.target,!0),this._renameDOMAttribute(e.target,"onclick","rocket-onclick"),this._pendingClickStarted())}_onTouchMove(e){window.removeEventListener("touchend",this.touchEndHandler),window.removeEventListener("mouseup",this.touchEndHandler),window.removeEventListener("touchmove",this.touchMoveHandler,{passive:!0}),window.removeEventListener("mousemove",this.touchMoveHandler),e.target.removeEventListener("click",this.clickHandler),this._disableOtherEventListeners(e.target,!1),this._renameDOMAttribute(e.target,"rocket-onclick","onclick"),this._pendingClickFinished()}_onTouchEnd(){window.removeEventListener("touchend",this.touchEndHandler),window.removeEventListener("mouseup",this.touchEndHandler),window.removeEventListener("touchmove",this.touchMoveHandler,{passive:!0}),window.removeEventListener("mousemove",this.touchMoveHandler)}_onClick(e){e.target.removeEventListener("click",this.clickHandler),this._disableOtherEventListeners(e.target,!1),this._renameDOMAttribute(e.target,"rocket-onclick","onclick"),this.interceptedClicks.push(e),e.preventDefault(),e.stopPropagation(),e.stopImmediatePropagation(),this._pendingClickFinished()}_replayClicks(){window.removeEventListener("touchstart",this.touchStartHandler,{passive:!0}),window.removeEventListener("mousedown",this.touchStartHandler),this.interceptedClicks.forEach(e=>{e.target.dispatchEvent(new MouseEvent("click",{view:e.view,bubbles:!0,cancelable:!0}))})}_interceptClickListeners(e){EventTarget.prototype.addEventListenerBase=EventTarget.prototype.addEventListener,EventTarget.prototype.addEventListener=function(t,i,r){"click"!==t||e.windowLoaded||i===e.clickHandler||e.interceptedClickListeners.push({target:this,func:i,options:r}),(this||window).addEventListenerBase(t,i,r)}}_disableOtherEventListeners(e,t){this.interceptedClickListeners.forEach(i=>{i.target===e&&(t?e.removeEventListener("click",i.func,i.options):e.addEventListener("click",i.func,i.options))}),e.parentNode!==document.documentElement&&this._disableOtherEventListeners(e.parentNode,t)}_waitForPendingClicks(){return new Promise(e=>{this._isClickPending?this._pendingClickFinished=e:e()})}_pendingClickStarted(){this._isClickPending=!0}_pendingClickFinished(){this._isClickPending=!1}_renameDOMAttribute(e,t,i){e.hasAttribute&&e.hasAttribute(t)&&(event.target.setAttribute(i,event.target.getAttribute(t)),event.target.removeAttribute(t))}_triggerListener(){this._removeUserInteractionListener(this),"loading"===document.readyState?document.addEventListener("DOMContentLoaded",this._loadEverythingNow.bind(this)):this._loadEverythingNow()}_preconnect3rdParties(){let e=[];document.querySelectorAll("script[type=rocketlazyloadscript][data-rocket-src]").forEach(t=>{let i=t.getAttribute("data-rocket-src");if(i&&0!==i.indexOf("data:")){0===i.indexOf("//")&&(i=location.protocol+i);try{let r=new URL(i).origin;r!==location.origin&&e.push({src:r,crossOrigin:t.crossOrigin||"module"===t.getAttribute("data-rocket-type")})}catch(n){}}}),e=[...new Map(e.map(e=>[JSON.stringify(e),e])).values()],this._batchInjectResourceHints(e,"preconnect")}async _loadEverythingNow(){this.lastBreath=Date.now(),this._delayEventListeners(this),this._delayJQueryReady(this),this._handleDocumentWrite(),this._registerAllDelayedScripts(),this._preloadAllScripts(),await this._loadScriptsFromList(this.delayedScripts.normal),await this._loadScriptsFromList(this.delayedScripts.defer),await this._loadScriptsFromList(this.delayedScripts.async);try{await this._triggerDOMContentLoaded(),await this._pendingWebpackRequests(this),await this._triggerWindowLoad()}catch(e){console.error(e)}window.dispatchEvent(new Event("rocket-allScriptsLoaded")),this.everythingLoaded=!0,this._waitForPendingClicks().then(()=>{this._replayClicks()}),this._emptyTrash()}_registerAllDelayedScripts(){document.querySelectorAll("script[type=rocketlazyloadscript]").forEach(e=>{e.hasAttribute("data-rocket-src")?e.hasAttribute("async")&&!1!==e.async?this.delayedScripts.async.push(e):e.hasAttribute("defer")&&!1!==e.defer||"module"===e.getAttribute("data-rocket-type")?this.delayedScripts.defer.push(e):this.delayedScripts.normal.push(e):this.delayedScripts.normal.push(e)})}async _transformScript(e){if(await this._littleBreath(),!0===e.noModule&&"noModule"in HTMLScriptElement.prototype){e.setAttribute("data-rocket-status","skipped");return}return new Promise(t=>{let i;function r(){(i||e).setAttribute("data-rocket-status","executed"),t()}try{if(navigator.userAgent.indexOf("Firefox/")>0||""===navigator.vendor)i=document.createElement("script"),[...e.attributes].forEach(e=>{let t=e.nodeName;"type"!==t&&("data-rocket-type"===t&&(t="type"),"data-rocket-src"===t&&(t="src"),i.setAttribute(t,e.nodeValue))}),e.text&&(i.text=e.text),i.hasAttribute("src")?(i.addEventListener("load",r),i.addEventListener("error",function(){i.setAttribute("data-rocket-status","failed"),t()}),setTimeout(()=>{i.isConnected||t()},1)):(i.text=e.text,r()),e.parentNode.replaceChild(i,e);else{let n=e.getAttribute("data-rocket-type"),s=e.getAttribute("data-rocket-src");n?(e.type=n,e.removeAttribute("data-rocket-type")):e.removeAttribute("type"),e.addEventListener("load",r),e.addEventListener("error",function(){e.setAttribute("data-rocket-status","failed"),t()}),s?(e.removeAttribute("data-rocket-src"),e.src=s):e.src="data:text/javascript;base64,"+window.btoa(unescape(encodeURIComponent(e.text)))}}catch(a){e.setAttribute("data-rocket-status","failed"),t()}})}async _loadScriptsFromList(e){let t=e.shift();return t&&t.isConnected?(await this._transformScript(t),this._loadScriptsFromList(e)):Promise.resolve()}_preloadAllScripts(){this._batchInjectResourceHints([...this.delayedScripts.normal,...this.delayedScripts.defer,...this.delayedScripts.async],"preload")}_batchInjectResourceHints(e,t){var i=document.createDocumentFragment();e.forEach(e=>{let r=e.getAttribute&&e.getAttribute("data-rocket-src")||e.src;if(r){let n=document.createElement("link");n.href=r,n.rel=t,"preconnect"!==t&&(n.as="script"),e.getAttribute&&"module"===e.getAttribute("data-rocket-type")&&(n.crossOrigin=!0),e.crossOrigin&&(n.crossOrigin=e.crossOrigin),e.integrity&&(n.integrity=e.integrity),i.appendChild(n),this.trash.push(n)}}),document.head.appendChild(i)}_delayEventListeners(e){let t={};function i(i,r){return t[r].eventsToRewrite.indexOf(i)>=0&&!e.everythingLoaded?"rocket-"+i:i}function r(e,r){var n;!t[n=e]&&(t[n]={originalFunctions:{add:n.addEventListener,remove:n.removeEventListener},eventsToRewrite:[]},n.addEventListener=function(){arguments[0]=i(arguments[0],n),t[n].originalFunctions.add.apply(n,arguments)},n.removeEventListener=function(){arguments[0]=i(arguments[0],n),t[n].originalFunctions.remove.apply(n,arguments)}),t[e].eventsToRewrite.push(r)}function n(t,i){let r=t[i];t[i]=null,Object.defineProperty(t,i,{get:()=>r||function(){},set(n){e.everythingLoaded?r=n:t["rocket"+i]=r=n}})}r(document,"DOMContentLoaded"),r(window,"DOMContentLoaded"),r(window,"load"),r(window,"pageshow"),r(document,"readystatechange"),n(document,"onreadystatechange"),n(window,"onload"),n(window,"onpageshow")}_delayJQueryReady(e){let t;function i(t){return e.everythingLoaded?t:t.split(" ").map(e=>"load"===e||0===e.indexOf("load.")?"rocket-jquery-load":e).join(" ")}function r(r){if(r&&r.fn&&!e.allJQueries.includes(r)){r.fn.ready=r.fn.init.prototype.ready=function(t){return e.domReadyFired?t.bind(document)(r):document.addEventListener("rocket-DOMContentLoaded",()=>t.bind(document)(r)),r([])};let n=r.fn.on;r.fn.on=r.fn.init.prototype.on=function(){return this[0]===window&&("string"==typeof arguments[0]||arguments[0]instanceof String?arguments[0]=i(arguments[0]):"object"==typeof arguments[0]&&Object.keys(arguments[0]).forEach(e=>{let t=arguments[0][e];delete arguments[0][e],arguments[0][i(e)]=t})),n.apply(this,arguments),this},e.allJQueries.push(r)}t=r}r(window.jQuery),Object.defineProperty(window,"jQuery",{get:()=>t,set(e){r(e)}})}async _pendingWebpackRequests(e){let t=document.querySelector("script[data-webpack]");async function i(){return new Promise(e=>{t.addEventListener("load",e),t.addEventListener("error",e)})}t&&(await i(),await e._requestAnimFrame(),await e._pendingWebpackRequests(e))}async _triggerDOMContentLoaded(){this.domReadyFired=!0,await this._littleBreath(),document.dispatchEvent(new Event("rocket-readystatechange")),await this._littleBreath(),document.rocketonreadystatechange&&document.rocketonreadystatechange(),await this._littleBreath(),document.dispatchEvent(new Event("rocket-DOMContentLoaded")),await this._littleBreath(),window.dispatchEvent(new Event("rocket-DOMContentLoaded"))}async _triggerWindowLoad(){await this._littleBreath(),document.dispatchEvent(new Event("rocket-readystatechange")),await this._littleBreath(),document.rocketonreadystatechange&&document.rocketonreadystatechange(),await this._littleBreath(),window.dispatchEvent(new Event("rocket-load")),await this._littleBreath(),window.rocketonload&&window.rocketonload(),await this._littleBreath(),this.allJQueries.forEach(e=>e(window).trigger("rocket-jquery-load")),await this._littleBreath();let e=new Event("rocket-pageshow");e.persisted=this.persisted,window.dispatchEvent(e),await this._littleBreath(),window.rocketonpageshow&&window.rocketonpageshow({persisted:this.persisted}),this.windowLoaded=!0}_triggerLastFunctions(){document.onreadystatechange&&document.onreadystatechange(),window.onload&&window.onload(),window.onpageshow&&window.onpageshow({persisted:this.persisted})}_handleDocumentWrite(){let e=new Map;document.write=document.writeln=function(t){let i=document.currentScript;i||console.error("WPRocket unable to document.write this: "+t);let r=document.createRange(),n=i.parentElement,s=e.get(i);void 0===s&&(s=i.nextSibling,e.set(i,s));let a=document.createDocumentFragment();r.setStart(a,0),a.appendChild(r.createContextualFragment(t)),n.insertBefore(a,s)}}async _littleBreath(){Date.now()-this.lastBreath>45&&(await this._requestAnimFrame(),this.lastBreath=Date.now())}async _requestAnimFrame(){return document.hidden?new Promise(e=>setTimeout(e)):new Promise(e=>requestAnimationFrame(e))}_emptyTrash(){this.trash.forEach(e=>e.remove())}static run(){let e=new RocketLazyLoadScripts;e._addUserInteractionListener(e)}}RocketLazyLoadScripts.run();</script>
+
+<meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0, maximum-scale=0.0, user-scalable=no">
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+<title>VivaCut v2.0.1 Pro解锁付费专业版 | 心科技圈</title>
+<meta name="description" content=" VivaCut Pro v2.0.1 是一款来自国外专业的视频编辑器 由国外大师XDA大神的修改主要解锁付费专业版 所有过滤器均已解锁（无需共享）大家可下载体验下 非常简洁好用又专业的视频编辑器！" />
+<meta name="keywords" content="扫码,跳转,游戏" />
+<meta property="og:type" content="acticle">
+<meta property="og:locale" content="zh-CN" />
+<meta property="og:title" content="VivaCut v2.0.1 Pro解锁付费专业版" />
+<meta property="og:author" content="蜡笔小心" />
+<meta property="og:image" content="https://jsd.cdn.zzko.cn/gh/g0fcn/cdn@main/wp-content/uploads/2021/01/1612258100-202111022275470510.jpg" />
+<meta property="og:site_name" content="心科技圈">
+<meta property="og:description" content=" VivaCut Pro v2.0.1 是一款来自国外专业的视频编辑器 由国外大师XDA大神的修改主要解锁付费专业版 所有过滤器均已解锁（无需共享）大家可下载体验下 非常简洁好用又专业的视频编辑器！" />
+<meta property="og:url" content="https://xkj.93665.xin/147.html" />
+<meta property="og:release_date" content="2021-01-31 23:52:31" />
+<link rel="shortcut icon" href="https://jsd.cdn.zzko.cn/gh/g0fcn/cdn@main/wp-content/uploads/2022/04/1650473073-u9928692441748238250fm179app42sizew931n0g4nfPNGfmtautomaxorilen2heic2000000.webp">
+<link rel="apple-touch-icon" sizes="114x114" href="https://jsd.cdn.zzko.cn/gh/g0fcn/cdn@main/wp-content/uploads/2022/04/1650473073-u9928692441748238250fm179app42sizew931n0g4nfPNGfmtautomaxorilen2heic2000000.webp" />
+<link rel="pingback" href="https://xkj.93665.xin/xmlrpc.php">
+<meta name='robots' content='max-image-preview:large' />
+
+<link href='https://jsd.cdn.zzko.cn' rel='preconnect' />
+<link rel='stylesheet' id='begin-style-css' href='https://jsd.cdn.zzko.cn/gh/g0fcn/cdn@main/wp-content/themes/begin/style.css?ver=2024/02/25' type='text/css' media='all' />
+<link data-minify="1" rel='stylesheet' id='be-css' href='https://jsd.cdn.zzko.cn/gh/g0fcn/cdn@main/wp-content/cache/min/1/wp-content/themes/begin/css/be.css?ver=1709875907' type='text/css' media='all' />
+<link data-minify="1" rel='stylesheet' id='dashicons-css' href='https://jsd.cdn.zzko.cn/gh/g0fcn/cdn@main/wp-content/cache/min/1/wp-includes/css/dashicons.min.css?ver=1709875907' type='text/css' media='all' />
+<link data-minify="1" rel='stylesheet' id='fonts-css' href='https://jsd.cdn.zzko.cn/gh/g0fcn/cdn@main/wp-content/cache/min/1/wp-content/themes/begin/css/fonts/fonts.css?ver=1709875907' type='text/css' media='all' />
+<link data-minify="1" rel='stylesheet' id='be_audio-css' href='https://jsd.cdn.zzko.cn/gh/g0fcn/cdn@main/wp-content/cache/min/1/wp-content/themes/begin/css/player.css?ver=1709875907' type='text/css' media='all' />
+<style id='rocket-lazyload-inline-css' type='text/css'>
+.rll-youtube-player{position:relative;padding-bottom:56.23%;height:0;overflow:hidden;max-width:100%;}.rll-youtube-player:focus-within{outline: 2px solid currentColor;outline-offset: 5px;}.rll-youtube-player iframe{position:absolute;top:0;left:0;width:100%;height:100%;z-index:100;background:0 0}.rll-youtube-player img{bottom:0;display:block;left:0;margin:auto;max-width:100%;width:100%;position:absolute;right:0;top:0;border:none;height:auto;-webkit-transition:.4s all;-moz-transition:.4s all;transition:.4s all}.rll-youtube-player img:hover{-webkit-filter:brightness(75%)}.rll-youtube-player .play{height:100%;width:100%;left:0;top:0;position:absolute;background:var(--wpr-bg-af415b64-29e5-4579-9e40-4a8d338fa578) no-repeat center;background-color: transparent !important;cursor:pointer;border:none;}
+</style>
+<script type="rocketlazyloadscript" data-rocket-type="text/javascript" data-rocket-src="https://jsd.cdn.zzko.cn/gh/g0fcn/cdn@main/wp-includes/js/jquery/jquery.min.js?ver=3.7.1" id="jquery-core-js" defer></script>
+<script type="rocketlazyloadscript" data-rocket-type="text/javascript" defer data-rocket-src="https://jsd.cdn.zzko.cn/gh/g0fcn/cdn@main/wp-includes/js/jquery/jquery-migrate.min.js?ver=3.4.1" id="jquery-migrate-js"></script>
+<script type="rocketlazyloadscript" data-minify="1" data-rocket-type="text/javascript" defer data-rocket-src="https://jsd.cdn.zzko.cn/gh/g0fcn/cdn@main/wp-content/cache/min/1/wp-content/themes/begin/js/jquery.lazyload.js?ver=1709875907" id="lazyload-js"></script>
+<link rel="canonical" href="https://xkj.93665.xin/147.html" />
+<noscript><style id="rocket-lazyload-nojs-css">.rll-youtube-player, [data-lazy-src]{display:none !important;}</style></noscript>
+
+<style id="wpr-lazyload-bg-container"></style><style id="wpr-lazyload-bg-exclusion"></style>
+<noscript>
+<style id="wpr-lazyload-bg-nostyle">.rll-youtube-player .play{--wpr-bg-af415b64-29e5-4579-9e40-4a8d338fa578: url('https://jsd.cdn.zzko.cn/gh/g0fcn/cdn@main/wp-content/plugins/wp-rocket/assets/img/youtube.png');}</style>
+</noscript>
+<script type="application/javascript">const rocket_pairs = [{"selector":".rll-youtube-player .play","style":".rll-youtube-player .play{--wpr-bg-af415b64-29e5-4579-9e40-4a8d338fa578: url('https:\/\/jsd.cdn.zzko.cn\/gh\/g0fcn\/cdn@main\/wp-content\/plugins\/wp-rocket\/assets\/img\/youtube.png');}","hash":"af415b64-29e5-4579-9e40-4a8d338fa578","url":"https:\/\/jsd.cdn.zzko.cn\/gh\/g0fcn\/cdn@main\/wp-content\/plugins\/wp-rocket\/assets\/img\/youtube.png"}]; const rocket_excluded_pairs = [];</script></head>
+<body class="post-template-default single single-post postid-147 single-format-standard 8d31" ontouchstart="">
+<script type="rocketlazyloadscript">const SITE_ID = window.location.hostname;if (localStorage.getItem(SITE_ID + '-beNightMode')) {document.body.className += ' night';}</script>
+<span class="be-progress"></span>
+<div id="page" class="hfeed site">
+<header id="masthead" class="site-header site-header-s nav-extend">
+	<div id="header-main" class="header-main top-nav-show">
+				<nav id="header-top" class="header-top">
+			<div class="nav-top betip">
+	
+	<div class="nav-menu-top-box betip">
+		<div class="nav-menu-top">
+			<div class="menu-%e9%a1%b6%e9%83%a8%e8%8f%9c%e5%8d%95-container"><ul id="menu-%e9%a1%b6%e9%83%a8%e8%8f%9c%e5%8d%95" class="top-menu"><li id="menu-item-5133" class="menu-item menu-item-type-taxonomy menu-item-object-category menu-item-has-children menu-item-5133 mega-menu menu-max-col"><a href="https://xkj.93665.xin/youxijiaocheng">游戏教程</a>
+<ul class="sub-menu">
+	<li id="menu-item-5134" class="menu-item menu-item-type-taxonomy menu-item-object-category menu-item-5134 mega-menu menu-max-col"><a href="https://xkj.93665.xin/youxijiaocheng/youxicundang">游戏存档</a></li>
+	<li id="menu-item-5135" class="menu-item menu-item-type-taxonomy menu-item-object-category menu-item-5135 mega-menu menu-max-col"><a href="https://xkj.93665.xin/youxijiaocheng/wangzherongyao">王者荣耀</a></li>
+</ul>
+</li>
+<li id="menu-item-5136" class="menu-item menu-item-type-taxonomy menu-item-object-category menu-item-5136 mega-menu menu-max-col"><a href="https://xkj.93665.xin/wanjijiaocheng">玩机教程</a></li>
+<li id="menu-item-5137" class="menu-item menu-item-type-taxonomy menu-item-object-category current-post-ancestor menu-item-has-children menu-item-5137 mega-menu menu-max-col"><a href="https://xkj.93665.xin/ziyuanfenxiang">资源分享</a>
+<ul class="sub-menu">
+	<li id="menu-item-5138" class="menu-item menu-item-type-taxonomy menu-item-object-category menu-item-5138 mega-menu menu-max-col"><a href="https://xkj.93665.xin/ziyuanfenxiang/iosruanjian">ios软件</a></li>
+	<li id="menu-item-5139" class="menu-item menu-item-type-taxonomy menu-item-object-category menu-item-5139 mega-menu menu-max-col"><a href="https://xkj.93665.xin/ziyuanfenxiang/testflightyaoqingma">Testflight邀请码</a></li>
+	<li id="menu-item-5141" class="menu-item menu-item-type-taxonomy menu-item-object-category current-post-ancestor current-menu-parent current-post-parent menu-item-5141 mega-menu menu-max-col"><a href="https://xkj.93665.xin/ziyuanfenxiang/anzhuoruanjian">安卓软件</a></li>
+	<li id="menu-item-5142" class="menu-item menu-item-type-taxonomy menu-item-object-category menu-item-5142 mega-menu menu-max-col"><a href="https://xkj.93665.xin/ziyuanfenxiang/yingshiapp">影视APP</a></li>
+	<li id="menu-item-5144" class="menu-item menu-item-type-taxonomy menu-item-object-category menu-item-5144 mega-menu menu-max-col"><a href="https://xkj.93665.xin/ziyuanfenxiang/yueyugongju">越狱工具</a></li>
+</ul>
+</li>
+<li id="menu-item-5143" class="menu-item menu-item-type-taxonomy menu-item-object-category menu-item-5143 mega-menu menu-max-col"><a href="https://xkj.93665.xin/ziyuanfenxiang/diannaoziyuan">电脑资源</a></li>
+<li id="menu-item-5132" class="menu-item menu-item-type-taxonomy menu-item-object-category menu-item-5132 mega-menu menu-max-col"><a href="https://xkj.93665.xin/jiaoliu">与我交流</a></li>
+<li id="menu-item-5480" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-5480 mega-menu menu-max-col"><a href="https://xkj.93665.xin/column">专题专栏</a></li>
+<li id="menu-item-5482" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-5482 mega-menu menu-max-col"><a href="https://xkj.93665.xin/link">友情链接</a></li>
+<li id="menu-item-6368" class="menu-item menu-item-type-custom menu-item-object-custom menu-item-6368 mega-menu menu-max-col"><a href="https://www.travellings.cn/go.html">开往</a></li>
+</ul></div>		</div>
+				</div>
+</div>
+		</nav>
+				<div id="menu-container" class="be-menu-main">
+			<div id="navigation-top" class="navigation-top menu_c">
+				<div class="be-nav-box">
+					<div class="be-nav-l">
+						<div class="be-nav-logo">
+															<div class="logo-sites">
+																		<a href="https://xkj.93665.xin/">
+			<span class="logo-small"><img width="255" height="255" class="begd" src="data:image/svg+xml,%3Csvg%20xmlns='http://www.w3.org/2000/svg'%20viewBox='0%200%20255%20255'%3E%3C/svg%3E" style="width: 50px;" alt="心科技圈" data-lazy-src="https://jsd.cdn.zzko.cn/gh/g0fcn/cdn@main/wp-content/uploads/2022/04/1650473073-u9928692441748238250fm179app42sizew931n0g4nfPNGfmtautomaxorilen2heic2000000.webp"><noscript><img width="255" height="255" class="begd" src="https://jsd.cdn.zzko.cn/gh/g0fcn/cdn@main/wp-content/uploads/2022/04/1650473073-u9928692441748238250fm179app42sizew931n0g4nfPNGfmtautomaxorilen2heic2000000.webp" style="width: 50px;" alt="心科技圈"></noscript></span>
+			<span class="site-name-main">
+									<span class="site-name">心科技圈</span>
+													<span class="site-description">一个综合性玩机教程资源网</span>
+							</span>
+		</a>
+	
+	
+								</div>
+														</div>
+
+													<div class="be-nav-wrap betip">
+								<div id="site-nav-wrap" class="site-nav-main" style="margin-left: 66px">
+									<div id="sidr-close">
+										<div class="toggle-sidr-close"></div>
+									</div>
+									<nav id="site-nav" class="main-nav nav-ace">
+													<div id="navigation-toggle" class="menu-but bars"><div class="menu-but-box"><div class="heng"></div></div></div>
+	
+		<div class="menu-%e9%a1%b6%e9%83%a8%e8%8f%9c%e5%8d%95-container"><ul id="menu-%e9%a1%b6%e9%83%a8%e8%8f%9c%e5%8d%95-1" class="down-menu nav-menu"><li class="menu-item menu-item-type-taxonomy menu-item-object-category menu-item-has-children menu-item-5133 mega-menu menu-max-col"><a href="https://xkj.93665.xin/youxijiaocheng">游戏教程</a>
+<ul class="sub-menu">
+	<li class="menu-item menu-item-type-taxonomy menu-item-object-category menu-item-5134 mega-menu menu-max-col"><a href="https://xkj.93665.xin/youxijiaocheng/youxicundang">游戏存档</a></li>
+	<li class="menu-item menu-item-type-taxonomy menu-item-object-category menu-item-5135 mega-menu menu-max-col"><a href="https://xkj.93665.xin/youxijiaocheng/wangzherongyao">王者荣耀</a></li>
+</ul>
+</li>
+<li class="menu-item menu-item-type-taxonomy menu-item-object-category menu-item-5136 mega-menu menu-max-col"><a href="https://xkj.93665.xin/wanjijiaocheng">玩机教程</a></li>
+<li class="menu-item menu-item-type-taxonomy menu-item-object-category current-post-ancestor menu-item-has-children menu-item-5137 mega-menu menu-max-col"><a href="https://xkj.93665.xin/ziyuanfenxiang">资源分享</a>
+<ul class="sub-menu">
+	<li class="menu-item menu-item-type-taxonomy menu-item-object-category menu-item-5138 mega-menu menu-max-col"><a href="https://xkj.93665.xin/ziyuanfenxiang/iosruanjian">ios软件</a></li>
+	<li class="menu-item menu-item-type-taxonomy menu-item-object-category menu-item-5139 mega-menu menu-max-col"><a href="https://xkj.93665.xin/ziyuanfenxiang/testflightyaoqingma">Testflight邀请码</a></li>
+	<li class="menu-item menu-item-type-taxonomy menu-item-object-category current-post-ancestor current-menu-parent current-post-parent menu-item-5141 mega-menu menu-max-col"><a href="https://xkj.93665.xin/ziyuanfenxiang/anzhuoruanjian">安卓软件</a></li>
+	<li class="menu-item menu-item-type-taxonomy menu-item-object-category menu-item-5142 mega-menu menu-max-col"><a href="https://xkj.93665.xin/ziyuanfenxiang/yingshiapp">影视APP</a></li>
+	<li class="menu-item menu-item-type-taxonomy menu-item-object-category menu-item-5144 mega-menu menu-max-col"><a href="https://xkj.93665.xin/ziyuanfenxiang/yueyugongju">越狱工具</a></li>
+</ul>
+</li>
+<li class="menu-item menu-item-type-taxonomy menu-item-object-category menu-item-5143 mega-menu menu-max-col"><a href="https://xkj.93665.xin/ziyuanfenxiang/diannaoziyuan">电脑资源</a></li>
+<li class="menu-item menu-item-type-taxonomy menu-item-object-category menu-item-5132 mega-menu menu-max-col"><a href="https://xkj.93665.xin/jiaoliu">与我交流</a></li>
+<li class="menu-item menu-item-type-post_type menu-item-object-page menu-item-5480 mega-menu menu-max-col"><a href="https://xkj.93665.xin/column">专题专栏</a></li>
+<li class="menu-item menu-item-type-post_type menu-item-object-page menu-item-5482 mega-menu menu-max-col"><a href="https://xkj.93665.xin/link">友情链接</a></li>
+<li class="menu-item menu-item-type-custom menu-item-object-custom menu-item-6368 mega-menu menu-max-col"><a href="https://www.travellings.cn/go.html">开往</a></li>
+</ul></div>
+									</nav>
+
+									<div class="clear"></div>
+
+									<div class="sidr-login">
+													<div class="mobile-login-point">
+			<div class="mobile-login-author-back"><img src="data:image/svg+xml,%3Csvg%20xmlns='http://www.w3.org/2000/svg'%20viewBox='0%200%200%200'%3E%3C/svg%3E" alt="bj" data-lazy-src="https://s2.loli.net/2021/12/05/FOKvZnDLSYtQk3M.jpg"><noscript><img src="https://s2.loli.net/2021/12/05/FOKvZnDLSYtQk3M.jpg" alt="bj"></noscript></div>
+		</div>
+										</div>
+
+								</div>
+																</div>
+											</div>
+
+					<div class="be-nav-r">
+						
+																						<div class="menu-search-button menu-search-open"><i class="be be-search"></i></div>
+	<div class="menu-search-box">
+		<div class="menu-search-button menu-search-close"><i class="be be-cross"></i></div>
+					<div class="menu-search-choose" title="切换搜索"><span class="search-choose-ico"><i class="be be-more"></i></span></div>
+				<div class="menu-search-item menu-search-wp">
+			<form method="get" id="be-menu-search" autocomplete="off" action="https://xkj.93665.xin/">
+				<span class="menu-search-input">
+					<input type="text" value="" name="s" id="so" class="search-focus" placeholder="输入关键字" required />
+					<button type="submit" id="be-menu-search" class="be-menu-search"><i class="be be-search"></i></button>
+				</span>
+								<div class="clear"></div>
+			</form>
+		</div>
+
+				<div class="menu-search-item menu-search-baidu conceal">
+			<script type="rocketlazyloadscript">
+			function g(formname) {
+				var url = "https://www.baidu.com/baidu";
+				if (formname.s[1].checked) {
+					formname.ct.value = "2097152";
+				} else {
+					formname.ct.value = "0";
+				}
+				formname.action = url;
+				return true;
+			}
+			</script>
+			<form name="f1" onsubmit="return g(this)" target="_blank" autocomplete="off">
+				<span class="menu-search-input">
+					<input name=word class="swap_value search-focus-baidu" placeholder="百度一下" name="q" />
+					<input name=tn type=hidden value="bds" />
+					<input name=cl type=hidden value="3" />
+					<input name=ct type=hidden />
+					<input name=si type=hidden value="xkj.93665.xin" />
+					<button type="submit" id="searchbaidu" class="be-menu-search"><i class="be be-baidu"></i></button>
+					<input name=s class="choose" type=radio />
+					<input name=s class="choose" type=radio checked />
+				</span>
+			</form>
+		</div>
+			</div>
+													
+											</div>
+
+									</div>
+				<div class="clear"></div>
+			</div>
+		</div>
+	</div>
+	</header>
+			
+						<nav class="bread">
+			<div class="be-bread">
+				<div class="breadcrumb"><span class="seat"></span><span class="home-text"><a href="https://xkj.93665.xin/" rel="bookmark">首页</a></span><span class="home-text"><i class="be be-arrowright"></i></span><span><a href="https://xkj.93665.xin/ziyuanfenxiang">资源分享</a></span><i class="be be-arrowright"></i><span><a href="https://xkj.93665.xin/ziyuanfenxiang/anzhuoruanjian">安卓软件</a></span><i class="be be-arrowright"></i><span class="current">VivaCut v2.0.1 Pro解锁付费专业版</span></div>			</div>
+		</nav>
+			
+					
+
+
+
+<nav class="submenu-nav header-sub">
+		<div class="clear"></div>
+</nav>
+			
+	<div id="content" class="site-content site-small site-no-roll">
+	
+		<div id="primary" class="content-area no-sidebar">
+
+		<main id="main" class="be-main site-main" role="main">
+
+			
+				<article id="post-147" class="post-item post ms">
+		
+			<header class="entry-header">
+												<h1 class="entry-title">VivaCut v2.0.1 Pro解锁付费专业版</h1>									</header>
+
+		<div class="entry-content">
+			
+			<div class="begin-single-meta"><span class="single-meta-area"><span class="meta-date"><time datetime="2021-01-31 23:52:31">2021年1月31日</time></span><span class="comment"><a href="https://xkj.93665.xin/147.html#respond"><i class="be be-speechbubble ri"></i><span class="comment-qa"></span><em>评论</em></a></span><span class="views"><i class="be be-eye ri"></i>30,098</span><span class="word-time"></span></span></div><span class="s-hide" title="侧边栏"><span class="off-side"></span></span>
+							<div class="single-content">
+																<div id="comment_foot"></div>
+<div class="entry-content">
+<p> VivaCut Pro v2.0.1 是一款来自国外专业的视频编辑器 由国外大师XDA大神的修改主要解锁付费专业版 所有过滤器均已解锁（无需共享）大家可下载体验下 非常简洁好用又专业的视频编辑器！</p>
+<div></div>
+<div><strong>VivaCut Pro v2.0.1特性：</strong></div>
+<div>惊人的新功能：曲线色彩调整，更专业，更个性地调整视频。当然，您也可以将其与彩色QR码共享，支持2.60fps导出，比以往更流畅 撤消/重做，最需要的功能现在已经准备好！</div>
+<div>支持Animator和Curve使关键帧动画更加平滑，包括移动/旋转/缩放/不透明度更改，并使用VivaCut制作您的第一个很棒的动画</div>
+<div>错误修复和性能提升</div>
+<h3>主要功能：</h3>
+<div>[绿屏/色度键]  组合/混合视频，例如好莱坞级别的电影。专业色度键视频编辑器应用程序和电影视频编辑软件。</div>
+<div>[关键帧动画]  应用于蒙版，视频拼贴，文本，贴纸，表情符号等。专业美学视频编辑器应用程序。</div>
+<div>[画中画]  将短片组合在一起即可创建两次曝光，并带有过渡效果的YouTube视频是免费的。</div>
+<div>[遮罩]  线性，镜像，径向，矩形和椭圆形，全部用于场景。 YouTube的全屏视频编辑器。</div>
+<div>[音乐标记]  标记曲目并根据音乐节奏添加效果。带有音乐和效果的专业视频编辑器应用程序。</div>
+<div>[音频提取] 具有过渡效果的美学视频编辑器，可从任何视频中提取音乐/音频</div>
+<div>[多层时间线]  直观，流畅的编辑界面，可通过叠加视频编辑器应用逐帧精确缩放</div>
+<div>[文字]  编辑，复制和修改样式（各种字体和表情符号，颜色，不透明度，阴影，笔触）</div>
+<div>[视频过渡] 通过具有Viva Cut过渡效果的电影叠加视频编辑器创造惊人效果</div>
+<div>[视频调整] 控制亮度，对比度，饱和度，色相，色温，渐晕并提高视频质量</div>
+<div>[滤镜] 编辑具有可调整滤镜和效果的视频/组合视频片段</div>
+<div>[音乐]  免费向视频添加音乐，并使用带有过渡效果的叠加视频编辑器</div>
+<div>[故障效果] 最酷的视频编辑应用程序，具有故障效果和过渡效果！</div>
+<div>[修剪和剪切视频]  为精确的视频编辑应用开发的专业工具</div>
+<div>[拼接视频]  拆分视频并优化以分享您的故事</div>
+<div>[合并视频片段] 将片段合并为具有过渡效果的精美视频，将视频片段合并为一个视频</div>
+<div>[速度控制] 仅使用VivaCut Video，快慢就可以像具有所有功能的专业视频编辑器一样放送视频！</div>
+<div>[拼贴]  将图片添加到剪辑中并编辑视频，然后使用Viva Cut进行传播！</div>
+<div>[叠加选项]  使用不透明度和混合等工具自定义图层</div>
+<div>[混合视频]  混合视频尝试强大的混合模式，例如颜色加深，乘法，屏幕，柔光，强光等。</div>
+<div>[Slideshow]  具有过渡效果的Pro Aesthetic Video Editor App可帮助您通过图片和音乐讲故事</div>
+<div>[自定义视频分辨率]  以720p，1080p和4k导出视频</div>
+<div>[重命名]  使用PRO美感视频编辑器生命周期重命名视频并标记内存。</div>
+<div>将具有过渡效果的视频直接保存到设备的图库，无损和视频制作工具中。一键分享到Youtube，Instagram，TikTok，snapchat和Etc。</div>
+<div><img alt="VivaCut v2.0.1 Pro解锁付费专业版" fetchpriority="high" decoding="async" class="alignnone size-full wp-image-158" data-original="https://jsd.cdn.zzko.cn/gh/g0fcn/cdn@main/wp-content/uploads/2021/01/1612258100-202111022275470510.jpg" src="data:image/svg+xml,%3Csvg%20xmlns='http://www.w3.org/2000/svg'%20viewBox='0%200%20365%20615'%3E%3C/svg%3E" width="365" height="615" data-lazy-src="https://jsd.cdn.zzko.cn/gh/g0fcn/cdn@main/wp-content/themes/begin/img/loading.png" /><noscript><img alt="VivaCut v2.0.1 Pro解锁付费专业版" fetchpriority="high" decoding="async" class="alignnone size-full wp-image-158" data-original="https://jsd.cdn.zzko.cn/gh/g0fcn/cdn@main/wp-content/uploads/2021/01/1612258100-202111022275470510.jpg" src="https://jsd.cdn.zzko.cn/gh/g0fcn/cdn@main/wp-content/themes/begin/img/loading.png" width="365" height="615" /></noscript></div>
+
+<div>蓝奏云：https://g0f.lanzoui.com/iEFM9l83wod</div>
+<div>密码：c1km</div>
+<div></div>
+</div>
+<div style='width:100%,margin-top:20px;text-align:center;'><br/><br/>微信扫描下方的二维码阅读本文<br/><br/><p><img width="150" height="113" alt="VivaCut v2.0.1 Pro解锁付费专业版" decoding="async"  data-original="https://jsd.cdn.zzko.cn/gh/g0fcn/cdn@main/wp-content/plugins/rest-api-to-miniprogram/qrcode/qrcode-147.png" src="data:image/svg+xml,%3Csvg%20xmlns='http://www.w3.org/2000/svg'%20viewBox='0%200%20150%20113'%3E%3C/svg%3E" data-lazy-src="https://jsd.cdn.zzko.cn/gh/g0fcn/cdn@main/wp-content/themes/begin/img/loading.png" ><noscript><img width="150" height="113" alt="VivaCut v2.0.1 Pro解锁付费专业版" decoding="async"  data-original="https://jsd.cdn.zzko.cn/gh/g0fcn/cdn@main/wp-content/plugins/rest-api-to-miniprogram/qrcode/qrcode-147.png" src="https://jsd.cdn.zzko.cn/gh/g0fcn/cdn@main/wp-content/themes/begin/img/loading.png" ></noscript></p></div>
+</p>				</div>
+
+			
+			
+																
+	<div class="content-empty"></div>
+		<footer class="single-footer">
+		<div class="single-cat-tag"><div class="single-cat">&nbsp;</div></div>	</footer>
+
+				<div class="clear"></div>
+	</div>
+
+	</article>
+
+
+				
+									<div class="single-code-tag betip">
+	
+	
+	<div class='clear'></div>
+	<div class="apc-ajax-post-item-wrap ajax-cat-post-wrap" data-more="more" data-apc-ajax-post-item='{"show_filter":"yes","btn":"yes","btn_all":"no","initial":"-1","layout":"1","post_type":"post","posts_per_page":"4","cat":"4,5,6","terms":"","paginate":"no","hide_empty":"true","orderby":"rand","order":"DESC","meta_key":"","more":"more","mid":"","style":"photo","listimg":"","column":"4","infinite":"","animation":"","item_id":"","slider":"","tags":"tag","special":"","prev_next":"true","img":"","sticky":"","top":"","children":"true","author":""}'>
+					<div class="acx-filter-div" data-layout="1">
+				<ul>
+																<li class="bea-texonomy ms apc-cat-btu" data_id="4" data-aos=fade-up>扫码</li>
+											<li class="bea-texonomy ms apc-cat-btu" data_id="5" data-aos=fade-up>跳转</li>
+											<li class="bea-texonomy ms apc-cat-btu" data_id="6" data-aos=fade-up>游戏</li>
+									</ul>
+			</div>
+		
+		<div class="acx-ajax-container">
+			<div class="acx-loader">
+				<div class="dual-ring"></div>
+			</div>
+			<div class="beall-filter-result">
+				<div class="apc-postitem-wrapper">	
+		
+		
+		
+		
+		
+					<section class="picture-area content-area grid-cat-4">
+			<div class="apc-post-item apc_layout_1 ">
+															<article id="post-580" class="post-item-list post picture scl" data-aos="zoom-in"
+>
+							<div class="picture-box sup">
+								<figure class="picture-img gdz">
+																			<span class="load"><a class="sc" rel="external nofollow"  href="https://xkj.93665.xin/580.html"><img src="" data-original="https://jsd.cdn.zzko.cn/gh/g0fcn/cdn@main/wp-content/uploads/thumbnail/581/20210203_601a68406f040-280x210-c.jpg" alt="迅游手游加速器 v5.2.1.6 中文高级版" width="280" height="210"></a></span>																	</figure>
+								<h2 class="grid-title gdz"><a href="https://xkj.93665.xin/580.html" rel="bookmark" >迅游手游加速器 v5.2.1.6 中文高级版</a></h2>								<span class="grid-inf gdz">
+					<span class="g-cat"><a href="https://xkj.93665.xin/ziyuanfenxiang/anzhuoruanjian">安卓软件</a></span>
+		<span class="grid-inf-l">
+				<span class="views"><i class="be be-eye ri"></i>13,371</span>		<span class="date"><time datetime="2021-02-03 17:25:04">02/03</time></span>			</span>
+</span>
+								<div class="clear"></div>
+							</div>
+						</article>
+																				<article id="post-5601" class="post-item-list post picture scl" data-aos="zoom-in"
+>
+							<div class="picture-box sup">
+								<figure class="picture-img gdz">
+																			<span class="load"><a class="sc" rel="external nofollow"  href="https://xkj.93665.xin/5601.html"><img src="" data-original="https://jsd.cdn.zzko.cn/gh/g0fcn/cdn@main/wp-content/uploads/thumbnail/5602/2023111710225879-280x210-c.jpg" alt="可重写的抓包软件ProxyPin" width="280" height="210"></a></span>																	</figure>
+								<h2 class="grid-title gdz"><a href="https://xkj.93665.xin/5601.html" rel="bookmark" >可重写的抓包软件ProxyPin</a></h2>								<span class="grid-inf gdz">
+					<span class="g-cat"><a href="https://xkj.93665.xin/ziyuanfenxiang/anzhuoruanjian">安卓软件</a></span>
+		<span class="grid-inf-l">
+				<span class="views"><i class="be be-eye ri"></i>330</span>		<span class="date"><time datetime="2023-11-17 18:19:05">11/17</time></span>			</span>
+</span>
+								<div class="clear"></div>
+							</div>
+						</article>
+																				<article id="post-2315" class="post-item-list post picture scl" data-aos="zoom-in"
+>
+							<div class="picture-box sup">
+								<figure class="picture-img gdz">
+																			<span class="load"><a class="sc" rel="external nofollow"  href="https://xkj.93665.xin/2315.html"><img src="" data-original="https://jsd.cdn.zzko.cn/gh/g0fcn/cdn@main/wp-content/uploads/thumbnail/2319/1615534293-beepress7-1615534293-280x210-c.jpeg" alt="【ios游戏存档】假表情包战争破解版" width="280" height="210"></a></span>																	</figure>
+								<h2 class="grid-title gdz"><a href="https://xkj.93665.xin/2315.html" rel="bookmark" >【ios游戏存档】假表情包战争破解版</a></h2>								<span class="grid-inf gdz">
+					<span class="g-cat"><a href="https://xkj.93665.xin/youxijiaocheng/youxicundang">游戏存档</a></span>
+		<span class="grid-inf-l">
+				<span class="views"><i class="be be-eye ri"></i>26,473</span>		<span class="date"><time datetime="2021-03-12 15:31:32">03/12</time></span>			</span>
+</span>
+								<div class="clear"></div>
+							</div>
+						</article>
+																				<article id="post-1596" class="post-item-list post picture scl" data-aos="zoom-in"
+>
+							<div class="picture-box sup">
+								<figure class="picture-img gdz">
+																			<span class="load"><a class="sc" rel="external nofollow"  href="https://xkj.93665.xin/1596.html"><img src="" data-original="https://jsd.cdn.zzko.cn/gh/g0fcn/cdn@main/wp-content/uploads/thumbnail/1597/20210218_602dcd88667d6-280x210-c.jpg" alt="银河加速器 v1.8.7 安卓中文高级版 免费加速器" width="280" height="210"></a></span>																	</figure>
+								<h2 class="grid-title gdz"><a href="https://xkj.93665.xin/1596.html" rel="bookmark" >银河加速器 v1.8.7 安卓中文高级版 免费加速器</a></h2>								<span class="grid-inf gdz">
+					<span class="g-cat"><a href="https://xkj.93665.xin/ziyuanfenxiang/anzhuoruanjian">安卓软件</a></span>
+		<span class="grid-inf-l">
+				<span class="views"><i class="be be-eye ri"></i>104,583</span>		<span class="date"><time datetime="2021-02-21 16:07:28">02/21</time></span>			</span>
+</span>
+								<div class="clear"></div>
+							</div>
+						</article>
+												</div>
+		
+		
+		
+		<div class="clear"></div>
+		<div class="apc-posts-navigation" data-aos="zoom-in"
+>
+			<div class='clear ajax-navigation'></div><div data-paged='1' data-next='2' class=' apc-post-item-load-more'><span class='apc-load-more'><i class='be be-more'></i></span></div>			<div class='clear'></div>
+		</div>
+	</section>
+	</div>			</div>
+		</div>
+	</div>
+
+			</div>
+				
+				
+				
+						
+			<div class="slider-rolling-box ms betip" data-aos=fade-up>
+			<div id="slider-rolling" class="owl-carousel be-rolling single-rolling">
+									<div id="post-6332" class="post-item-list post scrolling-img">
+						<div class="scrolling-thumbnail"><a class="sc" rel="external nofollow"  href="https://xkj.93665.xin/6332.html"><img src="data:image/svg+xml,%3Csvg%20xmlns='http://www.w3.org/2000/svg'%20viewBox='0%200%20280%20210'%3E%3C/svg%3E" alt="twitter x破解mod最新版" width="280" height="210" data-lazy-src="https://jsd.cdn.zzko.cn/gh/g0fcn/cdn@main/wp-content/uploads/thumbnail/6334/2024013110401976-280x210-c.jpg" ><noscript><img src="https://jsd.cdn.zzko.cn/gh/g0fcn/cdn@main/wp-content/uploads/thumbnail/6334/2024013110401976-280x210-c.jpg" alt="twitter x破解mod最新版" width="280" height="210" ></noscript></a></div>
+						<div class="clear"></div>
+						<h2 class="grid-title over"><a href="https://xkj.93665.xin/6332.html" target="_blank" rel="bookmark">twitter x破解mod最新版</a></h2>						<div class="clear"></div>
+					</div>
+									<div id="post-6330" class="post-item-list post scrolling-img">
+						<div class="scrolling-thumbnail"><a class="sc" rel="external nofollow"  href="https://xkj.93665.xin/6330.html"><img src="data:image/svg+xml,%3Csvg%20xmlns='http://www.w3.org/2000/svg'%20viewBox='0%200%20280%20210'%3E%3C/svg%3E" alt="电视家替代版" width="280" height="210" data-lazy-src="https://jsd.cdn.zzko.cn/gh/g0fcn/cdn@main/wp-content/uploads/thumbnail/6331/2024013110342485-280x210-c.png" ><noscript><img src="https://jsd.cdn.zzko.cn/gh/g0fcn/cdn@main/wp-content/uploads/thumbnail/6331/2024013110342485-280x210-c.png" alt="电视家替代版" width="280" height="210" ></noscript></a></div>
+						<div class="clear"></div>
+						<h2 class="grid-title over"><a href="https://xkj.93665.xin/6330.html" target="_blank" rel="bookmark">电视家替代版</a></h2>						<div class="clear"></div>
+					</div>
+									<div id="post-6203" class="post-item-list post scrolling-img">
+						<div class="scrolling-thumbnail"><a class="sc" rel="external nofollow"  href="https://xkj.93665.xin/6203.html"><img src="data:image/svg+xml,%3Csvg%20xmlns='http://www.w3.org/2000/svg'%20viewBox='0%200%20280%20210'%3E%3C/svg%3E" alt="李跳跳，跳过广告" width="280" height="210" data-lazy-src="https://jsd.cdn.zzko.cn/gh/g0fcn/cdn@main/wp-content/uploads/thumbnail/6206/202401170053187-280x210-c.jpg" ><noscript><img src="https://jsd.cdn.zzko.cn/gh/g0fcn/cdn@main/wp-content/uploads/thumbnail/6206/202401170053187-280x210-c.jpg" alt="李跳跳，跳过广告" width="280" height="210" ></noscript></a></div>
+						<div class="clear"></div>
+						<h2 class="grid-title over"><a href="https://xkj.93665.xin/6203.html" target="_blank" rel="bookmark">李跳跳，跳过广告</a></h2>						<div class="clear"></div>
+					</div>
+									<div id="post-6026" class="post-item-list post scrolling-img">
+						<div class="scrolling-thumbnail"><a class="sc" rel="external nofollow"  href="https://xkj.93665.xin/6026.html"><img src="data:image/svg+xml,%3Csvg%20xmlns='http://www.w3.org/2000/svg'%20viewBox='0%200%20280%20210'%3E%3C/svg%3E" alt="比谷歌商店更好用的商店" width="280" height="210" data-lazy-src="https://jsd.cdn.zzko.cn/gh/g0fcn/cdn@main/wp-content/uploads/thumbnail/6028/2023122614344750-280x210-c.jpg" ><noscript><img src="https://jsd.cdn.zzko.cn/gh/g0fcn/cdn@main/wp-content/uploads/thumbnail/6028/2023122614344750-280x210-c.jpg" alt="比谷歌商店更好用的商店" width="280" height="210" ></noscript></a></div>
+						<div class="clear"></div>
+						<h2 class="grid-title over"><a href="https://xkj.93665.xin/6026.html" target="_blank" rel="bookmark">比谷歌商店更好用的商店</a></h2>						<div class="clear"></div>
+					</div>
+									<div id="post-6019" class="post-item-list post scrolling-img">
+						<div class="scrolling-thumbnail"><a class="sc" rel="external nofollow"  href="https://xkj.93665.xin/6019.html"><img src="data:image/svg+xml,%3Csvg%20xmlns='http://www.w3.org/2000/svg'%20viewBox='0%200%20280%20210'%3E%3C/svg%3E" alt="全民k歌破解版" width="280" height="210" data-lazy-src="https://jsd.cdn.zzko.cn/gh/g0fcn/cdn@main/wp-content/uploads/thumbnail/6020/2023122523492829-280x210-c.jpg" ><noscript><img src="https://jsd.cdn.zzko.cn/gh/g0fcn/cdn@main/wp-content/uploads/thumbnail/6020/2023122523492829-280x210-c.jpg" alt="全民k歌破解版" width="280" height="210" ></noscript></a></div>
+						<div class="clear"></div>
+						<h2 class="grid-title over"><a href="https://xkj.93665.xin/6019.html" target="_blank" rel="bookmark">全民k歌破解版</a></h2>						<div class="clear"></div>
+					</div>
+									<div id="post-5972" class="post-item-list post scrolling-img">
+						<div class="scrolling-thumbnail"><a class="sc" rel="external nofollow"  href="https://xkj.93665.xin/5972.html"><img src="data:image/svg+xml,%3Csvg%20xmlns='http://www.w3.org/2000/svg'%20viewBox='0%200%20280%20210'%3E%3C/svg%3E" alt="电视直播" width="280" height="210" data-lazy-src="https://jsd.cdn.zzko.cn/gh/g0fcn/cdn@main/wp-content/uploads/thumbnail/5975/2023122104392016-280x210-c.jpg" ><noscript><img src="https://jsd.cdn.zzko.cn/gh/g0fcn/cdn@main/wp-content/uploads/thumbnail/5975/2023122104392016-280x210-c.jpg" alt="电视直播" width="280" height="210" ></noscript></a></div>
+						<div class="clear"></div>
+						<h2 class="grid-title over"><a href="https://xkj.93665.xin/5972.html" target="_blank" rel="bookmark">电视直播</a></h2>						<div class="clear"></div>
+					</div>
+									<div id="post-5891" class="post-item-list post scrolling-img">
+						<div class="scrolling-thumbnail"><a class="sc" rel="external nofollow"  href="https://xkj.93665.xin/5891.html"><img src="data:image/svg+xml,%3Csvg%20xmlns='http://www.w3.org/2000/svg'%20viewBox='0%200%20280%20210'%3E%3C/svg%3E" alt="抖音抢福袋" width="280" height="210" data-lazy-src="https://jsd.cdn.zzko.cn/gh/g0fcn/cdn@main/wp-content/uploads/thumbnail/5892/2023121910281290-280x210-c.jpg" ><noscript><img src="https://jsd.cdn.zzko.cn/gh/g0fcn/cdn@main/wp-content/uploads/thumbnail/5892/2023121910281290-280x210-c.jpg" alt="抖音抢福袋" width="280" height="210" ></noscript></a></div>
+						<div class="clear"></div>
+						<h2 class="grid-title over"><a href="https://xkj.93665.xin/5891.html" target="_blank" rel="bookmark">抖音抢福袋</a></h2>						<div class="clear"></div>
+					</div>
+									<div id="post-5817" class="post-item-list post scrolling-img">
+						<div class="scrolling-thumbnail"><a class="sc" rel="external nofollow"  href="https://xkj.93665.xin/5817.html"><img src="data:image/svg+xml,%3Csvg%20xmlns='http://www.w3.org/2000/svg'%20viewBox='0%200%20280%20210'%3E%3C/svg%3E" alt="大马猴TV(ios/安卓)" width="280" height="210" data-lazy-src="https://jsd.cdn.zzko.cn/gh/g0fcn/cdn@main/wp-content/uploads/thumbnail/5819/2023120911040127-280x210-c.jpg" ><noscript><img src="https://jsd.cdn.zzko.cn/gh/g0fcn/cdn@main/wp-content/uploads/thumbnail/5819/2023120911040127-280x210-c.jpg" alt="大马猴TV(ios/安卓)" width="280" height="210" ></noscript></a></div>
+						<div class="clear"></div>
+						<h2 class="grid-title over"><a href="https://xkj.93665.xin/5817.html" target="_blank" rel="bookmark">大马猴TV(ios/安卓)</a></h2>						<div class="clear"></div>
+					</div>
+									<div id="post-5812" class="post-item-list post scrolling-img">
+						<div class="scrolling-thumbnail"><a class="sc" rel="external nofollow"  href="https://xkj.93665.xin/5812.html"><img src="data:image/svg+xml,%3Csvg%20xmlns='http://www.w3.org/2000/svg'%20viewBox='0%200%20280%20210'%3E%3C/svg%3E" alt="懒人听书vip破解版" width="280" height="210" data-lazy-src="https://jsd.cdn.zzko.cn/gh/g0fcn/cdn@main/wp-content/uploads/thumbnail/5814/2023120910425874-280x210-c.jpg" ><noscript><img src="https://jsd.cdn.zzko.cn/gh/g0fcn/cdn@main/wp-content/uploads/thumbnail/5814/2023120910425874-280x210-c.jpg" alt="懒人听书vip破解版" width="280" height="210" ></noscript></a></div>
+						<div class="clear"></div>
+						<h2 class="grid-title over"><a href="https://xkj.93665.xin/5812.html" target="_blank" rel="bookmark">懒人听书vip破解版</a></h2>						<div class="clear"></div>
+					</div>
+									<div id="post-5785" class="post-item-list post scrolling-img">
+						<div class="scrolling-thumbnail"><a class="sc" rel="external nofollow"  href="https://xkj.93665.xin/5785.html"><img src="data:image/svg+xml,%3Csvg%20xmlns='http://www.w3.org/2000/svg'%20viewBox='0%200%20280%20210'%3E%3C/svg%3E" alt="wps office破解vip高级版" width="280" height="210" data-lazy-src="https://jsd.cdn.zzko.cn/gh/g0fcn/cdn@main/wp-content/uploads/thumbnail/5786/2023120712125919-280x210-c.jpg" ><noscript><img src="https://jsd.cdn.zzko.cn/gh/g0fcn/cdn@main/wp-content/uploads/thumbnail/5786/2023120712125919-280x210-c.jpg" alt="wps office破解vip高级版" width="280" height="210" ></noscript></a></div>
+						<div class="clear"></div>
+						<h2 class="grid-title over"><a href="https://xkj.93665.xin/5785.html" target="_blank" rel="bookmark">wps office破解vip高级版</a></h2>						<div class="clear"></div>
+					</div>
+											</div>
+
+			<div class="slider-rolling-lazy ajax-owl-loading srfl-5">
+									<div id="post-6332" class="post-item-list post scrolling-img">
+						<div class="scrolling-thumbnail"><a class="sc" rel="external nofollow"  href="https://xkj.93665.xin/6332.html"><img src="data:image/svg+xml,%3Csvg%20xmlns='http://www.w3.org/2000/svg'%20viewBox='0%200%20280%20210'%3E%3C/svg%3E" alt="twitter x破解mod最新版" width="280" height="210" data-lazy-src="https://jsd.cdn.zzko.cn/gh/g0fcn/cdn@main/wp-content/uploads/thumbnail/6334/2024013110401976-280x210-c.jpg" ><noscript><img src="https://jsd.cdn.zzko.cn/gh/g0fcn/cdn@main/wp-content/uploads/thumbnail/6334/2024013110401976-280x210-c.jpg" alt="twitter x破解mod最新版" width="280" height="210" ></noscript></a></div>
+						<div class="clear"></div>
+						<h2 class="grid-title over"><a href="#">加载中...</a></h2>
+						<div class="clear"></div>
+					</div>
+												</div>
+
+						</div>
+		
+															<div id="related-img" class="ms" data-aos=fade-up>
+	<div class="relat-post betip">	
+			<div class="r4">
+			<div class="related-site">
+				<figure class="related-site-img">
+					<span class="load"><a class="sc" rel="external nofollow"  href="https://xkj.93665.xin/5601.html"><img src="" data-original="https://jsd.cdn.zzko.cn/gh/g0fcn/cdn@main/wp-content/uploads/thumbnail/5602/2023111710225879-280x210-c.jpg" alt="可重写的抓包软件ProxyPin" width="280" height="210"></a></span>				 </figure>
+				<div class="related-title over"><a href="https://xkj.93665.xin/5601.html" target="_blank">可重写的抓包软件ProxyPin</a></div>
+			</div>
+		</div>
+		
+			<div class="r4">
+			<div class="related-site">
+				<figure class="related-site-img">
+					<span class="load"><a class="sc" rel="external nofollow"  href="https://xkj.93665.xin/3502.html"><img src="" data-original="https://xkj.93665.xin/wp-content/themes/begin/prune.php?src=http://xkj.93665.xin/wp-content/uploads/2021/04/1617843922-mmexportd65f541946d306da310459272a14813c_1617843885007.png&w=280&h=210&a=&zc=1" alt="【免越狱ios游戏存档】战魂铭人" width="280" height="210"></a></span>				 </figure>
+				<div class="related-title over"><a href="https://xkj.93665.xin/3502.html" target="_blank">【免越狱ios游戏存档】战魂铭人</a></div>
+			</div>
+		</div>
+		
+			<div class="r4">
+			<div class="related-site">
+				<figure class="related-site-img">
+					<span class="load"><a class="sc" rel="external nofollow"  href="https://xkj.93665.xin/3525.html"><img src="" data-original="https://xkj.93665.xin/wp-content/themes/begin/prune.php?src=https://xkj.93665.xin/wp-content/uploads/2021/04/1617846343-mmexport0abebba3b614ba6f732910996a24e6dc_1617846232898.png&w=280&h=210&a=&zc=1" alt="【免越狱ios游戏存档】 into the dead 2" width="280" height="210"></a></span>				 </figure>
+				<div class="related-title over"><a href="https://xkj.93665.xin/3525.html" target="_blank">【免越狱ios游戏存档】 into the dead 2</a></div>
+			</div>
+		</div>
+		
+			<div class="r4">
+			<div class="related-site">
+				<figure class="related-site-img">
+					<span class="load"><a class="sc" rel="external nofollow"  href="https://xkj.93665.xin/2968.html"><img src="" data-original="https://jsd.cdn.zzko.cn/gh/g0fcn/cdn@main/wp-content/uploads/thumbnail/2971/29681-280x210-c.png" alt="电脑硬件配置不够，软件来凑，支持绝大部分游戏" width="280" height="210"></a></span>				 </figure>
+				<div class="related-title over"><a href="https://xkj.93665.xin/2968.html" target="_blank">电脑硬件配置不够，软件来凑，支持绝大部分游戏</a></div>
+			</div>
+		</div>
+		<div class="clear"></div></div>	<div class="clear"></div>
+</div>
+<div class="domargin"></div>									
+				<nav class="post-nav-img betip" data-aos=fade-up>
+					<div class="nav-img-box post-previous-box ms">
+					<figure class="nav-thumbnail"><span class="load"><a class="sc" rel="external nofollow"  href="https://xkj.93665.xin/28.html"><img src="" data-original="https://xkj.93665.xin/wp-content/themes/begin/prune.php?src=http://xkj.93665.xin/wp-content/uploads/2021/01/e8a44-121804-202012161353155fd9a0cb85101.jpg&w=280&h=210&a=&zc=1" alt="怎么在WPS表格里添加图表 在WPS手机版中怎么在表格里加图表" width="280" height="210"></a></span></figure>
+					<a href="https://xkj.93665.xin/28.html">
+						<div class="nav-img post-previous-img">
+							<div class="post-nav">上一篇</div>
+							<div class="nav-img-t">怎么在WPS表格里添加图表 在WPS手机版中怎么在表格里加图表</div>
+						</div>
+					</a>
+				</div>
+								<div class="nav-img-box post-next-box ms">
+					<figure class="nav-thumbnail"><span class="load"><a class="sc" rel="external nofollow"  href="https://xkj.93665.xin/576.html"><img src="" data-original="https://jsd.cdn.zzko.cn/gh/g0fcn/cdn@main/wp-content/uploads/thumbnail/577/20210203_601a683c948ef-280x210-c.jpg" alt="喵喵番 v6.0.4 中文无广告版 漫画/影视/小说聚合软件" width="280" height="210"></a></span></figure>
+					<a href="https://xkj.93665.xin/576.html">
+						<div class="nav-img post-next-img">
+							<div class="post-nav">下一篇</div>
+							<div class="nav-img-t">喵喵番 v6.0.4 中文无广告版 漫画/影视/小说聚合软件</div>
+						</div>
+					</a>
+				</div>
+							<div class="clear"></div>
+</nav>
+
+				
+					
+	
+<!-- 引用 -->
+
+<div id="comments" class="comments-area">
+	
+	
+			<div class="scroll-comments"></div>
+		<div id="respond" class="comment-respond ms" data-aos=fade-up>
+							<span class="show-layer">					<div class="comment-nologin">
+													<h3 id="reply-title" class="comment-reply-title">发表评论</h3>
+												<p class="comment-form-comment"><textarea id="comment" name="comment" rows="2" tabindex="35" placeholder="赠人玫瑰，手留余香..." onfocus="this.placeholder=''" onblur="this.placeholder='赠人玫瑰，手留余香...'"></textarea></p>
+					</div>
+					<p class="form-submit">
+						<input id="submit" class="bk da" name="submit" type="submit" tabindex="36" value="提交"/>
+					</p>
+				</span>					</div>
+	
+	
+</div>
+
+			
+		</main>
+	</div>
+
+</div>
+<div class="clear"></div>
+<footer id="colophon" class="site-footer" role="contentinfo">
+	<div class="site-info">
+		<div class="site-copyright">
+			<p style="padding-left: 40px; text-align: left;">Copyright ©  心科技圈  版权所有.</p>
+<p style="text-align: center;">
+		</div>
+		<div class="add-info">
+						<div class="clear"></div>
+										<span class="yb-info">
+					<a href="https://beian.miit.gov.cn/" rel="external nofollow" target="_blank">苏ICP备17071546号</a>
+				</span>
+								</div>
+					<div class="clear"></div>
+	</div>
+				<ul id="scroll" class="scroll">
+	
+	
+	
+	<li><span class="scroll-h ms fo"><i class="be be-arrowup"></i></span></li>	<li><span class="scroll-b ms fo"><i class="be be-arrowdown"></i></span></li>					<ul class="night-day">
+			<li class="foh"><span class="night-main"><span class="m-night fo ms"><span class="m-moon"><span></span></span></span></span></li>
+			<li class="foh"><span class="m-day fo ms"><i class="be be-loader"></i></span></li>
+		</ul>
+					
+											
+		</ul>
+							<script type="rocketlazyloadscript" data-rocket-type="text/javascript" id="rocket-browser-checker-js-after">
+/* <![CDATA[ */
+"use strict";var _createClass=function(){function defineProperties(target,props){for(var i=0;i<props.length;i++){var descriptor=props[i];descriptor.enumerable=descriptor.enumerable||!1,descriptor.configurable=!0,"value"in descriptor&&(descriptor.writable=!0),Object.defineProperty(target,descriptor.key,descriptor)}}return function(Constructor,protoProps,staticProps){return protoProps&&defineProperties(Constructor.prototype,protoProps),staticProps&&defineProperties(Constructor,staticProps),Constructor}}();function _classCallCheck(instance,Constructor){if(!(instance instanceof Constructor))throw new TypeError("Cannot call a class as a function")}var RocketBrowserCompatibilityChecker=function(){function RocketBrowserCompatibilityChecker(options){_classCallCheck(this,RocketBrowserCompatibilityChecker),this.passiveSupported=!1,this._checkPassiveOption(this),this.options=!!this.passiveSupported&&options}return _createClass(RocketBrowserCompatibilityChecker,[{key:"_checkPassiveOption",value:function(self){try{var options={get passive(){return!(self.passiveSupported=!0)}};window.addEventListener("test",null,options),window.removeEventListener("test",null,options)}catch(err){self.passiveSupported=!1}}},{key:"initRequestIdleCallback",value:function(){!1 in window&&(window.requestIdleCallback=function(cb){var start=Date.now();return setTimeout(function(){cb({didTimeout:!1,timeRemaining:function(){return Math.max(0,50-(Date.now()-start))}})},1)}),!1 in window&&(window.cancelIdleCallback=function(id){return clearTimeout(id)})}},{key:"isDataSaverModeOn",value:function(){return"connection"in navigator&&!0===navigator.connection.saveData}},{key:"supportsLinkPrefetch",value:function(){var elem=document.createElement("link");return elem.relList&&elem.relList.supports&&elem.relList.supports("prefetch")&&window.IntersectionObserver&&"isIntersecting"in IntersectionObserverEntry.prototype}},{key:"isSlowConnection",value:function(){return"connection"in navigator&&"effectiveType"in navigator.connection&&("2g"===navigator.connection.effectiveType||"slow-2g"===navigator.connection.effectiveType)}}]),RocketBrowserCompatibilityChecker}();
+/* ]]> */
+</script>
+<script type="text/javascript" id="rocket-preload-links-js-extra">
+/* <![CDATA[ */
+var RocketPreloadLinksConfig = {"excludeUris":"\/(?:.+\/)?feed(?:\/(?:.+\/?)?)?$|\/(?:.+\/)?embed\/|\/(index.php\/)?(.*)wp-json(\/.*|$)|\/refer\/|\/go\/|\/recommend\/|\/recommends\/","usesTrailingSlash":"","imageExt":"jpg|jpeg|gif|png|tiff|bmp|webp|avif|pdf|doc|docx|xls|xlsx|php","fileExt":"jpg|jpeg|gif|png|tiff|bmp|webp|avif|pdf|doc|docx|xls|xlsx|php|html|htm","siteUrl":"https:\/\/xkj.93665.xin","onHoverDelay":"100","rateThrottle":"3"};
+/* ]]> */
+</script>
+<script type="rocketlazyloadscript" data-rocket-type="text/javascript" id="rocket-preload-links-js-after">
+/* <![CDATA[ */
+(function() {
+"use strict";var r="function"==typeof Symbol&&"symbol"==typeof Symbol.iterator?function(e){return typeof e}:function(e){return e&&"function"==typeof Symbol&&e.constructor===Symbol&&e!==Symbol.prototype?"symbol":typeof e},e=function(){function i(e,t){for(var n=0;n<t.length;n++){var i=t[n];i.enumerable=i.enumerable||!1,i.configurable=!0,"value"in i&&(i.writable=!0),Object.defineProperty(e,i.key,i)}}return function(e,t,n){return t&&i(e.prototype,t),n&&i(e,n),e}}();function i(e,t){if(!(e instanceof t))throw new TypeError("Cannot call a class as a function")}var t=function(){function n(e,t){i(this,n),this.browser=e,this.config=t,this.options=this.browser.options,this.prefetched=new Set,this.eventTime=null,this.threshold=1111,this.numOnHover=0}return e(n,[{key:"init",value:function(){!this.browser.supportsLinkPrefetch()||this.browser.isDataSaverModeOn()||this.browser.isSlowConnection()||(this.regex={excludeUris:RegExp(this.config.excludeUris,"i"),images:RegExp(".("+this.config.imageExt+")$","i"),fileExt:RegExp(".("+this.config.fileExt+")$","i")},this._initListeners(this))}},{key:"_initListeners",value:function(e){-1<this.config.onHoverDelay&&document.addEventListener("mouseover",e.listener.bind(e),e.listenerOptions),document.addEventListener("mousedown",e.listener.bind(e),e.listenerOptions),document.addEventListener("touchstart",e.listener.bind(e),e.listenerOptions)}},{key:"listener",value:function(e){var t=e.target.closest("a"),n=this._prepareUrl(t);if(null!==n)switch(e.type){case"mousedown":case"touchstart":this._addPrefetchLink(n);break;case"mouseover":this._earlyPrefetch(t,n,"mouseout")}}},{key:"_earlyPrefetch",value:function(t,e,n){var i=this,r=setTimeout(function(){if(r=null,0===i.numOnHover)setTimeout(function(){return i.numOnHover=0},1e3);else if(i.numOnHover>i.config.rateThrottle)return;i.numOnHover++,i._addPrefetchLink(e)},this.config.onHoverDelay);t.addEventListener(n,function e(){t.removeEventListener(n,e,{passive:!0}),null!==r&&(clearTimeout(r),r=null)},{passive:!0})}},{key:"_addPrefetchLink",value:function(i){return this.prefetched.add(i.href),new Promise(function(e,t){var n=document.createElement("link");n.rel="prefetch",n.href=i.href,n.onload=e,n.onerror=t,document.head.appendChild(n)}).catch(function(){})}},{key:"_prepareUrl",value:function(e){if(null===e||"object"!==(void 0===e?"undefined":r(e))||!1 in e||-1===["http:","https:"].indexOf(e.protocol))return null;var t=e.href.substring(0,this.config.siteUrl.length),n=this._getPathname(e.href,t),i={original:e.href,protocol:e.protocol,origin:t,pathname:n,href:t+n};return this._isLinkOk(i)?i:null}},{key:"_getPathname",value:function(e,t){var n=t?e.substring(this.config.siteUrl.length):e;return n.startsWith("/")||(n="/"+n),this._shouldAddTrailingSlash(n)?n+"/":n}},{key:"_shouldAddTrailingSlash",value:function(e){return this.config.usesTrailingSlash&&!e.endsWith("/")&&!this.regex.fileExt.test(e)}},{key:"_isLinkOk",value:function(e){return null!==e&&"object"===(void 0===e?"undefined":r(e))&&(!this.prefetched.has(e.href)&&e.origin===this.config.siteUrl&&-1===e.href.indexOf("?")&&-1===e.href.indexOf("#")&&!this.regex.excludeUris.test(e.href)&&!this.regex.images.test(e.href))}}],[{key:"run",value:function(){"undefined"!=typeof RocketPreloadLinksConfig&&new n(new RocketBrowserCompatibilityChecker({capture:!0,passive:!0}),RocketPreloadLinksConfig).init()}}]),n}();t.run();
+}());
+/* ]]> */
+</script>
+<script type="text/javascript" id="rocket_lazyload_css-js-extra">
+/* <![CDATA[ */
+var rocket_lazyload_css_data = {"threshold":"300"};
+/* ]]> */
+</script>
+<script type="text/javascript" id="rocket_lazyload_css-js-after">
+/* <![CDATA[ */
+!function o(n,c,a){function s(t,e){if(!c[t]){if(!n[t]){var r="function"==typeof require&&require;if(!e&&r)return r(t,!0);if(u)return u(t,!0);throw(r=new Error("Cannot find module '"+t+"'")).code="MODULE_NOT_FOUND",r}r=c[t]={exports:{}},n[t][0].call(r.exports,function(e){return s(n[t][1][e]||e)},r,r.exports,o,n,c,a)}return c[t].exports}for(var u="function"==typeof require&&require,e=0;e<a.length;e++)s(a[e]);return s}({1:[function(e,t,r){"use strict";!function(){const r="undefined"==typeof rocket_pairs?[]:rocket_pairs,e="undefined"==typeof rocket_excluded_pairs?[]:rocket_excluded_pairs;e.map(t=>{var e=t.selector;const r=document.querySelectorAll(e);r.forEach(e=>{e.setAttribute("data-rocket-lazy-bg-".concat(t.hash),"excluded")})});const o=document.querySelector("#wpr-lazyload-bg-container");var t=rocket_lazyload_css_data.threshold||300;const n=new IntersectionObserver(e=>{e.forEach(t=>{if(t.isIntersecting){const e=r.filter(e=>t.target.matches(e.selector));e.map(t=>{var e;t&&((e=document.createElement("style")).textContent=t.style,o.insertAdjacentElement("afterend",e),t.elements.forEach(e=>{n.unobserve(e),e.setAttribute("data-rocket-lazy-bg-".concat(t.hash),"loaded")}))})}})},{rootMargin:t+"px"});function c(){0<(0<arguments.length&&void 0!==arguments[0]?arguments[0]:[]).length&&r.forEach(t=>{try{const e=document.querySelectorAll(t.selector);e.forEach(e=>{"loaded"!==e.getAttribute("data-rocket-lazy-bg-".concat(t.hash))&&"excluded"!==e.getAttribute("data-rocket-lazy-bg-".concat(t.hash))&&(n.observe(e),(t.elements||(t.elements=[])).push(e))})}catch(e){console.error(e)}})}c();const a=function(){const o=window.MutationObserver;return function(e,t){if(e&&1===e.nodeType){const r=new o(t);return r.observe(e,{attributes:!0,childList:!0,subtree:!0}),r}}}();t=document.querySelector("body"),a(t,c)}()},{}]},{},[1]);
+//# sourceMappingURL=lazyload-css.min.js.map
+/* ]]> */
+</script>
+<script type="text/javascript" id="captcha-js-extra">
+/* <![CDATA[ */
+var verify_ajax = {"ajax_url":"https:\/\/xkj.93665.xin\/wp-admin\/admin-ajax.php","img_url":"https:\/\/xkj.93665.xin\/wp-content\/themes\/begin\/img\/default\/captcha\/"};
+/* ]]> */
+</script>
+<script type="rocketlazyloadscript" data-minify="1" data-rocket-type="text/javascript" data-rocket-src="https://jsd.cdn.zzko.cn/gh/g0fcn/cdn@main/wp-content/cache/min/1/wp-content/themes/begin/js/captcha.js?ver=1709875907" id="captcha-js" defer></script>
+<script type="rocketlazyloadscript" data-rocket-type="text/javascript" data-rocket-src="https://jsd.cdn.zzko.cn/gh/g0fcn/cdn@main/wp-includes/js/clipboard.min.js?ver=2.0.11" id="clipboard-js" defer></script>
+<script type="text/javascript" id="superfish-js-extra">
+/* <![CDATA[ */
+var assetsData = {"postID":"147"};
+var homeData = {"homeurl":"https:\/\/xkj.93665.xin"};
+/* ]]> */
+</script>
+<script type="rocketlazyloadscript" data-minify="1" data-rocket-type="text/javascript" defer data-rocket-src="https://jsd.cdn.zzko.cn/gh/g0fcn/cdn@main/wp-content/cache/min/1/wp-content/themes/begin/js/superfish.js?ver=1709875907" id="superfish-js"></script>
+<script type="rocketlazyloadscript" data-rocket-type="text/javascript" id="superfish-js-after">
+/* <![CDATA[ */
+var fallwidth = {fall_width: 233};
+/* ]]> */
+</script>
+<script type="rocketlazyloadscript" data-minify="1" data-rocket-type="text/javascript" defer data-rocket-src="https://jsd.cdn.zzko.cn/gh/g0fcn/cdn@main/wp-content/cache/min/1/wp-content/themes/begin/js/begin-script.js?ver=1709875907" id="be_script-js"></script>
+<script type="rocketlazyloadscript" data-rocket-type="text/javascript" id="be_script-js-after">
+/* <![CDATA[ */
+var ajax_content = {"ajax_url":"https:\/\/xkj.93665.xin\/wp-admin\/admin-ajax.php"};var Offset = {"header_h":"80"};var captcha = {"verify":"1"};var emilc = {"ecy":""};var aosstate = {"aos":"0"};var collect_new     = {"ajax_url":"https:\/\/xkj.93665.xin\/wp-admin\/admin-ajax.php"};var collect_views   = {"ajax_url":"https:\/\/xkj.93665.xin\/wp-admin\/admin-ajax.php"};var collect_comment = {"ajax_url":"https:\/\/xkj.93665.xin\/wp-admin\/admin-ajax.php"};var collect_cat     = {"ajax_url":"https:\/\/xkj.93665.xin\/wp-admin\/admin-ajax.php"};var collect_asset   = {"ajax_url":"https:\/\/xkj.93665.xin\/wp-admin\/admin-ajax.php"};var collect_qa      = {"ajax_url":"https:\/\/xkj.93665.xin\/wp-admin\/admin-ajax.php"};
+var bea_ajax_params = {"bea_ajax_nonce":"066e37c095","bea_ajax_url":"https:\/\/xkj.93665.xin\/wp-admin\/admin-ajax.php"};var be_mail_contact_form = {"mail_ajaxurl":"https:\/\/xkj.93665.xin\/wp-admin\/admin-ajax.php"};var ajax_sort = {"ajax_url":"https:\/\/xkj.93665.xin\/wp-admin\/admin-ajax.php"};var random_post = {"ajax_url":"https:\/\/xkj.93665.xin\/wp-admin\/admin-ajax.php"};var ajax_ac = {"ajaxurl":"https:\/\/xkj.93665.xin\/wp-admin\/admin-ajax.php"};var ajax_load_login = {"ajax_url":"https:\/\/xkj.93665.xin\/wp-admin\/admin-ajax.php"};var ajax_pages_login = {"ajax_url":"https:\/\/xkj.93665.xin\/wp-admin\/admin-ajax.php"};var ajax_searchhot = {"ajax_url":"https:\/\/xkj.93665.xin\/wp-admin\/admin-ajax.php"};
+var host = {"site":"https:\/\/xkj.93665.xin"};var plt =  {"time":"30"};
+/* ]]> */
+</script>
+<script type="rocketlazyloadscript" data-minify="1" data-rocket-type="text/javascript" defer data-rocket-src="https://jsd.cdn.zzko.cn/gh/g0fcn/cdn@main/wp-content/cache/min/1/wp-content/themes/begin/js/ajax-tab.js?ver=1709875907" id="ajax_tab-js"></script>
+<script type="rocketlazyloadscript" data-rocket-type="text/javascript" id="ajax_tab-js-after">
+/* <![CDATA[ */
+var ajax_tab = {"ajax_url":"https:\/\/xkj.93665.xin\/wp-admin\/admin-ajax.php"}; var Ajax_post_id = {"post_not_id":147};
+/* ]]> */
+</script>
+<script type="rocketlazyloadscript" data-minify="1" data-rocket-type="text/javascript" defer data-rocket-src="https://jsd.cdn.zzko.cn/gh/g0fcn/cdn@main/wp-content/cache/min/1/wp-content/themes/begin/js/owl.js?ver=1709875907" id="owl-js"></script>
+<script type="rocketlazyloadscript" data-rocket-type="text/javascript" id="owl-js-after">
+/* <![CDATA[ */
+var Timeout = {"owl_time":"4000"};var gridcarousel = {"grid_carousel_f":"4"};var flexiselitems = {"flexisel_f":"5"};var slider_items_n = {"slider_sn":"4"};
+/* ]]> */
+</script>
+<script type="rocketlazyloadscript" data-minify="1" data-rocket-type="text/javascript" defer data-rocket-src="https://jsd.cdn.zzko.cn/gh/g0fcn/cdn@main/wp-content/cache/min/1/wp-content/themes/begin/js/ias.js?ver=1709875907" id="ias-js"></script>
+<script type="rocketlazyloadscript" data-minify="1" data-rocket-type="text/javascript" data-rocket-src="https://jsd.cdn.zzko.cn/gh/g0fcn/cdn@main/wp-content/cache/min/1/wp-content/themes/begin/js/nice-select.js?ver=1709875907" id="nice-select-js" defer></script>
+<script type="rocketlazyloadscript" data-minify="1" data-rocket-type="text/javascript" defer data-rocket-src="https://jsd.cdn.zzko.cn/gh/g0fcn/cdn@main/wp-content/cache/min/1/wp-content/themes/begin/js/fancybox.js?ver=1709875907" id="fancybox-js"></script>
+<script type="rocketlazyloadscript" data-rocket-type="text/javascript" data-rocket-src="https://jsd.cdn.zzko.cn/gh/g0fcn/cdn@main/wp-includes/js/comment-reply.min.js?ver=6.4.3" id="comment-reply-js" async="async" data-wp-strategy="async"></script>
+<script type="text/javascript" id="be_audio-js-extra">
+/* <![CDATA[ */
+var aiStrings = {"play_title":"\u64ad\u653e %s","pause_title":"\u6682\u505c %s","previous":"\u4e0a\u4e00\u66f2","next":"\u4e0b\u4e00\u66f2","toggle_list_repeat":"\u5207\u6362\u5217\u8868\u5faa\u73af\u64ad\u653e","toggle_track_repeat":"\u5355\u66f2\u5faa\u73af","toggle_list_visible":"\u663e\u793a\u9690\u85cf\u5217\u8868","volume_up":"\u589e\u5927\u97f3\u91cf","volume_down":"\u51cf\u5c0f\u97f3\u91cf","shuffle":"\u968f\u673a\u64ad\u653e"};
+/* ]]> */
+</script>
+<script type="rocketlazyloadscript" data-minify="1" data-rocket-type="text/javascript" data-rocket-src="https://jsd.cdn.zzko.cn/gh/g0fcn/cdn@main/wp-content/cache/min/1/wp-content/themes/begin/js/player.js?ver=1709875907" id="be_audio-js" defer></script>
+<script>window.lazyLoadOptions=[{elements_selector:"img[data-lazy-src],.rocket-lazyload,iframe[data-lazy-src]",data_src:"lazy-src",data_srcset:"lazy-srcset",data_sizes:"lazy-sizes",class_loading:"lazyloading",class_loaded:"lazyloaded",threshold:300,callback_loaded:function(element){if(element.tagName==="IFRAME"&&element.dataset.rocketLazyload=="fitvidscompatible"){if(element.classList.contains("lazyloaded")){if(typeof window.jQuery!="undefined"){if(jQuery.fn.fitVids){jQuery(element).parent().fitVids()}}}}}},{elements_selector:".rocket-lazyload",data_src:"lazy-src",data_srcset:"lazy-srcset",data_sizes:"lazy-sizes",class_loading:"lazyloading",class_loaded:"lazyloaded",threshold:300,}];window.addEventListener('LazyLoad::Initialized',function(e){var lazyLoadInstance=e.detail.instance;if(window.MutationObserver){var observer=new MutationObserver(function(mutations){var image_count=0;var iframe_count=0;var rocketlazy_count=0;mutations.forEach(function(mutation){for(var i=0;i<mutation.addedNodes.length;i++){if(typeof mutation.addedNodes[i].getElementsByTagName!=='function'){continue}
+if(typeof mutation.addedNodes[i].getElementsByClassName!=='function'){continue}
+images=mutation.addedNodes[i].getElementsByTagName('img');is_image=mutation.addedNodes[i].tagName=="IMG";iframes=mutation.addedNodes[i].getElementsByTagName('iframe');is_iframe=mutation.addedNodes[i].tagName=="IFRAME";rocket_lazy=mutation.addedNodes[i].getElementsByClassName('rocket-lazyload');image_count+=images.length;iframe_count+=iframes.length;rocketlazy_count+=rocket_lazy.length;if(is_image){image_count+=1}
+if(is_iframe){iframe_count+=1}}});if(image_count>0||iframe_count>0||rocketlazy_count>0){lazyLoadInstance.update()}});var b=document.getElementsByTagName("body")[0];var config={childList:!0,subtree:!0};observer.observe(b,config)}},!1)</script><script data-no-minify="1" async src="https://jsd.cdn.zzko.cn/gh/g0fcn/cdn@main/wp-content/plugins/wp-rocket/assets/js/lazyload/17.8.3/lazyload.min.js"></script><script>function lazyLoadThumb(e,alt){var t='<img data-lazy-src="https://i.ytimg.com/vi/ID/hqdefault.jpg" alt="" width="480" height="360"><noscript><img src="https://i.ytimg.com/vi/ID/hqdefault.jpg" alt="" width="480" height="360"></noscript>',a='<button class="play" aria-label="play Youtube video"></button>';t=t.replace('alt=""','alt="'+alt+'"');return t.replace("ID",e)+a}function lazyLoadYoutubeIframe(){var e=document.createElement("iframe"),t="ID?autoplay=1";t+=0===this.parentNode.dataset.query.length?'':'&'+this.parentNode.dataset.query;e.setAttribute("src",t.replace("ID",this.parentNode.dataset.src)),e.setAttribute("frameborder","0"),e.setAttribute("allowfullscreen","1"),e.setAttribute("allow", "accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture"),this.parentNode.parentNode.replaceChild(e,this.parentNode)}document.addEventListener("DOMContentLoaded",function(){var e,t,p,a=document.getElementsByClassName("rll-youtube-player");for(t=0;t<a.length;t++)e=document.createElement("div"),e.setAttribute("data-id",a[t].dataset.id),e.setAttribute("data-query", a[t].dataset.query),e.setAttribute("data-src", a[t].dataset.src),e.innerHTML=lazyLoadThumb(a[t].dataset.id,a[t].dataset.alt),a[t].appendChild(e),p=e.querySelector('.play'),p.onclick=lazyLoadYoutubeIframe});</script></footer>
+</div>
+</body>
+</html>
+<!-- This website is like a Rocket, isn't it? Performance optimized by WP Rocket. Learn more: https://wp-rocket.me - Debug: cached@1709876051 -->
