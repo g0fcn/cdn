@@ -1,0 +1,793 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head><meta charset="UTF-8" /><script>if(navigator.userAgent.match(/MSIE|Internet Explorer/i)||navigator.userAgent.match(/Trident\/7\..*?rv:11/i)){var href=document.location.href;if(!href.match(/[?&]nowprocket/)){if(href.indexOf("?")==-1){if(href.indexOf("#")==-1){document.location.href=href+"?nowprocket=1"}else{document.location.href=href.replace("#","?nowprocket=1#")}}else{if(href.indexOf("#")==-1){document.location.href=href+"&nowprocket=1"}else{document.location.href=href.replace("#","&nowprocket=1#")}}}}</script><script>class RocketLazyLoadScripts{constructor(){this.v="1.2.5.1",this.triggerEvents=["keydown","mousedown","mousemove","touchmove","touchstart","touchend","wheel"],this.userEventHandler=this._triggerListener.bind(this),this.touchStartHandler=this._onTouchStart.bind(this),this.touchMoveHandler=this._onTouchMove.bind(this),this.touchEndHandler=this._onTouchEnd.bind(this),this.clickHandler=this._onClick.bind(this),this.interceptedClicks=[],this.interceptedClickListeners=[],this._interceptClickListeners(this),window.addEventListener("pageshow",e=>{this.persisted=e.persisted,this.everythingLoaded&&this._triggerLastFunctions()}),document.addEventListener("DOMContentLoaded",()=>{this._preconnect3rdParties()}),this.delayedScripts={normal:[],async:[],defer:[]},this.trash=[],this.allJQueries=[]}_addUserInteractionListener(e){if(document.hidden){e._triggerListener();return}this.triggerEvents.forEach(t=>window.addEventListener(t,e.userEventHandler,{passive:!0})),window.addEventListener("touchstart",e.touchStartHandler,{passive:!0}),window.addEventListener("mousedown",e.touchStartHandler),document.addEventListener("visibilitychange",e.userEventHandler)}_removeUserInteractionListener(){this.triggerEvents.forEach(e=>window.removeEventListener(e,this.userEventHandler,{passive:!0})),document.removeEventListener("visibilitychange",this.userEventHandler)}_onTouchStart(e){"HTML"!==e.target.tagName&&(window.addEventListener("touchend",this.touchEndHandler),window.addEventListener("mouseup",this.touchEndHandler),window.addEventListener("touchmove",this.touchMoveHandler,{passive:!0}),window.addEventListener("mousemove",this.touchMoveHandler),e.target.addEventListener("click",this.clickHandler),this._disableOtherEventListeners(e.target,!0),this._renameDOMAttribute(e.target,"onclick","rocket-onclick"),this._pendingClickStarted())}_onTouchMove(e){window.removeEventListener("touchend",this.touchEndHandler),window.removeEventListener("mouseup",this.touchEndHandler),window.removeEventListener("touchmove",this.touchMoveHandler,{passive:!0}),window.removeEventListener("mousemove",this.touchMoveHandler),e.target.removeEventListener("click",this.clickHandler),this._disableOtherEventListeners(e.target,!1),this._renameDOMAttribute(e.target,"rocket-onclick","onclick"),this._pendingClickFinished()}_onTouchEnd(){window.removeEventListener("touchend",this.touchEndHandler),window.removeEventListener("mouseup",this.touchEndHandler),window.removeEventListener("touchmove",this.touchMoveHandler,{passive:!0}),window.removeEventListener("mousemove",this.touchMoveHandler)}_onClick(e){e.target.removeEventListener("click",this.clickHandler),this._disableOtherEventListeners(e.target,!1),this._renameDOMAttribute(e.target,"rocket-onclick","onclick"),this.interceptedClicks.push(e),e.preventDefault(),e.stopPropagation(),e.stopImmediatePropagation(),this._pendingClickFinished()}_replayClicks(){window.removeEventListener("touchstart",this.touchStartHandler,{passive:!0}),window.removeEventListener("mousedown",this.touchStartHandler),this.interceptedClicks.forEach(e=>{e.target.dispatchEvent(new MouseEvent("click",{view:e.view,bubbles:!0,cancelable:!0}))})}_interceptClickListeners(e){EventTarget.prototype.addEventListenerBase=EventTarget.prototype.addEventListener,EventTarget.prototype.addEventListener=function(t,i,r){"click"!==t||e.windowLoaded||i===e.clickHandler||e.interceptedClickListeners.push({target:this,func:i,options:r}),(this||window).addEventListenerBase(t,i,r)}}_disableOtherEventListeners(e,t){this.interceptedClickListeners.forEach(i=>{i.target===e&&(t?e.removeEventListener("click",i.func,i.options):e.addEventListener("click",i.func,i.options))}),e.parentNode!==document.documentElement&&this._disableOtherEventListeners(e.parentNode,t)}_waitForPendingClicks(){return new Promise(e=>{this._isClickPending?this._pendingClickFinished=e:e()})}_pendingClickStarted(){this._isClickPending=!0}_pendingClickFinished(){this._isClickPending=!1}_renameDOMAttribute(e,t,i){e.hasAttribute&&e.hasAttribute(t)&&(event.target.setAttribute(i,event.target.getAttribute(t)),event.target.removeAttribute(t))}_triggerListener(){this._removeUserInteractionListener(this),"loading"===document.readyState?document.addEventListener("DOMContentLoaded",this._loadEverythingNow.bind(this)):this._loadEverythingNow()}_preconnect3rdParties(){let e=[];document.querySelectorAll("script[type=rocketlazyloadscript][data-rocket-src]").forEach(t=>{let i=t.getAttribute("data-rocket-src");if(i&&0!==i.indexOf("data:")){0===i.indexOf("//")&&(i=location.protocol+i);try{let r=new URL(i).origin;r!==location.origin&&e.push({src:r,crossOrigin:t.crossOrigin||"module"===t.getAttribute("data-rocket-type")})}catch(n){}}}),e=[...new Map(e.map(e=>[JSON.stringify(e),e])).values()],this._batchInjectResourceHints(e,"preconnect")}async _loadEverythingNow(){this.lastBreath=Date.now(),this._delayEventListeners(this),this._delayJQueryReady(this),this._handleDocumentWrite(),this._registerAllDelayedScripts(),this._preloadAllScripts(),await this._loadScriptsFromList(this.delayedScripts.normal),await this._loadScriptsFromList(this.delayedScripts.defer),await this._loadScriptsFromList(this.delayedScripts.async);try{await this._triggerDOMContentLoaded(),await this._pendingWebpackRequests(this),await this._triggerWindowLoad()}catch(e){console.error(e)}window.dispatchEvent(new Event("rocket-allScriptsLoaded")),this.everythingLoaded=!0,this._waitForPendingClicks().then(()=>{this._replayClicks()}),this._emptyTrash()}_registerAllDelayedScripts(){document.querySelectorAll("script[type=rocketlazyloadscript]").forEach(e=>{e.hasAttribute("data-rocket-src")?e.hasAttribute("async")&&!1!==e.async?this.delayedScripts.async.push(e):e.hasAttribute("defer")&&!1!==e.defer||"module"===e.getAttribute("data-rocket-type")?this.delayedScripts.defer.push(e):this.delayedScripts.normal.push(e):this.delayedScripts.normal.push(e)})}async _transformScript(e){if(await this._littleBreath(),!0===e.noModule&&"noModule"in HTMLScriptElement.prototype){e.setAttribute("data-rocket-status","skipped");return}return new Promise(t=>{let i;function r(){(i||e).setAttribute("data-rocket-status","executed"),t()}try{if(navigator.userAgent.indexOf("Firefox/")>0||""===navigator.vendor)i=document.createElement("script"),[...e.attributes].forEach(e=>{let t=e.nodeName;"type"!==t&&("data-rocket-type"===t&&(t="type"),"data-rocket-src"===t&&(t="src"),i.setAttribute(t,e.nodeValue))}),e.text&&(i.text=e.text),i.hasAttribute("src")?(i.addEventListener("load",r),i.addEventListener("error",function(){i.setAttribute("data-rocket-status","failed"),t()}),setTimeout(()=>{i.isConnected||t()},1)):(i.text=e.text,r()),e.parentNode.replaceChild(i,e);else{let n=e.getAttribute("data-rocket-type"),s=e.getAttribute("data-rocket-src");n?(e.type=n,e.removeAttribute("data-rocket-type")):e.removeAttribute("type"),e.addEventListener("load",r),e.addEventListener("error",function(){e.setAttribute("data-rocket-status","failed"),t()}),s?(e.removeAttribute("data-rocket-src"),e.src=s):e.src="data:text/javascript;base64,"+window.btoa(unescape(encodeURIComponent(e.text)))}}catch(a){e.setAttribute("data-rocket-status","failed"),t()}})}async _loadScriptsFromList(e){let t=e.shift();return t&&t.isConnected?(await this._transformScript(t),this._loadScriptsFromList(e)):Promise.resolve()}_preloadAllScripts(){this._batchInjectResourceHints([...this.delayedScripts.normal,...this.delayedScripts.defer,...this.delayedScripts.async],"preload")}_batchInjectResourceHints(e,t){var i=document.createDocumentFragment();e.forEach(e=>{let r=e.getAttribute&&e.getAttribute("data-rocket-src")||e.src;if(r){let n=document.createElement("link");n.href=r,n.rel=t,"preconnect"!==t&&(n.as="script"),e.getAttribute&&"module"===e.getAttribute("data-rocket-type")&&(n.crossOrigin=!0),e.crossOrigin&&(n.crossOrigin=e.crossOrigin),e.integrity&&(n.integrity=e.integrity),i.appendChild(n),this.trash.push(n)}}),document.head.appendChild(i)}_delayEventListeners(e){let t={};function i(i,r){return t[r].eventsToRewrite.indexOf(i)>=0&&!e.everythingLoaded?"rocket-"+i:i}function r(e,r){var n;!t[n=e]&&(t[n]={originalFunctions:{add:n.addEventListener,remove:n.removeEventListener},eventsToRewrite:[]},n.addEventListener=function(){arguments[0]=i(arguments[0],n),t[n].originalFunctions.add.apply(n,arguments)},n.removeEventListener=function(){arguments[0]=i(arguments[0],n),t[n].originalFunctions.remove.apply(n,arguments)}),t[e].eventsToRewrite.push(r)}function n(t,i){let r=t[i];t[i]=null,Object.defineProperty(t,i,{get:()=>r||function(){},set(n){e.everythingLoaded?r=n:t["rocket"+i]=r=n}})}r(document,"DOMContentLoaded"),r(window,"DOMContentLoaded"),r(window,"load"),r(window,"pageshow"),r(document,"readystatechange"),n(document,"onreadystatechange"),n(window,"onload"),n(window,"onpageshow")}_delayJQueryReady(e){let t;function i(t){return e.everythingLoaded?t:t.split(" ").map(e=>"load"===e||0===e.indexOf("load.")?"rocket-jquery-load":e).join(" ")}function r(r){if(r&&r.fn&&!e.allJQueries.includes(r)){r.fn.ready=r.fn.init.prototype.ready=function(t){return e.domReadyFired?t.bind(document)(r):document.addEventListener("rocket-DOMContentLoaded",()=>t.bind(document)(r)),r([])};let n=r.fn.on;r.fn.on=r.fn.init.prototype.on=function(){return this[0]===window&&("string"==typeof arguments[0]||arguments[0]instanceof String?arguments[0]=i(arguments[0]):"object"==typeof arguments[0]&&Object.keys(arguments[0]).forEach(e=>{let t=arguments[0][e];delete arguments[0][e],arguments[0][i(e)]=t})),n.apply(this,arguments),this},e.allJQueries.push(r)}t=r}r(window.jQuery),Object.defineProperty(window,"jQuery",{get:()=>t,set(e){r(e)}})}async _pendingWebpackRequests(e){let t=document.querySelector("script[data-webpack]");async function i(){return new Promise(e=>{t.addEventListener("load",e),t.addEventListener("error",e)})}t&&(await i(),await e._requestAnimFrame(),await e._pendingWebpackRequests(e))}async _triggerDOMContentLoaded(){this.domReadyFired=!0,await this._littleBreath(),document.dispatchEvent(new Event("rocket-readystatechange")),await this._littleBreath(),document.rocketonreadystatechange&&document.rocketonreadystatechange(),await this._littleBreath(),document.dispatchEvent(new Event("rocket-DOMContentLoaded")),await this._littleBreath(),window.dispatchEvent(new Event("rocket-DOMContentLoaded"))}async _triggerWindowLoad(){await this._littleBreath(),document.dispatchEvent(new Event("rocket-readystatechange")),await this._littleBreath(),document.rocketonreadystatechange&&document.rocketonreadystatechange(),await this._littleBreath(),window.dispatchEvent(new Event("rocket-load")),await this._littleBreath(),window.rocketonload&&window.rocketonload(),await this._littleBreath(),this.allJQueries.forEach(e=>e(window).trigger("rocket-jquery-load")),await this._littleBreath();let e=new Event("rocket-pageshow");e.persisted=this.persisted,window.dispatchEvent(e),await this._littleBreath(),window.rocketonpageshow&&window.rocketonpageshow({persisted:this.persisted}),this.windowLoaded=!0}_triggerLastFunctions(){document.onreadystatechange&&document.onreadystatechange(),window.onload&&window.onload(),window.onpageshow&&window.onpageshow({persisted:this.persisted})}_handleDocumentWrite(){let e=new Map;document.write=document.writeln=function(t){let i=document.currentScript;i||console.error("WPRocket unable to document.write this: "+t);let r=document.createRange(),n=i.parentElement,s=e.get(i);void 0===s&&(s=i.nextSibling,e.set(i,s));let a=document.createDocumentFragment();r.setStart(a,0),a.appendChild(r.createContextualFragment(t)),n.insertBefore(a,s)}}async _littleBreath(){Date.now()-this.lastBreath>45&&(await this._requestAnimFrame(),this.lastBreath=Date.now())}async _requestAnimFrame(){return document.hidden?new Promise(e=>setTimeout(e)):new Promise(e=>requestAnimationFrame(e))}_emptyTrash(){this.trash.forEach(e=>e.remove())}static run(){let e=new RocketLazyLoadScripts;e._addUserInteractionListener(e)}}RocketLazyLoadScripts.run();</script>
+
+<meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0, maximum-scale=0.0, user-scalable=no">
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+<title>TrollStore汉化官网 | 心科技圈</title>
+<meta name="description" content="TrollStore巨魔商店" />
+<meta name="keywords" content="巨魔,trollstore" />
+<meta property="og:type" content="acticle">
+<meta property="og:locale" content="zh-CN" />
+<meta property="og:title" content="TrollStore汉化官网" />
+<meta property="og:author" content="蜡笔小心" />
+<meta property="og:image" content="https://jsd.cdn.zzko.cn/gh/g0fcn/cdn@main/wp-content/uploads/2023/02/202302030831502.jpg" />
+<meta property="og:site_name" content="心科技圈">
+<meta property="og:description" content="TrollStore巨魔商店" />
+<meta property="og:url" content="https://xkj.93665.xin/5467.html" />
+<meta property="og:release_date" content="2023-02-03 16:29:52" />
+<link rel="shortcut icon" href="https://jsd.cdn.zzko.cn/gh/g0fcn/cdn@main/wp-content/uploads/2022/04/1650473073-u9928692441748238250fm179app42sizew931n0g4nfPNGfmtautomaxorilen2heic2000000.webp">
+<link rel="apple-touch-icon" sizes="114x114" href="https://jsd.cdn.zzko.cn/gh/g0fcn/cdn@main/wp-content/uploads/2022/04/1650473073-u9928692441748238250fm179app42sizew931n0g4nfPNGfmtautomaxorilen2heic2000000.webp" />
+<link rel="pingback" href="https://xkj.93665.xin/xmlrpc.php">
+<meta name='robots' content='max-image-preview:large' />
+
+<link href='https://jsd.cdn.zzko.cn' rel='preconnect' />
+<link rel='stylesheet' id='begin-style-css' href='https://jsd.cdn.zzko.cn/gh/g0fcn/cdn@main/wp-content/themes/begin/style.css?ver=2024/02/25' type='text/css' media='all' />
+<link data-minify="1" rel='stylesheet' id='be-css' href='https://jsd.cdn.zzko.cn/gh/g0fcn/cdn@main/wp-content/cache/min/1/wp-content/themes/begin/css/be.css?ver=1709875907' type='text/css' media='all' />
+<link data-minify="1" rel='stylesheet' id='dashicons-css' href='https://jsd.cdn.zzko.cn/gh/g0fcn/cdn@main/wp-content/cache/min/1/wp-includes/css/dashicons.min.css?ver=1709875907' type='text/css' media='all' />
+<link data-minify="1" rel='stylesheet' id='fonts-css' href='https://jsd.cdn.zzko.cn/gh/g0fcn/cdn@main/wp-content/cache/min/1/wp-content/themes/begin/css/fonts/fonts.css?ver=1709875907' type='text/css' media='all' />
+<link data-minify="1" rel='stylesheet' id='be_audio-css' href='https://jsd.cdn.zzko.cn/gh/g0fcn/cdn@main/wp-content/cache/min/1/wp-content/themes/begin/css/player.css?ver=1709875907' type='text/css' media='all' />
+<style id='rocket-lazyload-inline-css' type='text/css'>
+.rll-youtube-player{position:relative;padding-bottom:56.23%;height:0;overflow:hidden;max-width:100%;}.rll-youtube-player:focus-within{outline: 2px solid currentColor;outline-offset: 5px;}.rll-youtube-player iframe{position:absolute;top:0;left:0;width:100%;height:100%;z-index:100;background:0 0}.rll-youtube-player img{bottom:0;display:block;left:0;margin:auto;max-width:100%;width:100%;position:absolute;right:0;top:0;border:none;height:auto;-webkit-transition:.4s all;-moz-transition:.4s all;transition:.4s all}.rll-youtube-player img:hover{-webkit-filter:brightness(75%)}.rll-youtube-player .play{height:100%;width:100%;left:0;top:0;position:absolute;background:var(--wpr-bg-45a16cd6-41a0-45a1-9cc4-06ee1be272e6) no-repeat center;background-color: transparent !important;cursor:pointer;border:none;}
+</style>
+<script type="rocketlazyloadscript" data-rocket-type="text/javascript" data-rocket-src="https://jsd.cdn.zzko.cn/gh/g0fcn/cdn@main/wp-includes/js/jquery/jquery.min.js?ver=3.7.1" id="jquery-core-js" defer></script>
+<script type="rocketlazyloadscript" data-rocket-type="text/javascript" defer data-rocket-src="https://jsd.cdn.zzko.cn/gh/g0fcn/cdn@main/wp-includes/js/jquery/jquery-migrate.min.js?ver=3.4.1" id="jquery-migrate-js"></script>
+<script type="rocketlazyloadscript" data-minify="1" data-rocket-type="text/javascript" defer data-rocket-src="https://jsd.cdn.zzko.cn/gh/g0fcn/cdn@main/wp-content/cache/min/1/wp-content/themes/begin/js/jquery.lazyload.js?ver=1709875907" id="lazyload-js"></script>
+<link rel="canonical" href="https://xkj.93665.xin/5467.html" />
+<noscript><style id="rocket-lazyload-nojs-css">.rll-youtube-player, [data-lazy-src]{display:none !important;}</style></noscript>
+
+<style id="wpr-lazyload-bg-container"></style><style id="wpr-lazyload-bg-exclusion"></style>
+<noscript>
+<style id="wpr-lazyload-bg-nostyle">.rll-youtube-player .play{--wpr-bg-45a16cd6-41a0-45a1-9cc4-06ee1be272e6: url('https://jsd.cdn.zzko.cn/gh/g0fcn/cdn@main/wp-content/plugins/wp-rocket/assets/img/youtube.png');}</style>
+</noscript>
+<script type="application/javascript">const rocket_pairs = [{"selector":".rll-youtube-player .play","style":".rll-youtube-player .play{--wpr-bg-45a16cd6-41a0-45a1-9cc4-06ee1be272e6: url('https:\/\/jsd.cdn.zzko.cn\/gh\/g0fcn\/cdn@main\/wp-content\/plugins\/wp-rocket\/assets\/img\/youtube.png');}","hash":"45a16cd6-41a0-45a1-9cc4-06ee1be272e6","url":"https:\/\/jsd.cdn.zzko.cn\/gh\/g0fcn\/cdn@main\/wp-content\/plugins\/wp-rocket\/assets\/img\/youtube.png"}]; const rocket_excluded_pairs = [];</script></head>
+<body class="post-template-default single single-post postid-5467 single-format-standard 8d31" ontouchstart="">
+<script type="rocketlazyloadscript">const SITE_ID = window.location.hostname;if (localStorage.getItem(SITE_ID + '-beNightMode')) {document.body.className += ' night';}</script>
+<span class="be-progress"></span>
+<div id="page" class="hfeed site">
+<header id="masthead" class="site-header site-header-s nav-extend">
+	<div id="header-main" class="header-main top-nav-show">
+				<nav id="header-top" class="header-top">
+			<div class="nav-top betip">
+	
+	<div class="nav-menu-top-box betip">
+		<div class="nav-menu-top">
+			<div class="menu-%e9%a1%b6%e9%83%a8%e8%8f%9c%e5%8d%95-container"><ul id="menu-%e9%a1%b6%e9%83%a8%e8%8f%9c%e5%8d%95" class="top-menu"><li id="menu-item-5133" class="menu-item menu-item-type-taxonomy menu-item-object-category menu-item-has-children menu-item-5133 mega-menu menu-max-col"><a href="https://xkj.93665.xin/youxijiaocheng">游戏教程</a>
+<ul class="sub-menu">
+	<li id="menu-item-5134" class="menu-item menu-item-type-taxonomy menu-item-object-category menu-item-5134 mega-menu menu-max-col"><a href="https://xkj.93665.xin/youxijiaocheng/youxicundang">游戏存档</a></li>
+	<li id="menu-item-5135" class="menu-item menu-item-type-taxonomy menu-item-object-category menu-item-5135 mega-menu menu-max-col"><a href="https://xkj.93665.xin/youxijiaocheng/wangzherongyao">王者荣耀</a></li>
+</ul>
+</li>
+<li id="menu-item-5136" class="menu-item menu-item-type-taxonomy menu-item-object-category menu-item-5136 mega-menu menu-max-col"><a href="https://xkj.93665.xin/wanjijiaocheng">玩机教程</a></li>
+<li id="menu-item-5137" class="menu-item menu-item-type-taxonomy menu-item-object-category current-post-ancestor menu-item-has-children menu-item-5137 mega-menu menu-max-col"><a href="https://xkj.93665.xin/ziyuanfenxiang">资源分享</a>
+<ul class="sub-menu">
+	<li id="menu-item-5138" class="menu-item menu-item-type-taxonomy menu-item-object-category current-post-ancestor current-menu-parent current-post-parent menu-item-5138 mega-menu menu-max-col"><a href="https://xkj.93665.xin/ziyuanfenxiang/iosruanjian">ios软件</a></li>
+	<li id="menu-item-5139" class="menu-item menu-item-type-taxonomy menu-item-object-category menu-item-5139 mega-menu menu-max-col"><a href="https://xkj.93665.xin/ziyuanfenxiang/testflightyaoqingma">Testflight邀请码</a></li>
+	<li id="menu-item-5141" class="menu-item menu-item-type-taxonomy menu-item-object-category menu-item-5141 mega-menu menu-max-col"><a href="https://xkj.93665.xin/ziyuanfenxiang/anzhuoruanjian">安卓软件</a></li>
+	<li id="menu-item-5142" class="menu-item menu-item-type-taxonomy menu-item-object-category menu-item-5142 mega-menu menu-max-col"><a href="https://xkj.93665.xin/ziyuanfenxiang/yingshiapp">影视APP</a></li>
+	<li id="menu-item-5144" class="menu-item menu-item-type-taxonomy menu-item-object-category menu-item-5144 mega-menu menu-max-col"><a href="https://xkj.93665.xin/ziyuanfenxiang/yueyugongju">越狱工具</a></li>
+</ul>
+</li>
+<li id="menu-item-5143" class="menu-item menu-item-type-taxonomy menu-item-object-category menu-item-5143 mega-menu menu-max-col"><a href="https://xkj.93665.xin/ziyuanfenxiang/diannaoziyuan">电脑资源</a></li>
+<li id="menu-item-5132" class="menu-item menu-item-type-taxonomy menu-item-object-category menu-item-5132 mega-menu menu-max-col"><a href="https://xkj.93665.xin/jiaoliu">与我交流</a></li>
+<li id="menu-item-5480" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-5480 mega-menu menu-max-col"><a href="https://xkj.93665.xin/column">专题专栏</a></li>
+<li id="menu-item-5482" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-5482 mega-menu menu-max-col"><a href="https://xkj.93665.xin/link">友情链接</a></li>
+<li id="menu-item-6368" class="menu-item menu-item-type-custom menu-item-object-custom menu-item-6368 mega-menu menu-max-col"><a href="https://www.travellings.cn/go.html">开往</a></li>
+</ul></div>		</div>
+				</div>
+</div>
+		</nav>
+				<div id="menu-container" class="be-menu-main">
+			<div id="navigation-top" class="navigation-top menu_c">
+				<div class="be-nav-box">
+					<div class="be-nav-l">
+						<div class="be-nav-logo">
+															<div class="logo-sites">
+																		<a href="https://xkj.93665.xin/">
+			<span class="logo-small"><img width="255" height="255" class="begd" src="data:image/svg+xml,%3Csvg%20xmlns='http://www.w3.org/2000/svg'%20viewBox='0%200%20255%20255'%3E%3C/svg%3E" style="width: 50px;" alt="心科技圈" data-lazy-src="https://jsd.cdn.zzko.cn/gh/g0fcn/cdn@main/wp-content/uploads/2022/04/1650473073-u9928692441748238250fm179app42sizew931n0g4nfPNGfmtautomaxorilen2heic2000000.webp"><noscript><img width="255" height="255" class="begd" src="https://jsd.cdn.zzko.cn/gh/g0fcn/cdn@main/wp-content/uploads/2022/04/1650473073-u9928692441748238250fm179app42sizew931n0g4nfPNGfmtautomaxorilen2heic2000000.webp" style="width: 50px;" alt="心科技圈"></noscript></span>
+			<span class="site-name-main">
+									<span class="site-name">心科技圈</span>
+													<span class="site-description">一个综合性玩机教程资源网</span>
+							</span>
+		</a>
+	
+	
+								</div>
+														</div>
+
+													<div class="be-nav-wrap betip">
+								<div id="site-nav-wrap" class="site-nav-main" style="margin-left: 66px">
+									<div id="sidr-close">
+										<div class="toggle-sidr-close"></div>
+									</div>
+									<nav id="site-nav" class="main-nav nav-ace">
+													<div id="navigation-toggle" class="menu-but bars"><div class="menu-but-box"><div class="heng"></div></div></div>
+	
+		<div class="menu-%e9%a1%b6%e9%83%a8%e8%8f%9c%e5%8d%95-container"><ul id="menu-%e9%a1%b6%e9%83%a8%e8%8f%9c%e5%8d%95-1" class="down-menu nav-menu"><li class="menu-item menu-item-type-taxonomy menu-item-object-category menu-item-has-children menu-item-5133 mega-menu menu-max-col"><a href="https://xkj.93665.xin/youxijiaocheng">游戏教程</a>
+<ul class="sub-menu">
+	<li class="menu-item menu-item-type-taxonomy menu-item-object-category menu-item-5134 mega-menu menu-max-col"><a href="https://xkj.93665.xin/youxijiaocheng/youxicundang">游戏存档</a></li>
+	<li class="menu-item menu-item-type-taxonomy menu-item-object-category menu-item-5135 mega-menu menu-max-col"><a href="https://xkj.93665.xin/youxijiaocheng/wangzherongyao">王者荣耀</a></li>
+</ul>
+</li>
+<li class="menu-item menu-item-type-taxonomy menu-item-object-category menu-item-5136 mega-menu menu-max-col"><a href="https://xkj.93665.xin/wanjijiaocheng">玩机教程</a></li>
+<li class="menu-item menu-item-type-taxonomy menu-item-object-category current-post-ancestor menu-item-has-children menu-item-5137 mega-menu menu-max-col"><a href="https://xkj.93665.xin/ziyuanfenxiang">资源分享</a>
+<ul class="sub-menu">
+	<li class="menu-item menu-item-type-taxonomy menu-item-object-category current-post-ancestor current-menu-parent current-post-parent menu-item-5138 mega-menu menu-max-col"><a href="https://xkj.93665.xin/ziyuanfenxiang/iosruanjian">ios软件</a></li>
+	<li class="menu-item menu-item-type-taxonomy menu-item-object-category menu-item-5139 mega-menu menu-max-col"><a href="https://xkj.93665.xin/ziyuanfenxiang/testflightyaoqingma">Testflight邀请码</a></li>
+	<li class="menu-item menu-item-type-taxonomy menu-item-object-category menu-item-5141 mega-menu menu-max-col"><a href="https://xkj.93665.xin/ziyuanfenxiang/anzhuoruanjian">安卓软件</a></li>
+	<li class="menu-item menu-item-type-taxonomy menu-item-object-category menu-item-5142 mega-menu menu-max-col"><a href="https://xkj.93665.xin/ziyuanfenxiang/yingshiapp">影视APP</a></li>
+	<li class="menu-item menu-item-type-taxonomy menu-item-object-category menu-item-5144 mega-menu menu-max-col"><a href="https://xkj.93665.xin/ziyuanfenxiang/yueyugongju">越狱工具</a></li>
+</ul>
+</li>
+<li class="menu-item menu-item-type-taxonomy menu-item-object-category menu-item-5143 mega-menu menu-max-col"><a href="https://xkj.93665.xin/ziyuanfenxiang/diannaoziyuan">电脑资源</a></li>
+<li class="menu-item menu-item-type-taxonomy menu-item-object-category menu-item-5132 mega-menu menu-max-col"><a href="https://xkj.93665.xin/jiaoliu">与我交流</a></li>
+<li class="menu-item menu-item-type-post_type menu-item-object-page menu-item-5480 mega-menu menu-max-col"><a href="https://xkj.93665.xin/column">专题专栏</a></li>
+<li class="menu-item menu-item-type-post_type menu-item-object-page menu-item-5482 mega-menu menu-max-col"><a href="https://xkj.93665.xin/link">友情链接</a></li>
+<li class="menu-item menu-item-type-custom menu-item-object-custom menu-item-6368 mega-menu menu-max-col"><a href="https://www.travellings.cn/go.html">开往</a></li>
+</ul></div>
+									</nav>
+
+									<div class="clear"></div>
+
+									<div class="sidr-login">
+													<div class="mobile-login-point">
+			<div class="mobile-login-author-back"><img src="data:image/svg+xml,%3Csvg%20xmlns='http://www.w3.org/2000/svg'%20viewBox='0%200%200%200'%3E%3C/svg%3E" alt="bj" data-lazy-src="https://s2.loli.net/2021/12/05/FOKvZnDLSYtQk3M.jpg"><noscript><img src="https://s2.loli.net/2021/12/05/FOKvZnDLSYtQk3M.jpg" alt="bj"></noscript></div>
+		</div>
+										</div>
+
+								</div>
+																</div>
+											</div>
+
+					<div class="be-nav-r">
+						
+																						<div class="menu-search-button menu-search-open"><i class="be be-search"></i></div>
+	<div class="menu-search-box">
+		<div class="menu-search-button menu-search-close"><i class="be be-cross"></i></div>
+					<div class="menu-search-choose" title="切换搜索"><span class="search-choose-ico"><i class="be be-more"></i></span></div>
+				<div class="menu-search-item menu-search-wp">
+			<form method="get" id="be-menu-search" autocomplete="off" action="https://xkj.93665.xin/">
+				<span class="menu-search-input">
+					<input type="text" value="" name="s" id="so" class="search-focus" placeholder="输入关键字" required />
+					<button type="submit" id="be-menu-search" class="be-menu-search"><i class="be be-search"></i></button>
+				</span>
+								<div class="clear"></div>
+			</form>
+		</div>
+
+				<div class="menu-search-item menu-search-baidu conceal">
+			<script type="rocketlazyloadscript">
+			function g(formname) {
+				var url = "https://www.baidu.com/baidu";
+				if (formname.s[1].checked) {
+					formname.ct.value = "2097152";
+				} else {
+					formname.ct.value = "0";
+				}
+				formname.action = url;
+				return true;
+			}
+			</script>
+			<form name="f1" onsubmit="return g(this)" target="_blank" autocomplete="off">
+				<span class="menu-search-input">
+					<input name=word class="swap_value search-focus-baidu" placeholder="百度一下" name="q" />
+					<input name=tn type=hidden value="bds" />
+					<input name=cl type=hidden value="3" />
+					<input name=ct type=hidden />
+					<input name=si type=hidden value="xkj.93665.xin" />
+					<button type="submit" id="searchbaidu" class="be-menu-search"><i class="be be-baidu"></i></button>
+					<input name=s class="choose" type=radio />
+					<input name=s class="choose" type=radio checked />
+				</span>
+			</form>
+		</div>
+			</div>
+													
+											</div>
+
+									</div>
+				<div class="clear"></div>
+			</div>
+		</div>
+	</div>
+	</header>
+			
+						<nav class="bread">
+			<div class="be-bread">
+				<div class="breadcrumb"><span class="seat"></span><span class="home-text"><a href="https://xkj.93665.xin/" rel="bookmark">首页</a></span><span class="home-text"><i class="be be-arrowright"></i></span><span><a href="https://xkj.93665.xin/ziyuanfenxiang">资源分享</a></span><i class="be be-arrowright"></i><span><a href="https://xkj.93665.xin/ziyuanfenxiang/iosruanjian">ios软件</a></span><i class="be be-arrowright"></i>正文</div>			</div>
+		</nav>
+			
+					
+
+
+
+<nav class="submenu-nav header-sub">
+		<div class="clear"></div>
+</nav>
+			
+	<div id="content" class="site-content site-small site-no-roll">
+	
+		<div id="primary" class="content-area no-sidebar">
+
+		<main id="main" class="be-main site-main" role="main">
+
+			
+				<article id="post-5467" class="post-item post ms">
+		
+			<header class="entry-header">
+												<h1 class="entry-title">TrollStore汉化官网</h1>									</header>
+
+		<div class="entry-content">
+			
+			<div class="begin-single-meta"><span class="single-meta-area"><span class="meta-date"><time datetime="2023-02-03 16:29:52">2023年2月3日</time></span><span class="comment"><a href="https://xkj.93665.xin/5467.html#respond"><i class="be be-speechbubble ri"></i><span class="comment-qa"></span><em>评论</em></a></span><span class="views"><i class="be be-eye ri"></i>11,911,096</span><span class="word-time"></span></span></div><span class="s-hide" title="侧边栏"><span class="off-side"></span></span>
+							<div class="single-content">
+																<h1 dir="auto"><a href="https://jsd.cdn.zzko.cn/gh/g0fcn/cdn@main/wp-content/uploads/2023/02/202302030831502.jpg"><img decoding="async" class="aligncenter size-full wp-image-5469" data-original="https://jsd.cdn.zzko.cn/gh/g0fcn/cdn@main/wp-content/uploads/2023/02/202302030831502.jpg" src="data:image/svg+xml,%3Csvg%20xmlns='http://www.w3.org/2000/svg'%20viewBox='0%200%20240%20135'%3E%3C/svg%3E" width="240" height="135" data-lazy-src="https://jsd.cdn.zzko.cn/gh/g0fcn/cdn@main/wp-content/themes/begin/img/loading.png" /><noscript><img decoding="async" class="aligncenter size-full wp-image-5469" data-original="https://jsd.cdn.zzko.cn/gh/g0fcn/cdn@main/wp-content/uploads/2023/02/202302030831502.jpg" src="https://jsd.cdn.zzko.cn/gh/g0fcn/cdn@main/wp-content/themes/begin/img/loading.png" width="240" height="135" /></noscript></a>TrollStore巨魔商店</h1>
+
+<p>&nbsp;</p>
+<blockquote><p><strong>本网站为微信公众号：心科技，复刻汉化版本的TrollStore（巨魔商店 ）</strong></p>
+<p><strong>TrollStore官网：https://ios.cfw.guide/installing-trollstore/</strong></p></blockquote>
+<p dir="auto">TrollStore 是一个永久签名的禁闭应用程序，可以永久安装您在其中打开的任何 IPA。</p>
+<p dir="auto">它之所以有效，是因为 AMFI/CoreTrust 错误，其中 iOS 不会验证用于签署二进制文件的根证书是否合法。</p>
+<div class="custom-container danger">
+<p>TrollStore <strong>不是</strong>越狱。</p>
+</div>
+<p>TrollStore 是一种工具，它使用协同设计绕过以及另一个漏洞利用，以便使用应用程序运行所需的任何权利对任何应用程序进行永久签名。</p>
+<p>安装 TrollStore 是一个过程，该过程因您运行的设备和 iOS 而异，因此，根据所述组合，下面附上不同的指南</p>
+<hr />
+<table>
+<colgroup>
+<col span="1" />
+<col span="1" />
+<col span="1" />
+<col span="1" /></colgroup>
+<thead>
+<tr>
+<th>从</th>
+<th>自</th>
+<th>arm64 （A8 - A11）</th>
+<th>arm64e 掀背/两厢车（A12 - A17 / M1 - M2）</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td colspan="2">13.7 及更早版本</td>
+<td colspan="2">支持</td>
+</tr>
+<tr>
+<td>14.0</td>
+<td>14.8.1</td>
+<td><a href="https://ios.cfw.guide/installing-trollhelper" rel="external nofollow" target="_blank">安装 TrollStore （TrollHelper）</a></td>
+<td><a href="https://ios.cfw.guide/installing-trollhelperota" rel="external nofollow" target="_blank">安装 TrollStore （TrollHelperOTA）</a></td>
+</tr>
+<tr>
+<td>15.0</td>
+<td>15.5 测试版 4</td>
+<td colspan="2"><a href="https://ios.cfw.guide/installing-trollhelperota" rel="external nofollow" target="_blank">安装 TrollStore （TrollHelperOTA）</a></td>
+</tr>
+<tr>
+<td>15.5</td>
+<td>15.5</td>
+<td><a href="https://ios.cfw.guide/installing-trollhelper-mdc" rel="external nofollow" target="_blank">安装 TrollStore （TrollInstallerMDC）</a></td>
+<td><a href="https://ios.cfw.guide/installing-trollhelperota" rel="external nofollow" target="_blank">安装 TrollStore （TrollHelperOTA）</a></td>
+</tr>
+<tr>
+<td>15.6 测试版 1</td>
+<td>15.6 公测 5</td>
+<td colspan="2"><a href="https://ios.cfw.guide/installing-trollhelperota" rel="external nofollow" target="_blank">安装 TrollStore （TrollHelperOTA）</a></td>
+</tr>
+<tr>
+<td>15.6</td>
+<td>15.6.1</td>
+<td><a href="https://ios.cfw.guide/installing-trollhelper-mdc" rel="external nofollow" target="_blank">安装 TrollStore （TrollInstallerMDC）</a></td>
+<td><a href="https://ios.cfw.guide/installing-trollhelperota" rel="external nofollow" target="_blank">安装 TrollStore （TrollHelperOTA）</a></td>
+</tr>
+<tr>
+<td>15.7</td>
+<td>15.7.1</td>
+<td colspan="2"><a href="https://ios.cfw.guide/installing-trollhelper-mdc" rel="external nofollow" target="_blank">安装 TrollStore （TrollInstallerMDC）</a></td>
+</tr>
+<tr>
+<td>15.7.2</td>
+<td>15.7.2</td>
+<td><a href="https://ios.cfw.guide/installing-trollhelper" rel="external nofollow" target="_blank">安装 TrollStore （TrollHelper）</a></td>
+<td>即将推出</td>
+</tr>
+<tr>
+<td>15.7.3</td>
+<td>15.8</td>
+<td><a href="https://ios.cfw.guide/installing-trollhelper" rel="external nofollow" target="_blank">安装 TrollStore （TrollHelper）</a></td>
+<td>不適用</td>
+</tr>
+<tr>
+<td>16.0</td>
+<td>16.1.2</td>
+<td colspan="2"><a href="https://ios.cfw.guide/installing-trollhelper-mdc" rel="external nofollow" target="_blank">安装 TrollStore （TrollInstallerMDC）</a></td>
+</tr>
+<tr>
+<td>16.2</td>
+<td>16.5</td>
+<td><a href="https://ios.cfw.guide/installing-trollhelper" rel="external nofollow" target="_blank">安装 TrollStore （TrollHelper）</a></td>
+<td><a href="https://ios.cfw.guide/installing-trollhelper-misaka" rel="external nofollow" target="_blank">安装TrollStore（御坂）</a></td>
+</tr>
+<tr>
+<td>16.5.1</td>
+<td>16.5.1</td>
+<td><a href="https://ios.cfw.guide/installing-trollhelper" rel="external nofollow" target="_blank">安装 TrollStore （TrollHelper）</a></td>
+<td>无安装方式</td>
+</tr>
+<tr>
+<td>16.6 测试版 1</td>
+<td>16.6 测试版 1</td>
+<td><a href="https://ios.cfw.guide/installing-trollhelper" rel="external nofollow" target="_blank">安装 TrollStore （TrollHelper）</a></td>
+<td><a href="https://ios.cfw.guide/installing-trollhelper-misaka" rel="external nofollow" target="_blank">安装TrollStore（御坂）</a></td>
+</tr>
+<tr>
+<td>16.6 测试版 2</td>
+<td>16.6.1</td>
+<td><a href="https://ios.cfw.guide/installing-trollhelper" rel="external nofollow" target="_blank">安装 TrollStore （TrollHelper）</a></td>
+<td>无安装方式</td>
+</tr>
+<tr>
+<td>16.7</td>
+<td>16.7.2</td>
+<td colspan="2">支持</td>
+</tr>
+<tr>
+<td>17.0</td>
+<td>17.0</td>
+<td><a href="https://ios.cfw.guide/installing-trollhelper" rel="external nofollow" target="_blank">安装 TrollStore （TrollHelper）</a></td>
+<td>无安装方式</td>
+</tr>
+<tr>
+<td colspan="2">17.0.1 及更高版本</td>
+<td colspan="2">支持</td>
+</tr>
+</tbody>
+</table>
+<div class="custom-container danger">
+<p>如果您的设备运行的是 iOS 13.7 及更早版本、运行 iOS 16.7.x 或运行 iOS 17.0.1 或更高版本，则 TrollStore <strong>永远不会</strong>支持它。</p>
+<p>请注意，如果您的设备使用的是 iOS 16.7.x，但支持 iOS 17.0，您可以按照<a href="https://ios.cfw.guide/updating-blobless-advanced" rel="external nofollow" target="_blank">更新（无 Blob）（高级）</a>并参考图表了解更多信息</p>
+</div>
+<h2 dir="auto" tabindex="-1"><a href="https://github.com/opa334/TrollStore#uninstalling-an-app" rel="external nofollow" target="_blank"></a>卸载应用程序</h2>
+<p dir="auto">从 TrollStore 安装的应用程序只能从 TrollStore 本身卸载，点击应用程序或在“应用程序”选项卡中向右滑动以将其删除。</p>
+<h2 dir="auto" tabindex="-1"><a href="https://github.com/opa334/TrollStore#persistence-helper" rel="external nofollow" target="_blank"></a>持久性帮助程序</h2>
+<p dir="auto">TrollStore 中使用的 CoreTrust 错误仅足以安装“系统”应用程序，这是因为 FrontBoard 每次在启动用户应用程序之前都会进行额外的安全检查（它调用 libmis）。不幸的是，无法安装新的“系统”应用程序，这些应用程序通过图标缓存重新加载而保留下来。因此，当 iOS 重新加载图标缓存时，所有 TrollStore 安装的应用程序（包括 TrollStore 本身）都将恢复为“用户”状态，并且将不再启动。</p>
+<p dir="auto">解决此问题的唯一方法是将持久性帮助程序安装到系统应用程序中，然后可以使用此帮助程序将 TrollStore 及其已安装的应用程序重新注册为“系统”，以便它们再次可启动，TrollStore 设置中提供了此选项。</p>
+<p dir="auto">在越狱的 iOS 14 上，当 TrollHelper 用于安装时，它位于 /Applications 中，并将通过图标缓存重新加载作为“系统”应用程序持续存在，因此 TrollHelper 被用作 iOS 14 上的持久性助手。</p>
+<h2 dir="auto" tabindex="-1"><a href="https://github.com/opa334/TrollStore#url-scheme" rel="external nofollow" target="_blank"></a>URL 方案</h2>
+<p dir="auto">从 1.3 版开始，TrollStore 取代了系统 URL 方案“apple-magnifier”（这样做是为了使“越狱”检测无法像 TrollStore 具有唯一 URL 方案时那样检测 TrollStore）。此 URL 方案可用于直接从浏览器安装应用程序，格式如下：</p>
+<p dir="auto"><code>apple-magnifier://install?url=&lt;URL_to_IPA&gt;</code></p>
+<p dir="auto">在未安装 TrollStore （1.3+） 的设备上，这只会打开放大镜应用程序。</p>
+<h2 dir="auto" tabindex="-1"><a href="https://github.com/opa334/TrollStore#features" rel="external nofollow" target="_blank"></a>特征</h2>
+<p dir="auto">IPA 中的二进制文件可以具有任意权利，使用 ldid 和您想要的权利 （） 进行虚假签名，TrollStore 将在安装时使用伪造的根证书对它们进行签名时保留这些权利。这为您提供了很多可能性，下面将解释其中的一些可能性。<code>ldid -S&lt;path/to/entitlements.plist&gt; &lt;path/to/binary&gt;</code></p>
+<h3 dir="auto" tabindex="-1"><a href="https://github.com/opa334/TrollStore#banned-entitlements" rel="external nofollow" target="_blank"></a>被禁止的权利</h3>
+<p dir="auto">A15+ 上的 iOS 12 禁止了以下三项与运行未签名代码相关的权利，如果没有 PPL 绕过，这些是不可能获得的，使用它们签名的应用程序将在启动时崩溃。</p>
+<p dir="auto"><code>com.apple.private.cs.debugger</code></p>
+<p dir="auto"><code>dynamic-codesigning</code></p>
+<p dir="auto"><code>com.apple.private.skip-library-validation</code></p>
+<h3 dir="auto" tabindex="-1"><a href="https://github.com/opa334/TrollStore#unsandboxing" rel="external nofollow" target="_blank"></a>取消沙盒</h3>
+<p dir="auto">您的应用可以使用以下权利之一以非沙盒方式运行：</p>
+<div class="highlight highlight-text-xml notranslate position-relative overflow-auto" dir="auto">
+<pre>&lt;<span class="pl-ent">key</span>&gt;com.apple.private.security.container-required&lt;/<span class="pl-ent">key</span>&gt;
+&lt;<span class="pl-ent">false</span>/&gt;</pre>
+<div class="zeroclipboard-container position-absolute right-0 top-0"></div>
+</div>
+<div class="highlight highlight-text-xml notranslate position-relative overflow-auto" dir="auto">
+<pre>&lt;<span class="pl-ent">key</span>&gt;com.apple.private.security.no-container&lt;/<span class="pl-ent">key</span>&gt;
+&lt;<span class="pl-ent">true</span>/&gt;</pre>
+<div class="zeroclipboard-container position-absolute right-0 top-0"></div>
+</div>
+<div class="highlight highlight-text-xml notranslate position-relative overflow-auto" dir="auto">
+<pre>&lt;<span class="pl-ent">key</span>&gt;com.apple.private.security.no-sandbox&lt;/<span class="pl-ent">key</span>&gt;
+&lt;<span class="pl-ent">true</span>/&gt;</pre>
+<div class="zeroclipboard-container position-absolute right-0 top-0"></div>
+</div>
+<p dir="auto">The third one is recommended if you still want a sandbox container for your application.</p>
+<p dir="auto">You might also need the platform-application entitlement in order for these to work properly:</p>
+<div class="highlight highlight-text-xml notranslate position-relative overflow-auto" dir="auto">
+<pre>&lt;<span class="pl-ent">key</span>&gt;platform-application&lt;/<span class="pl-ent">key</span>&gt;
+&lt;<span class="pl-ent">true</span>/&gt;</pre>
+<div class="zeroclipboard-container position-absolute right-0 top-0"></div>
+</div>
+<p dir="auto">Please note that the platform-application entitlement causes side effects such as some parts of the sandbox becoming tighter, so you may need additional private entitlements to circumvent that. (For example afterwards you need an exception entitlement for every single IOKit user client class you want to access).</p>
+<p dir="auto">为了让应用具有并能够访问其自己的数据容器，可能需要额外的权利：<code>com.apple.private.security.no-sandbox</code><code>platform-application</code></p>
+<div class="highlight highlight-text-xml notranslate position-relative overflow-auto" dir="auto">
+<pre>&lt;<span class="pl-ent">key</span>&gt;com.apple.private.security.storage.AppDataContainers&lt;/<span class="pl-ent">key</span>&gt;
+&lt;<span class="pl-ent">true</span>/&gt;</pre>
+<div class="zeroclipboard-container position-absolute right-0 top-0"></div>
+</div>
+<h3 dir="auto" tabindex="-1"><a href="https://github.com/opa334/TrollStore#root-helpers" rel="external nofollow" target="_blank"></a>根助手</h3>
+<p dir="auto">当您的应用未沙盒化时，您可以使用 posix_spawn 生成其他二进制文件，也可以使用以下权利以 root 身份生成二进制文件：</p>
+<div class="highlight highlight-text-xml notranslate position-relative overflow-auto" dir="auto">
+<pre>&lt;<span class="pl-ent">key</span>&gt;com.apple.private.persona-mgmt&lt;/<span class="pl-ent">key</span>&gt;
+&lt;<span class="pl-ent">true</span>/&gt;</pre>
+<div class="zeroclipboard-container position-absolute right-0 top-0"></div>
+</div>
+<p dir="auto">您还可以将自己的二进制文件添加到您的 app bundle 中。</p>
+<p dir="auto">之后，您可以使用 <a href="https://github.com/opa334/TrollStore/blob/main/Shared/TSUtil.m#L77" rel="external nofollow" target="_blank">TSUtil.m 中的 spawnRoot 函数</a>以 root 身份生成二进制文件。</p>
+<h3 dir="auto" tabindex="-1"><a href="https://github.com/opa334/TrollStore#things-that-are-not-possible-using-trollstore" rel="external nofollow" target="_blank"></a>使用TrollStore无法实现的事情</h3>
+<ul dir="auto">
+<li>获得适当的平台化 （<code>TF_PLATFORM</code> / <code>CS_PLATFORMIZED</code>)</li>
+<li>生成启动守护程序（需要<code>CS_PLATFORMIZED</code>)</li>
+<li>将调整注入系统进程（需要用户空间 PAC 旁路和 PMAP 信任级别旁路）<code>TF_PLATFORM</code></li>
+</ul>
+<h2 dir="auto" tabindex="-1"><a href="https://github.com/opa334/TrollStore#credits-and-further-reading" rel="external nofollow" target="_blank"></a>致谢和延伸阅读</h2>
+<p dir="auto"><a href="https://twitter.com/LinusHenze/" rel="external nofollow" target="_blank">@LinusHenze</a> - 发现了允许 TrollStore 工作的 CoreTrust 错误。</p>
+<p dir="auto"><a href="https://youtu.be/rPTifU1lG7Q" rel="external nofollow" target="_blank">Fugu15 介绍</a></p>
+<p dir="auto"><a href="https://worthdoingbadly.com/coretrust/" rel="external nofollow" target="_blank">撰写有关CoreTrust错误</a>的更多信息。</p>
+<div style='width:100%,margin-top:20px;text-align:center;'><br/><br/>微信扫描下方的二维码阅读本文<br/><br/><p><img width="150" height="113" alt="TrollStore汉化官网" decoding="async"  data-original="https://jsd.cdn.zzko.cn/gh/g0fcn/cdn@main/wp-content/plugins/rest-api-to-miniprogram/qrcode/qrcode-5467.png" src="data:image/svg+xml,%3Csvg%20xmlns='http://www.w3.org/2000/svg'%20viewBox='0%200%20150%20113'%3E%3C/svg%3E" data-lazy-src="https://jsd.cdn.zzko.cn/gh/g0fcn/cdn@main/wp-content/themes/begin/img/loading.png" ><noscript><img width="150" height="113" alt="TrollStore汉化官网" decoding="async"  data-original="https://jsd.cdn.zzko.cn/gh/g0fcn/cdn@main/wp-content/plugins/rest-api-to-miniprogram/qrcode/qrcode-5467.png" src="https://jsd.cdn.zzko.cn/gh/g0fcn/cdn@main/wp-content/themes/begin/img/loading.png" ></noscript></p></div>
+</p>				</div>
+
+			
+			
+																
+	<div class="content-empty"></div>
+		<footer class="single-footer">
+		<div class="single-cat-tag"><div class="single-cat">&nbsp;</div></div>	</footer>
+
+				<div class="clear"></div>
+	</div>
+
+	</article>
+
+
+				
+									<div class="single-code-tag betip">
+	
+	
+	<div class='clear'></div>
+	<div class="apc-ajax-post-item-wrap ajax-cat-post-wrap" data-more="more" data-apc-ajax-post-item='{"show_filter":"yes","btn":"yes","btn_all":"no","initial":"-1","layout":"1","post_type":"post","posts_per_page":"4","cat":"1184,1185","terms":"","paginate":"no","hide_empty":"true","orderby":"rand","order":"DESC","meta_key":"","more":"more","mid":"","style":"photo","listimg":"","column":"4","infinite":"","animation":"","item_id":"","slider":"","tags":"tag","special":"","prev_next":"true","img":"","sticky":"","top":"","children":"true","author":""}'>
+					<div class="acx-filter-div" data-layout="1">
+				<ul>
+																<li class="bea-texonomy ms apc-cat-btu" data_id="1184" data-aos=fade-up>巨魔</li>
+											<li class="bea-texonomy ms apc-cat-btu" data_id="1185" data-aos=fade-up>trollstore</li>
+									</ul>
+			</div>
+		
+		<div class="acx-ajax-container">
+			<div class="acx-loader">
+				<div class="dual-ring"></div>
+			</div>
+			<div class="beall-filter-result">
+				<div class="apc-postitem-wrapper">	
+		
+		
+		
+		
+		
+					<section class="picture-area content-area grid-cat-4">
+			<div class="apc-post-item apc_layout_1 ">
+															<article id="post-5725" class="post-item-list post picture scl" data-aos="zoom-in"
+>
+							<div class="picture-box sup">
+								<figure class="picture-img gdz">
+																			<span class="load"><a class="sc" rel="external nofollow"  href="https://xkj.93665.xin/5725.html"><img src="" data-original="https://jsd.cdn.zzko.cn/gh/g0fcn/cdn@main/wp-content/uploads/thumbnail/5726/beepress4-1701328779-280x210-c.jpeg" alt="TrollStore2巨魔商店2最详细教程" width="280" height="210"></a></span>																	</figure>
+								<h2 class="grid-title gdz"><a href="https://xkj.93665.xin/5725.html" rel="bookmark" >TrollStore2巨魔商店2最详细教程</a></h2>								<span class="grid-inf gdz">
+					<span class="g-cat"><a href="https://xkj.93665.xin/wanjijiaocheng">玩机教程</a></span>
+		<span class="grid-inf-l">
+				<span class="views"><i class="be be-eye ri"></i>2,539</span>		<span class="date"><time datetime="2023-11-30 15:19:39">11/30</time></span>			</span>
+</span>
+								<div class="clear"></div>
+							</div>
+						</article>
+																				<article id="post-5701" class="post-item-list post picture scl" data-aos="zoom-in"
+>
+							<div class="picture-box sup">
+								<figure class="picture-img gdz">
+																			<span class="load"><a class="sc" rel="external nofollow"  href="https://xkj.93665.xin/5701.html"><img src="" data-original="https://jsd.cdn.zzko.cn/gh/g0fcn/cdn@main/wp-content/uploads/thumbnail/5702/beepress9-1701163676-280x210-c.jpeg" alt="Trollstore巨魔商店2，更新附安装教程" width="280" height="210"></a></span>																	</figure>
+								<h2 class="grid-title gdz"><a href="https://xkj.93665.xin/5701.html" rel="bookmark" >Trollstore巨魔商店2，更新附安装教程</a></h2>								<span class="grid-inf gdz">
+					<span class="g-cat"><a href="https://xkj.93665.xin/wanjijiaocheng">玩机教程</a></span>
+		<span class="grid-inf-l">
+				<span class="views"><i class="be be-eye ri"></i>2,965</span>		<span class="date"><time datetime="2023-11-28 17:27:56">11/28</time></span>			</span>
+</span>
+								<div class="clear"></div>
+							</div>
+						</article>
+																				<article id="post-5763" class="post-item-list post picture scl" data-aos="zoom-in"
+>
+							<div class="picture-box sup">
+								<figure class="picture-img gdz">
+																			<span class="load"><a class="sc" rel="external nofollow"  href="https://xkj.93665.xin/5763.html"><img src="" data-original="https://jsd.cdn.zzko.cn/gh/g0fcn/cdn@main/wp-content/uploads/thumbnail/5764/beepress0-1701859029-280x210-c.jpeg" alt="Picasso 现已免费，可用于安装 TrollStore，方法更简单｜教程" width="280" height="210"></a></span>																	</figure>
+								<h2 class="grid-title gdz"><a href="https://xkj.93665.xin/5763.html" rel="bookmark" >Picasso 现已免费，可用于安装 TrollStore，方法更简单｜教程</a></h2>								<span class="grid-inf gdz">
+					<span class="g-cat"><a href="https://xkj.93665.xin/wanjijiaocheng">玩机教程</a></span>
+		<span class="grid-inf-l">
+				<span class="views"><i class="be be-eye ri"></i>736</span>		<span class="date"><time datetime="2023-12-06 18:37:09">12/06</time></span>			</span>
+</span>
+								<div class="clear"></div>
+							</div>
+						</article>
+																				<article id="post-6089" class="post-item-list post picture scl" data-aos="zoom-in"
+>
+							<div class="picture-box sup">
+								<figure class="picture-img gdz">
+																			<span class="load"><a class="sc" rel="external nofollow"  href="https://xkj.93665.xin/6089.html"><img src="" data-original="https://jsd.cdn.zzko.cn/gh/g0fcn/cdn@main/wp-content/uploads/thumbnail/6090/1704288300-beepress5-1704288300-280x210-c.jpeg" alt="iOS16.6.1安装“巨魔”二款工具以更新PureKFD_5.0丨misaka_8.0.5附TrollStore安装方式" width="280" height="210"></a></span>																	</figure>
+								<h2 class="grid-title gdz"><a href="https://xkj.93665.xin/6089.html" rel="bookmark" >iOS16.6.1安装“巨魔”二款工具以更新PureKFD_5.0丨misaka_8.0.5附TrollStore安装方式</a></h2>								<span class="grid-inf gdz">
+					<span class="g-cat"><a href="https://xkj.93665.xin/wanjijiaocheng">玩机教程</a></span>
+		<span class="grid-inf-l">
+				<span class="views"><i class="be be-eye ri"></i>466</span>		<span class="date"><time datetime="2024-01-03 21:25:00">01/03</time></span>			</span>
+</span>
+								<div class="clear"></div>
+							</div>
+						</article>
+												</div>
+		
+		
+		
+		<div class="clear"></div>
+		<div class="apc-posts-navigation" data-aos="zoom-in"
+>
+			<div class='clear ajax-navigation'></div><div data-paged='1' data-next='2' class=' apc-post-item-load-more'><span class='apc-load-more'><i class='be be-more'></i></span></div>			<div class='clear'></div>
+		</div>
+	</section>
+	</div>			</div>
+		</div>
+	</div>
+
+			</div>
+				
+				
+				
+						
+			<div class="slider-rolling-box ms betip" data-aos=fade-up>
+			<div id="slider-rolling" class="owl-carousel be-rolling single-rolling">
+									<div id="post-6350" class="post-item-list post scrolling-img">
+						<div class="scrolling-thumbnail"><a class="sc" rel="external nofollow"  href="https://xkj.93665.xin/6350.html"><img src="data:image/svg+xml,%3Csvg%20xmlns='http://www.w3.org/2000/svg'%20viewBox='0%200%20280%20210'%3E%3C/svg%3E" alt="伪装应用手慢无" width="280" height="210" data-lazy-src="https://jsd.cdn.zzko.cn/gh/g0fcn/cdn@main/wp-content/uploads/thumbnail/6351/2024020412121423-280x210-c.jpg" ><noscript><img src="https://jsd.cdn.zzko.cn/gh/g0fcn/cdn@main/wp-content/uploads/thumbnail/6351/2024020412121423-280x210-c.jpg" alt="伪装应用手慢无" width="280" height="210" ></noscript></a></div>
+						<div class="clear"></div>
+						<h2 class="grid-title over"><a href="https://xkj.93665.xin/6350.html" target="_blank" rel="bookmark">伪装应用手慢无</a></h2>						<div class="clear"></div>
+					</div>
+									<div id="post-6347" class="post-item-list post scrolling-img">
+						<div class="scrolling-thumbnail"><a class="sc" rel="external nofollow"  href="https://xkj.93665.xin/6347.html"><img src="data:image/svg+xml,%3Csvg%20xmlns='http://www.w3.org/2000/svg'%20viewBox='0%200%20280%20210'%3E%3C/svg%3E" alt="听声音猜动物" width="280" height="210" data-lazy-src="https://jsd.cdn.zzko.cn/gh/g0fcn/cdn@main/wp-content/uploads/thumbnail/6349/2024020311265342-280x210-c.jpeg" ><noscript><img src="https://jsd.cdn.zzko.cn/gh/g0fcn/cdn@main/wp-content/uploads/thumbnail/6349/2024020311265342-280x210-c.jpeg" alt="听声音猜动物" width="280" height="210" ></noscript></a></div>
+						<div class="clear"></div>
+						<h2 class="grid-title over"><a href="https://xkj.93665.xin/6347.html" target="_blank" rel="bookmark">听声音猜动物</a></h2>						<div class="clear"></div>
+					</div>
+									<div id="post-6076" class="post-item-list post scrolling-img">
+						<div class="scrolling-thumbnail"><a class="sc" rel="external nofollow"  href="https://xkj.93665.xin/6076.html"><img src="data:image/svg+xml,%3Csvg%20xmlns='http://www.w3.org/2000/svg'%20viewBox='0%200%20280%20210'%3E%3C/svg%3E" alt="GPT4 ios版本" width="280" height="210" data-lazy-src="https://jsd.cdn.zzko.cn/gh/g0fcn/cdn@main/wp-content/uploads/thumbnail/6077/202312311539231-280x210-c.jpg" ><noscript><img src="https://jsd.cdn.zzko.cn/gh/g0fcn/cdn@main/wp-content/uploads/thumbnail/6077/202312311539231-280x210-c.jpg" alt="GPT4 ios版本" width="280" height="210" ></noscript></a></div>
+						<div class="clear"></div>
+						<h2 class="grid-title over"><a href="https://xkj.93665.xin/6076.html" target="_blank" rel="bookmark">GPT4 ios版本</a></h2>						<div class="clear"></div>
+					</div>
+									<div id="post-6029" class="post-item-list post scrolling-img">
+						<div class="scrolling-thumbnail"><a class="sc" rel="external nofollow"  href="https://xkj.93665.xin/6029.html"><img src="data:image/svg+xml,%3Csvg%20xmlns='http://www.w3.org/2000/svg'%20viewBox='0%200%20280%20210'%3E%3C/svg%3E" alt="巨魔ipa资源免越狱安装" width="280" height="210" data-lazy-src="https://jsd.cdn.zzko.cn/gh/g0fcn/cdn@main/wp-content/uploads/thumbnail/6030/beepress9-1703674348-280x210-c.jpeg" ><noscript><img src="https://jsd.cdn.zzko.cn/gh/g0fcn/cdn@main/wp-content/uploads/thumbnail/6030/beepress9-1703674348-280x210-c.jpeg" alt="巨魔ipa资源免越狱安装" width="280" height="210" ></noscript></a></div>
+						<div class="clear"></div>
+						<h2 class="grid-title over"><a href="https://xkj.93665.xin/6029.html" target="_blank" rel="bookmark">巨魔ipa资源免越狱安装</a></h2>						<div class="clear"></div>
+					</div>
+									<div id="post-5990" class="post-item-list post scrolling-img">
+						<div class="scrolling-thumbnail"><a class="sc" rel="external nofollow"  href="https://xkj.93665.xin/5990.html"><img src="data:image/svg+xml,%3Csvg%20xmlns='http://www.w3.org/2000/svg'%20viewBox='0%200%20280%20210'%3E%3C/svg%3E" alt="伪装上架的好东西小黄人影视" width="280" height="210" data-lazy-src="https://jsd.cdn.zzko.cn/gh/g0fcn/cdn@main/wp-content/uploads/thumbnail/5994/2023122411415740-280x210-c.png" ><noscript><img src="https://jsd.cdn.zzko.cn/gh/g0fcn/cdn@main/wp-content/uploads/thumbnail/5994/2023122411415740-280x210-c.png" alt="伪装上架的好东西小黄人影视" width="280" height="210" ></noscript></a></div>
+						<div class="clear"></div>
+						<h2 class="grid-title over"><a href="https://xkj.93665.xin/5990.html" target="_blank" rel="bookmark">伪装上架的好东西小黄人影视</a></h2>						<div class="clear"></div>
+					</div>
+									<div id="post-5871" class="post-item-list post scrolling-img">
+						<div class="scrolling-thumbnail"><div class="thumbs-sg lazy"><a data-bg="https://pic.rmb.bdstatic.com/bjh/user/b57093d5c09fe570bf2029083b8e8dc9.png" class="thumbs-back sc rocket-lazyload" rel="external nofollow"  href="https://xkj.93665.xin/5871.html" style=""></a></div></div>
+						<div class="clear"></div>
+						<h2 class="grid-title over"><a href="https://xkj.93665.xin/5871.html" target="_blank" rel="bookmark">苹果手机支持油猴脚本的浏览器扩展</a></h2>						<div class="clear"></div>
+					</div>
+									<div id="post-5824" class="post-item-list post scrolling-img">
+						<div class="scrolling-thumbnail"><a class="sc" rel="external nofollow"  href="https://xkj.93665.xin/5824.html"><img src="data:image/svg+xml,%3Csvg%20xmlns='http://www.w3.org/2000/svg'%20viewBox='0%200%20280%20210'%3E%3C/svg%3E" alt="苹果手机看电影神器伪装上架" width="280" height="210" data-lazy-src="https://jsd.cdn.zzko.cn/gh/g0fcn/cdn@main/wp-content/uploads/thumbnail/5825/2023121011252937-280x210-c.jpeg" ><noscript><img src="https://jsd.cdn.zzko.cn/gh/g0fcn/cdn@main/wp-content/uploads/thumbnail/5825/2023121011252937-280x210-c.jpeg" alt="苹果手机看电影神器伪装上架" width="280" height="210" ></noscript></a></div>
+						<div class="clear"></div>
+						<h2 class="grid-title over"><a href="https://xkj.93665.xin/5824.html" target="_blank" rel="bookmark">苹果手机看电影神器伪装上架</a></h2>						<div class="clear"></div>
+					</div>
+									<div id="post-5817" class="post-item-list post scrolling-img">
+						<div class="scrolling-thumbnail"><a class="sc" rel="external nofollow"  href="https://xkj.93665.xin/5817.html"><img src="data:image/svg+xml,%3Csvg%20xmlns='http://www.w3.org/2000/svg'%20viewBox='0%200%20280%20210'%3E%3C/svg%3E" alt="大马猴TV(ios/安卓)" width="280" height="210" data-lazy-src="https://jsd.cdn.zzko.cn/gh/g0fcn/cdn@main/wp-content/uploads/thumbnail/5819/2023120911040127-280x210-c.jpg" ><noscript><img src="https://jsd.cdn.zzko.cn/gh/g0fcn/cdn@main/wp-content/uploads/thumbnail/5819/2023120911040127-280x210-c.jpg" alt="大马猴TV(ios/安卓)" width="280" height="210" ></noscript></a></div>
+						<div class="clear"></div>
+						<h2 class="grid-title over"><a href="https://xkj.93665.xin/5817.html" target="_blank" rel="bookmark">大马猴TV(ios/安卓)</a></h2>						<div class="clear"></div>
+					</div>
+									<div id="post-5789" class="post-item-list post scrolling-img">
+						<div class="scrolling-thumbnail"><a class="sc" rel="external nofollow"  href="https://xkj.93665.xin/5789.html"><img src="data:image/svg+xml,%3Csvg%20xmlns='http://www.w3.org/2000/svg'%20viewBox='0%200%20280%20210'%3E%3C/svg%3E" alt="伪装上架的好东西" width="280" height="210" data-lazy-src="https://jsd.cdn.zzko.cn/gh/g0fcn/cdn@main/wp-content/uploads/thumbnail/5790/2023120809530099-280x210-c.jpg" ><noscript><img src="https://jsd.cdn.zzko.cn/gh/g0fcn/cdn@main/wp-content/uploads/thumbnail/5790/2023120809530099-280x210-c.jpg" alt="伪装上架的好东西" width="280" height="210" ></noscript></a></div>
+						<div class="clear"></div>
+						<h2 class="grid-title over"><a href="https://xkj.93665.xin/5789.html" target="_blank" rel="bookmark">伪装上架的好东西</a></h2>						<div class="clear"></div>
+					</div>
+									<div id="post-5779" class="post-item-list post scrolling-img">
+						<div class="scrolling-thumbnail"><a class="sc" rel="external nofollow"  href="https://xkj.93665.xin/5779.html"><img src="data:image/svg+xml,%3Csvg%20xmlns='http://www.w3.org/2000/svg'%20viewBox='0%200%20280%20210'%3E%3C/svg%3E" alt="读不舍手小说阅读软件可导入源，安卓ios双端" width="280" height="210" data-lazy-src="https://jsd.cdn.zzko.cn/gh/g0fcn/cdn@main/wp-content/uploads/thumbnail/5782/2023120610540021-280x210-c.jpg" ><noscript><img src="https://jsd.cdn.zzko.cn/gh/g0fcn/cdn@main/wp-content/uploads/thumbnail/5782/2023120610540021-280x210-c.jpg" alt="读不舍手小说阅读软件可导入源，安卓ios双端" width="280" height="210" ></noscript></a></div>
+						<div class="clear"></div>
+						<h2 class="grid-title over"><a href="https://xkj.93665.xin/5779.html" target="_blank" rel="bookmark">读不舍手小说阅读软件可导入源，安卓ios双端</a></h2>						<div class="clear"></div>
+					</div>
+											</div>
+
+			<div class="slider-rolling-lazy ajax-owl-loading srfl-5">
+									<div id="post-6350" class="post-item-list post scrolling-img">
+						<div class="scrolling-thumbnail"><a class="sc" rel="external nofollow"  href="https://xkj.93665.xin/6350.html"><img src="data:image/svg+xml,%3Csvg%20xmlns='http://www.w3.org/2000/svg'%20viewBox='0%200%20280%20210'%3E%3C/svg%3E" alt="伪装应用手慢无" width="280" height="210" data-lazy-src="https://jsd.cdn.zzko.cn/gh/g0fcn/cdn@main/wp-content/uploads/thumbnail/6351/2024020412121423-280x210-c.jpg" ><noscript><img src="https://jsd.cdn.zzko.cn/gh/g0fcn/cdn@main/wp-content/uploads/thumbnail/6351/2024020412121423-280x210-c.jpg" alt="伪装应用手慢无" width="280" height="210" ></noscript></a></div>
+						<div class="clear"></div>
+						<h2 class="grid-title over"><a href="#">加载中...</a></h2>
+						<div class="clear"></div>
+					</div>
+												</div>
+
+						</div>
+		
+															<div id="related-img" class="ms" data-aos=fade-up>
+	<div class="relat-post betip">	
+			<div class="r4">
+			<div class="related-site">
+				<figure class="related-site-img">
+					<span class="load"><a class="sc" rel="external nofollow"  href="https://xkj.93665.xin/6089.html"><img src="" data-original="https://jsd.cdn.zzko.cn/gh/g0fcn/cdn@main/wp-content/uploads/thumbnail/6090/1704288300-beepress5-1704288300-280x210-c.jpeg" alt="iOS16.6.1安装“巨魔”二款工具以更新PureKFD_5.0丨misaka_8.0.5附TrollStore安装方式" width="280" height="210"></a></span>				 </figure>
+				<div class="related-title over"><a href="https://xkj.93665.xin/6089.html" target="_blank">iOS16.6.1安装“巨魔”二款工具以更新PureKFD_5.0丨misaka_8.0.5附TrollStore安装方式</a></div>
+			</div>
+		</div>
+		
+			<div class="r4">
+			<div class="related-site">
+				<figure class="related-site-img">
+					<span class="load"><a class="sc" rel="external nofollow"  href="https://xkj.93665.xin/5893.html"><img src="" data-original="https://xkj.93665.xin/wp-content/themes/begin/prune.php?src=https://xkj.93665.xin/wp-content/uploads/2023/12/beepress10-1702117667.jpeg&w=280&h=210&a=&zc=1" alt="巨魔安装问题汇总及解决方法" width="280" height="210"></a></span>				 </figure>
+				<div class="related-title over"><a href="https://xkj.93665.xin/5893.html" target="_blank">巨魔安装问题汇总及解决方法</a></div>
+			</div>
+		</div>
+		
+			<div class="r4">
+			<div class="related-site">
+				<figure class="related-site-img">
+					<span class="load"><a class="sc" rel="external nofollow"  href="https://xkj.93665.xin/5791.html"><img src="" data-original="https://xkj.93665.xin/wp-content/themes/begin/prune.php?src=https://xkj.93665.xin/wp-content/uploads/2023/12/beepress10-1702117667.jpeg&w=280&h=210&a=&zc=1" alt="TrollStore 2 新的安装方法，成功率高，过期不候" width="280" height="210"></a></span>				 </figure>
+				<div class="related-title over"><a href="https://xkj.93665.xin/5791.html" target="_blank">TrollStore 2 新的安装方法，成功率高，过期不候</a></div>
+			</div>
+		</div>
+		
+			<div class="r4">
+			<div class="related-site">
+				<figure class="related-site-img">
+					<span class="load"><a class="sc" rel="external nofollow"  href="https://xkj.93665.xin/5763.html"><img src="" data-original="https://jsd.cdn.zzko.cn/gh/g0fcn/cdn@main/wp-content/uploads/thumbnail/5764/beepress0-1701859029-280x210-c.jpeg" alt="Picasso 现已免费，可用于安装 TrollStore，方法更简单｜教程" width="280" height="210"></a></span>				 </figure>
+				<div class="related-title over"><a href="https://xkj.93665.xin/5763.html" target="_blank">Picasso 现已免费，可用于安装 TrollStore，方法更简单｜教程</a></div>
+			</div>
+		</div>
+		<div class="clear"></div></div>	<div class="clear"></div>
+</div>
+<div class="domargin"></div>									
+				<nav class="post-nav-img betip" data-aos=fade-up>
+					<div class="nav-img-box post-previous-box ms">
+					<figure class="nav-thumbnail"><span class="load"><a class="sc" rel="external nofollow"  href="https://xkj.93665.xin/5451.html"><img src="" data-original="https://jsd.cdn.zzko.cn/gh/g0fcn/cdn@main/wp-content/uploads/thumbnail/5452/2022070412033521-280x210-c.jpg" alt="【Testflight邀请码】 毛毛虫幼儿园 - 儿童益智启蒙早教大全" width="280" height="210"></a></span></figure>
+					<a href="https://xkj.93665.xin/5451.html">
+						<div class="nav-img post-previous-img">
+							<div class="post-nav">上一篇</div>
+							<div class="nav-img-t">【Testflight邀请码】 毛毛虫幼儿园 &#8211; 儿童益智启蒙早教大全</div>
+						</div>
+					</a>
+				</div>
+								<div class="nav-img-box post-next-box ms">
+					<figure class="nav-thumbnail"><span class="load"><a class="sc" rel="external nofollow"  href="https://xkj.93665.xin/5488.html"><img src="" data-original="https://jsd.cdn.zzko.cn/gh/g0fcn/cdn@main/wp-content/uploads/thumbnail/5490/2023042808524694-280x210-c.jpg" alt="【Testflight邀请码】 NauNau | 友達の「今」を知ろう - 位置情報SNS" width="280" height="210"></a></span></figure>
+					<a href="https://xkj.93665.xin/5488.html">
+						<div class="nav-img post-next-img">
+							<div class="post-nav">下一篇</div>
+							<div class="nav-img-t">【Testflight邀请码】 NauNau | 友達の「今」を知ろう &#8211; 位置情報SNS</div>
+						</div>
+					</a>
+				</div>
+							<div class="clear"></div>
+</nav>
+
+				
+					
+	
+<!-- 引用 -->
+
+<div id="comments" class="comments-area">
+	
+	
+			<div class="scroll-comments"></div>
+		<div id="respond" class="comment-respond ms" data-aos=fade-up>
+							<span class="show-layer">					<div class="comment-nologin">
+													<h3 id="reply-title" class="comment-reply-title">发表评论</h3>
+												<p class="comment-form-comment"><textarea id="comment" name="comment" rows="2" tabindex="35" placeholder="赠人玫瑰，手留余香..." onfocus="this.placeholder=''" onblur="this.placeholder='赠人玫瑰，手留余香...'"></textarea></p>
+					</div>
+					<p class="form-submit">
+						<input id="submit" class="bk da" name="submit" type="submit" tabindex="36" value="提交"/>
+					</p>
+				</span>					</div>
+	
+	
+</div>
+
+			
+		</main>
+	</div>
+
+</div>
+<div class="clear"></div>
+<footer id="colophon" class="site-footer" role="contentinfo">
+	<div class="site-info">
+		<div class="site-copyright">
+			<p style="padding-left: 40px; text-align: left;">Copyright ©  心科技圈  版权所有.</p>
+<p style="text-align: center;">
+		</div>
+		<div class="add-info">
+						<div class="clear"></div>
+										<span class="yb-info">
+					<a href="https://beian.miit.gov.cn/" rel="external nofollow" target="_blank">苏ICP备17071546号</a>
+				</span>
+								</div>
+					<div class="clear"></div>
+	</div>
+				<ul id="scroll" class="scroll scroll-hide">
+	
+	
+	
+	<li><span class="scroll-h ms fo"><i class="be be-arrowup"></i></span></li>	<li><span class="scroll-b ms fo"><i class="be be-arrowdown"></i></span></li>					<ul class="night-day">
+			<li class="foh"><span class="night-main"><span class="m-night fo ms"><span class="m-moon"><span></span></span></span></span></li>
+			<li class="foh"><span class="m-day fo ms"><i class="be be-loader"></i></span></li>
+		</ul>
+					
+										<li><span class="rounded-full fo ms"><i class="be be-more"></i></span></li>
+								
+		</ul>
+							<script type="rocketlazyloadscript" data-rocket-type="text/javascript" id="rocket-browser-checker-js-after">
+/* <![CDATA[ */
+"use strict";var _createClass=function(){function defineProperties(target,props){for(var i=0;i<props.length;i++){var descriptor=props[i];descriptor.enumerable=descriptor.enumerable||!1,descriptor.configurable=!0,"value"in descriptor&&(descriptor.writable=!0),Object.defineProperty(target,descriptor.key,descriptor)}}return function(Constructor,protoProps,staticProps){return protoProps&&defineProperties(Constructor.prototype,protoProps),staticProps&&defineProperties(Constructor,staticProps),Constructor}}();function _classCallCheck(instance,Constructor){if(!(instance instanceof Constructor))throw new TypeError("Cannot call a class as a function")}var RocketBrowserCompatibilityChecker=function(){function RocketBrowserCompatibilityChecker(options){_classCallCheck(this,RocketBrowserCompatibilityChecker),this.passiveSupported=!1,this._checkPassiveOption(this),this.options=!!this.passiveSupported&&options}return _createClass(RocketBrowserCompatibilityChecker,[{key:"_checkPassiveOption",value:function(self){try{var options={get passive(){return!(self.passiveSupported=!0)}};window.addEventListener("test",null,options),window.removeEventListener("test",null,options)}catch(err){self.passiveSupported=!1}}},{key:"initRequestIdleCallback",value:function(){!1 in window&&(window.requestIdleCallback=function(cb){var start=Date.now();return setTimeout(function(){cb({didTimeout:!1,timeRemaining:function(){return Math.max(0,50-(Date.now()-start))}})},1)}),!1 in window&&(window.cancelIdleCallback=function(id){return clearTimeout(id)})}},{key:"isDataSaverModeOn",value:function(){return"connection"in navigator&&!0===navigator.connection.saveData}},{key:"supportsLinkPrefetch",value:function(){var elem=document.createElement("link");return elem.relList&&elem.relList.supports&&elem.relList.supports("prefetch")&&window.IntersectionObserver&&"isIntersecting"in IntersectionObserverEntry.prototype}},{key:"isSlowConnection",value:function(){return"connection"in navigator&&"effectiveType"in navigator.connection&&("2g"===navigator.connection.effectiveType||"slow-2g"===navigator.connection.effectiveType)}}]),RocketBrowserCompatibilityChecker}();
+/* ]]> */
+</script>
+<script type="text/javascript" id="rocket-preload-links-js-extra">
+/* <![CDATA[ */
+var RocketPreloadLinksConfig = {"excludeUris":"\/(?:.+\/)?feed(?:\/(?:.+\/?)?)?$|\/(?:.+\/)?embed\/|\/(index.php\/)?(.*)wp-json(\/.*|$)|\/refer\/|\/go\/|\/recommend\/|\/recommends\/","usesTrailingSlash":"","imageExt":"jpg|jpeg|gif|png|tiff|bmp|webp|avif|pdf|doc|docx|xls|xlsx|php","fileExt":"jpg|jpeg|gif|png|tiff|bmp|webp|avif|pdf|doc|docx|xls|xlsx|php|html|htm","siteUrl":"https:\/\/xkj.93665.xin","onHoverDelay":"100","rateThrottle":"3"};
+/* ]]> */
+</script>
+<script type="rocketlazyloadscript" data-rocket-type="text/javascript" id="rocket-preload-links-js-after">
+/* <![CDATA[ */
+(function() {
+"use strict";var r="function"==typeof Symbol&&"symbol"==typeof Symbol.iterator?function(e){return typeof e}:function(e){return e&&"function"==typeof Symbol&&e.constructor===Symbol&&e!==Symbol.prototype?"symbol":typeof e},e=function(){function i(e,t){for(var n=0;n<t.length;n++){var i=t[n];i.enumerable=i.enumerable||!1,i.configurable=!0,"value"in i&&(i.writable=!0),Object.defineProperty(e,i.key,i)}}return function(e,t,n){return t&&i(e.prototype,t),n&&i(e,n),e}}();function i(e,t){if(!(e instanceof t))throw new TypeError("Cannot call a class as a function")}var t=function(){function n(e,t){i(this,n),this.browser=e,this.config=t,this.options=this.browser.options,this.prefetched=new Set,this.eventTime=null,this.threshold=1111,this.numOnHover=0}return e(n,[{key:"init",value:function(){!this.browser.supportsLinkPrefetch()||this.browser.isDataSaverModeOn()||this.browser.isSlowConnection()||(this.regex={excludeUris:RegExp(this.config.excludeUris,"i"),images:RegExp(".("+this.config.imageExt+")$","i"),fileExt:RegExp(".("+this.config.fileExt+")$","i")},this._initListeners(this))}},{key:"_initListeners",value:function(e){-1<this.config.onHoverDelay&&document.addEventListener("mouseover",e.listener.bind(e),e.listenerOptions),document.addEventListener("mousedown",e.listener.bind(e),e.listenerOptions),document.addEventListener("touchstart",e.listener.bind(e),e.listenerOptions)}},{key:"listener",value:function(e){var t=e.target.closest("a"),n=this._prepareUrl(t);if(null!==n)switch(e.type){case"mousedown":case"touchstart":this._addPrefetchLink(n);break;case"mouseover":this._earlyPrefetch(t,n,"mouseout")}}},{key:"_earlyPrefetch",value:function(t,e,n){var i=this,r=setTimeout(function(){if(r=null,0===i.numOnHover)setTimeout(function(){return i.numOnHover=0},1e3);else if(i.numOnHover>i.config.rateThrottle)return;i.numOnHover++,i._addPrefetchLink(e)},this.config.onHoverDelay);t.addEventListener(n,function e(){t.removeEventListener(n,e,{passive:!0}),null!==r&&(clearTimeout(r),r=null)},{passive:!0})}},{key:"_addPrefetchLink",value:function(i){return this.prefetched.add(i.href),new Promise(function(e,t){var n=document.createElement("link");n.rel="prefetch",n.href=i.href,n.onload=e,n.onerror=t,document.head.appendChild(n)}).catch(function(){})}},{key:"_prepareUrl",value:function(e){if(null===e||"object"!==(void 0===e?"undefined":r(e))||!1 in e||-1===["http:","https:"].indexOf(e.protocol))return null;var t=e.href.substring(0,this.config.siteUrl.length),n=this._getPathname(e.href,t),i={original:e.href,protocol:e.protocol,origin:t,pathname:n,href:t+n};return this._isLinkOk(i)?i:null}},{key:"_getPathname",value:function(e,t){var n=t?e.substring(this.config.siteUrl.length):e;return n.startsWith("/")||(n="/"+n),this._shouldAddTrailingSlash(n)?n+"/":n}},{key:"_shouldAddTrailingSlash",value:function(e){return this.config.usesTrailingSlash&&!e.endsWith("/")&&!this.regex.fileExt.test(e)}},{key:"_isLinkOk",value:function(e){return null!==e&&"object"===(void 0===e?"undefined":r(e))&&(!this.prefetched.has(e.href)&&e.origin===this.config.siteUrl&&-1===e.href.indexOf("?")&&-1===e.href.indexOf("#")&&!this.regex.excludeUris.test(e.href)&&!this.regex.images.test(e.href))}}],[{key:"run",value:function(){"undefined"!=typeof RocketPreloadLinksConfig&&new n(new RocketBrowserCompatibilityChecker({capture:!0,passive:!0}),RocketPreloadLinksConfig).init()}}]),n}();t.run();
+}());
+/* ]]> */
+</script>
+<script type="text/javascript" id="rocket_lazyload_css-js-extra">
+/* <![CDATA[ */
+var rocket_lazyload_css_data = {"threshold":"300"};
+/* ]]> */
+</script>
+<script type="text/javascript" id="rocket_lazyload_css-js-after">
+/* <![CDATA[ */
+!function o(n,c,a){function s(t,e){if(!c[t]){if(!n[t]){var r="function"==typeof require&&require;if(!e&&r)return r(t,!0);if(u)return u(t,!0);throw(r=new Error("Cannot find module '"+t+"'")).code="MODULE_NOT_FOUND",r}r=c[t]={exports:{}},n[t][0].call(r.exports,function(e){return s(n[t][1][e]||e)},r,r.exports,o,n,c,a)}return c[t].exports}for(var u="function"==typeof require&&require,e=0;e<a.length;e++)s(a[e]);return s}({1:[function(e,t,r){"use strict";!function(){const r="undefined"==typeof rocket_pairs?[]:rocket_pairs,e="undefined"==typeof rocket_excluded_pairs?[]:rocket_excluded_pairs;e.map(t=>{var e=t.selector;const r=document.querySelectorAll(e);r.forEach(e=>{e.setAttribute("data-rocket-lazy-bg-".concat(t.hash),"excluded")})});const o=document.querySelector("#wpr-lazyload-bg-container");var t=rocket_lazyload_css_data.threshold||300;const n=new IntersectionObserver(e=>{e.forEach(t=>{if(t.isIntersecting){const e=r.filter(e=>t.target.matches(e.selector));e.map(t=>{var e;t&&((e=document.createElement("style")).textContent=t.style,o.insertAdjacentElement("afterend",e),t.elements.forEach(e=>{n.unobserve(e),e.setAttribute("data-rocket-lazy-bg-".concat(t.hash),"loaded")}))})}})},{rootMargin:t+"px"});function c(){0<(0<arguments.length&&void 0!==arguments[0]?arguments[0]:[]).length&&r.forEach(t=>{try{const e=document.querySelectorAll(t.selector);e.forEach(e=>{"loaded"!==e.getAttribute("data-rocket-lazy-bg-".concat(t.hash))&&"excluded"!==e.getAttribute("data-rocket-lazy-bg-".concat(t.hash))&&(n.observe(e),(t.elements||(t.elements=[])).push(e))})}catch(e){console.error(e)}})}c();const a=function(){const o=window.MutationObserver;return function(e,t){if(e&&1===e.nodeType){const r=new o(t);return r.observe(e,{attributes:!0,childList:!0,subtree:!0}),r}}}();t=document.querySelector("body"),a(t,c)}()},{}]},{},[1]);
+//# sourceMappingURL=lazyload-css.min.js.map
+/* ]]> */
+</script>
+<script type="text/javascript" id="captcha-js-extra">
+/* <![CDATA[ */
+var verify_ajax = {"ajax_url":"https:\/\/xkj.93665.xin\/wp-admin\/admin-ajax.php","img_url":"https:\/\/xkj.93665.xin\/wp-content\/themes\/begin\/img\/default\/captcha\/"};
+/* ]]> */
+</script>
+<script type="rocketlazyloadscript" data-minify="1" data-rocket-type="text/javascript" data-rocket-src="https://jsd.cdn.zzko.cn/gh/g0fcn/cdn@main/wp-content/cache/min/1/wp-content/themes/begin/js/captcha.js?ver=1709875907" id="captcha-js" defer></script>
+<script type="rocketlazyloadscript" data-rocket-type="text/javascript" data-rocket-src="https://jsd.cdn.zzko.cn/gh/g0fcn/cdn@main/wp-includes/js/clipboard.min.js?ver=2.0.11" id="clipboard-js" defer></script>
+<script type="text/javascript" id="superfish-js-extra">
+/* <![CDATA[ */
+var assetsData = {"postID":"5467"};
+var homeData = {"homeurl":"https:\/\/xkj.93665.xin"};
+/* ]]> */
+</script>
+<script type="rocketlazyloadscript" data-minify="1" data-rocket-type="text/javascript" defer data-rocket-src="https://jsd.cdn.zzko.cn/gh/g0fcn/cdn@main/wp-content/cache/min/1/wp-content/themes/begin/js/superfish.js?ver=1709875907" id="superfish-js"></script>
+<script type="rocketlazyloadscript" data-rocket-type="text/javascript" id="superfish-js-after">
+/* <![CDATA[ */
+var fallwidth = {fall_width: 233};
+/* ]]> */
+</script>
+<script type="rocketlazyloadscript" data-minify="1" data-rocket-type="text/javascript" defer data-rocket-src="https://jsd.cdn.zzko.cn/gh/g0fcn/cdn@main/wp-content/cache/min/1/wp-content/themes/begin/js/begin-script.js?ver=1709875907" id="be_script-js"></script>
+<script type="rocketlazyloadscript" data-rocket-type="text/javascript" id="be_script-js-after">
+/* <![CDATA[ */
+var ajax_content = {"ajax_url":"https:\/\/xkj.93665.xin\/wp-admin\/admin-ajax.php"};var Offset = {"header_h":"80"};var captcha = {"verify":"1"};var emilc = {"ecy":""};var aosstate = {"aos":"0"};var collect_new     = {"ajax_url":"https:\/\/xkj.93665.xin\/wp-admin\/admin-ajax.php"};var collect_views   = {"ajax_url":"https:\/\/xkj.93665.xin\/wp-admin\/admin-ajax.php"};var collect_comment = {"ajax_url":"https:\/\/xkj.93665.xin\/wp-admin\/admin-ajax.php"};var collect_cat     = {"ajax_url":"https:\/\/xkj.93665.xin\/wp-admin\/admin-ajax.php"};var collect_asset   = {"ajax_url":"https:\/\/xkj.93665.xin\/wp-admin\/admin-ajax.php"};var collect_qa      = {"ajax_url":"https:\/\/xkj.93665.xin\/wp-admin\/admin-ajax.php"};
+var bea_ajax_params = {"bea_ajax_nonce":"066e37c095","bea_ajax_url":"https:\/\/xkj.93665.xin\/wp-admin\/admin-ajax.php"};var be_mail_contact_form = {"mail_ajaxurl":"https:\/\/xkj.93665.xin\/wp-admin\/admin-ajax.php"};var ajax_sort = {"ajax_url":"https:\/\/xkj.93665.xin\/wp-admin\/admin-ajax.php"};var random_post = {"ajax_url":"https:\/\/xkj.93665.xin\/wp-admin\/admin-ajax.php"};var ajax_ac = {"ajaxurl":"https:\/\/xkj.93665.xin\/wp-admin\/admin-ajax.php"};var ajax_load_login = {"ajax_url":"https:\/\/xkj.93665.xin\/wp-admin\/admin-ajax.php"};var ajax_pages_login = {"ajax_url":"https:\/\/xkj.93665.xin\/wp-admin\/admin-ajax.php"};var ajax_searchhot = {"ajax_url":"https:\/\/xkj.93665.xin\/wp-admin\/admin-ajax.php"};
+var host = {"site":"https:\/\/xkj.93665.xin"};var plt =  {"time":"30"};
+/* ]]> */
+</script>
+<script type="rocketlazyloadscript" data-minify="1" data-rocket-type="text/javascript" defer data-rocket-src="https://jsd.cdn.zzko.cn/gh/g0fcn/cdn@main/wp-content/cache/min/1/wp-content/themes/begin/js/ajax-tab.js?ver=1709875907" id="ajax_tab-js"></script>
+<script type="rocketlazyloadscript" data-rocket-type="text/javascript" id="ajax_tab-js-after">
+/* <![CDATA[ */
+var ajax_tab = {"ajax_url":"https:\/\/xkj.93665.xin\/wp-admin\/admin-ajax.php"}; var Ajax_post_id = {"post_not_id":5467};
+/* ]]> */
+</script>
+<script type="rocketlazyloadscript" data-minify="1" data-rocket-type="text/javascript" defer data-rocket-src="https://jsd.cdn.zzko.cn/gh/g0fcn/cdn@main/wp-content/cache/min/1/wp-content/themes/begin/js/owl.js?ver=1709875907" id="owl-js"></script>
+<script type="rocketlazyloadscript" data-rocket-type="text/javascript" id="owl-js-after">
+/* <![CDATA[ */
+var Timeout = {"owl_time":"4000"};var gridcarousel = {"grid_carousel_f":"4"};var flexiselitems = {"flexisel_f":"5"};var slider_items_n = {"slider_sn":"4"};
+/* ]]> */
+</script>
+<script type="rocketlazyloadscript" data-minify="1" data-rocket-type="text/javascript" defer data-rocket-src="https://jsd.cdn.zzko.cn/gh/g0fcn/cdn@main/wp-content/cache/min/1/wp-content/themes/begin/js/ias.js?ver=1709875907" id="ias-js"></script>
+<script type="rocketlazyloadscript" data-minify="1" data-rocket-type="text/javascript" data-rocket-src="https://jsd.cdn.zzko.cn/gh/g0fcn/cdn@main/wp-content/cache/min/1/wp-content/themes/begin/js/nice-select.js?ver=1709875907" id="nice-select-js" defer></script>
+<script type="rocketlazyloadscript" data-minify="1" data-rocket-type="text/javascript" defer data-rocket-src="https://jsd.cdn.zzko.cn/gh/g0fcn/cdn@main/wp-content/cache/min/1/wp-content/themes/begin/js/fancybox.js?ver=1709875907" id="fancybox-js"></script>
+<script type="rocketlazyloadscript" data-rocket-type="text/javascript" data-rocket-src="https://jsd.cdn.zzko.cn/gh/g0fcn/cdn@main/wp-includes/js/comment-reply.min.js?ver=6.4.3" id="comment-reply-js" async="async" data-wp-strategy="async"></script>
+<script type="text/javascript" id="be_audio-js-extra">
+/* <![CDATA[ */
+var aiStrings = {"play_title":"\u64ad\u653e %s","pause_title":"\u6682\u505c %s","previous":"\u4e0a\u4e00\u66f2","next":"\u4e0b\u4e00\u66f2","toggle_list_repeat":"\u5207\u6362\u5217\u8868\u5faa\u73af\u64ad\u653e","toggle_track_repeat":"\u5355\u66f2\u5faa\u73af","toggle_list_visible":"\u663e\u793a\u9690\u85cf\u5217\u8868","volume_up":"\u589e\u5927\u97f3\u91cf","volume_down":"\u51cf\u5c0f\u97f3\u91cf","shuffle":"\u968f\u673a\u64ad\u653e"};
+/* ]]> */
+</script>
+<script type="rocketlazyloadscript" data-minify="1" data-rocket-type="text/javascript" data-rocket-src="https://jsd.cdn.zzko.cn/gh/g0fcn/cdn@main/wp-content/cache/min/1/wp-content/themes/begin/js/player.js?ver=1709875907" id="be_audio-js" defer></script>
+<script>window.lazyLoadOptions=[{elements_selector:"img[data-lazy-src],.rocket-lazyload,iframe[data-lazy-src]",data_src:"lazy-src",data_srcset:"lazy-srcset",data_sizes:"lazy-sizes",class_loading:"lazyloading",class_loaded:"lazyloaded",threshold:300,callback_loaded:function(element){if(element.tagName==="IFRAME"&&element.dataset.rocketLazyload=="fitvidscompatible"){if(element.classList.contains("lazyloaded")){if(typeof window.jQuery!="undefined"){if(jQuery.fn.fitVids){jQuery(element).parent().fitVids()}}}}}},{elements_selector:".rocket-lazyload",data_src:"lazy-src",data_srcset:"lazy-srcset",data_sizes:"lazy-sizes",class_loading:"lazyloading",class_loaded:"lazyloaded",threshold:300,}];window.addEventListener('LazyLoad::Initialized',function(e){var lazyLoadInstance=e.detail.instance;if(window.MutationObserver){var observer=new MutationObserver(function(mutations){var image_count=0;var iframe_count=0;var rocketlazy_count=0;mutations.forEach(function(mutation){for(var i=0;i<mutation.addedNodes.length;i++){if(typeof mutation.addedNodes[i].getElementsByTagName!=='function'){continue}
+if(typeof mutation.addedNodes[i].getElementsByClassName!=='function'){continue}
+images=mutation.addedNodes[i].getElementsByTagName('img');is_image=mutation.addedNodes[i].tagName=="IMG";iframes=mutation.addedNodes[i].getElementsByTagName('iframe');is_iframe=mutation.addedNodes[i].tagName=="IFRAME";rocket_lazy=mutation.addedNodes[i].getElementsByClassName('rocket-lazyload');image_count+=images.length;iframe_count+=iframes.length;rocketlazy_count+=rocket_lazy.length;if(is_image){image_count+=1}
+if(is_iframe){iframe_count+=1}}});if(image_count>0||iframe_count>0||rocketlazy_count>0){lazyLoadInstance.update()}});var b=document.getElementsByTagName("body")[0];var config={childList:!0,subtree:!0};observer.observe(b,config)}},!1)</script><script data-no-minify="1" async src="https://jsd.cdn.zzko.cn/gh/g0fcn/cdn@main/wp-content/plugins/wp-rocket/assets/js/lazyload/17.8.3/lazyload.min.js"></script><script>function lazyLoadThumb(e,alt){var t='<img data-lazy-src="https://i.ytimg.com/vi/ID/hqdefault.jpg" alt="" width="480" height="360"><noscript><img src="https://i.ytimg.com/vi/ID/hqdefault.jpg" alt="" width="480" height="360"></noscript>',a='<button class="play" aria-label="play Youtube video"></button>';t=t.replace('alt=""','alt="'+alt+'"');return t.replace("ID",e)+a}function lazyLoadYoutubeIframe(){var e=document.createElement("iframe"),t="ID?autoplay=1";t+=0===this.parentNode.dataset.query.length?'':'&'+this.parentNode.dataset.query;e.setAttribute("src",t.replace("ID",this.parentNode.dataset.src)),e.setAttribute("frameborder","0"),e.setAttribute("allowfullscreen","1"),e.setAttribute("allow", "accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture"),this.parentNode.parentNode.replaceChild(e,this.parentNode)}document.addEventListener("DOMContentLoaded",function(){var e,t,p,a=document.getElementsByClassName("rll-youtube-player");for(t=0;t<a.length;t++)e=document.createElement("div"),e.setAttribute("data-id",a[t].dataset.id),e.setAttribute("data-query", a[t].dataset.query),e.setAttribute("data-src", a[t].dataset.src),e.innerHTML=lazyLoadThumb(a[t].dataset.id,a[t].dataset.alt),a[t].appendChild(e),p=e.querySelector('.play'),p.onclick=lazyLoadYoutubeIframe});</script></footer>
+</div>
+</body>
+</html>
+<!-- This website is like a Rocket, isn't it? Performance optimized by WP Rocket. Learn more: https://wp-rocket.me - Debug: cached@1709876084 -->
