@@ -15,7 +15,7 @@ jobs:
     - name: Push to Target Repository
       uses: cpina/github-action-push-to-another-repository@main
       env:
-        API_TOKEN_GITHUB: ${{ secrets.GITHUB_TOKEN }}
+        API_TOKEN_GITHUB: ${{ secrets.GH_TOKEN }}
       with:
         source-directory: '.'  
         destination-github-username: 'g0fcn'  
