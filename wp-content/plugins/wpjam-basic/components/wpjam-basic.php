@@ -531,7 +531,7 @@ class WPJAM_Gravatar extends WPJAM_Register{
 class WPJAM_Google_Font extends WPJAM_Register{
 	public static function get_domains(){
 		return [
-			'googleapis_fonts'			=> 'fonts.googleapis.com',
+			'googleapis_fonts'			=> 'fonts.loli.net',
 			'googleapis_ajax'			=> 'ajax.googleapis.com',
 			'googleusercontent_themes'	=> 'themes.googleusercontent.com',
 			'gstatic_fonts'				=> 'fonts.gstatic.com'

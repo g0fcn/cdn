@@ -1578,7 +1578,7 @@ function wp_default_styles( $styles ) {
 		}
 
 		// Hotlink Open Sans, for now.
-		$open_sans_font_url = "https://fonts.googleapis.com/css?family=Open+Sans:300italic,400italic,600italic,300,400,600&subset=$subsets&display=fallback";
+		$open_sans_font_url = "https://fonts.loli.net/css?family=Open+Sans:300italic,400italic,600italic,300,400,600&subset=$subsets&display=fallback";
 	}
 
 	// Register a stylesheet for the selected admin color scheme.
@@ -1652,7 +1652,7 @@ function wp_default_styles( $styles ) {
 	 */
 	$font_family = _x( 'Noto Serif:400,400i,700,700i', 'Google Font Name and Variants' );
 	if ( 'off' !== $font_family ) {
-		$fonts_url = 'https://fonts.googleapis.com/css?family=' . urlencode( $font_family );
+		$fonts_url = 'https://fonts.loli.net/css?family=' . urlencode( $font_family );
 	}
 	$styles->add( 'wp-editor-font', $fonts_url ); // No longer used in core as of 5.7.
 	$block_library_theme_path = WPINC . "/css/dist/block-library/theme$suffix.css";

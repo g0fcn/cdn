@@ -768,7 +768,7 @@ jQuery.fn.findExclude = function (selector, mask, result) {
 
             var font = plugin.fontFamily.val();
             if (!font) return;
-            var href = '//fonts.googleapis.com/css?family=' + font + ':' + variants.replace(/\|/g, ',');
+            var href = '//fonts.loli.net/css?family=' + font + ':' + variants.replace(/\|/g, ',');
             var parentName = plugin.$element.find('.exopite-sof-font-field-js').data('id');
             var html = '<link href="' + href + '" class="cs-font-preview-' + parentName + '" rel="stylesheet" type="text/css" />';
 

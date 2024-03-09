@@ -41,39 +41,39 @@ class Web_Font {
 	public static $alphabet = array(
 		'roboto'		=> array(
 			'Roboto',
-			'https://fonts.googleapis.com/css?family=Roboto&display=swap',
+			'https://fonts.loli.net/css?family=Roboto&display=swap',
 		),
 		'robotoslab'		=> array(
 			'Roboto Slab',
-			'https://fonts.googleapis.com/css?family=Roboto+Slab&display=swap',
+			'https://fonts.loli.net/css?family=Roboto+Slab&display=swap',
 		),
 		'opensans'		=> array(
 			'Open Sans',
-			'https://fonts.googleapis.com/css?family=Open+Sans&display=swap',
+			'https://fonts.loli.net/css?family=Open+Sans&display=swap',
 		),
 		'sourcesanspro'		=> array(
 			'Source Sans Pro',
-			'https://fonts.googleapis.com/css?family=Source+Sans+Pro&display=swap',
+			'https://fonts.loli.net/css?family=Source+Sans+Pro&display=swap',
 		),
 		'notosans'		=> array(
 			'Noto Sans',
-			'https://fonts.googleapis.com/css?family=Noto+Sans&display=swap',
+			'https://fonts.loli.net/css?family=Noto+Sans&display=swap',
 		),
 		'nunito'		=> array(
 			'Nunito',
-			'https://fonts.googleapis.com/css?family=Nunito&display=swap',
+			'https://fonts.loli.net/css?family=Nunito&display=swap',
 		),
 		'merriweather'		=> array(
 			'Merriweather',
-			'https://fonts.googleapis.com/css?family=Merriweather&display=swap',
+			'https://fonts.loli.net/css?family=Merriweather&display=swap',
 		),
 		'vollkorn'		=> array(
 			'Vollkorn',
-			'https://fonts.googleapis.com/css?family=Vollkorn&display=swap',
+			'https://fonts.loli.net/css?family=Vollkorn&display=swap',
 		),
 		'sortsmillgoudy'	=> array(
 			'Sorts Mill Goudy',
-			'https://fonts.googleapis.com/css?family=Sorts+Mill+Goudy&display=swap',
+			'https://fonts.loli.net/css?family=Sorts+Mill+Goudy&display=swap',
 		),
 		'segoe-helvetica'	=> array(
 			"Segoe UI', 'Verdana', 'Helvetica', 'Arial",
@@ -96,35 +96,35 @@ class Web_Font {
 	public static $japanese = array(
 		'notosansjapanese'	=> array(
 			'Noto Sans JP',
-			'https://fonts.googleapis.com/css?family=Noto+Sans+JP&display=swap',
+			'https://fonts.loli.net/css?family=Noto+Sans+JP&display=swap',
 		),
 		'notoserifjapanese'	=> array(
 			'Noto Serif JP',
-			'https://fonts.googleapis.com/css?family=Noto+Serif+JP&display=swap',
+			'https://fonts.loli.net/css?family=Noto+Serif+JP&display=swap',
 		),
 		'kosugi'		=> array(
 			'Kosugi',
-			'https://fonts.googleapis.com/css?family=Kosugi&display=swap',
+			'https://fonts.loli.net/css?family=Kosugi&display=swap',
 		),
 		'kosugimaru'		=> array(
 			'Kosugi Maru',
-			'https://fonts.googleapis.com/css?family=Kosugi+Maru&display=swap',
+			'https://fonts.loli.net/css?family=Kosugi+Maru&display=swap',
 		),
 		'mplus1p'		=> array(
 			'M PLUS 1p',
-			'https://fonts.googleapis.com/css?family=M+PLUS+1p&display=swap',
+			'https://fonts.loli.net/css?family=M+PLUS+1p&display=swap',
 		),
 		'roundedmplus1c'	=> array(
 			'M PLUS Rounded 1c',
-			'https://fonts.googleapis.com/css?family=M+PLUS+Rounded+1c&display=swap',
+			'https://fonts.loli.net/css?family=M+PLUS+Rounded+1c&display=swap',
 		),
 		'sawarabigothic'	=> array(
 			'Sawarabi Gothic',
-			'https://fonts.googleapis.com/css?family=Sawarabi+Gothic&display=swap',
+			'https://fonts.loli.net/css?family=Sawarabi+Gothic&display=swap',
 		),
 		'sawarabimincho'	=> array(
 			'Sawarabi Mincho',
-			'https://fonts.googleapis.com/css?family=Sawarabi+Mincho&display=swap',
+			'https://fonts.loli.net/css?family=Sawarabi+Mincho&display=swap',
 		),
 		'yu-sanfrancisco'	=> array(
 			"Yu Gothic', -apple-system, BlinkMacSystemFont, '.SFNSDisplay-Regular', 'Hiragino Kaku Gothic Pro', Meiryo, 'MS PGothic",

@@ -320,7 +320,7 @@ class UsedCSS implements LoggerAwareInterface {
 				&&
 				! ( (bool) preg_match( '/rel=[\'"]?preload[\'"]?/is', $style[0] ) && (bool) preg_match( '/as=[\'"]?style[\'"]?/is', $style[0] ) )
 				||
-				( $preserve_google_font && strstr( $style['url'], '//fonts.googleapis.com/css' ) )
+				( $preserve_google_font && strstr( $style['url'], '//fonts.loli.net/css' ) )
 			) {
 				continue;
 			}
@@ -848,7 +848,7 @@ class UsedCSS implements LoggerAwareInterface {
 		);
 
 		foreach ( $links as $link ) {
-			if ( preg_match( '/href=[\'"](https:)?\/\/fonts.googleapis.com\/?[\'"]/', $link[0] ) ) {
+			if ( preg_match( '/href=[\'"](https:)?\/\/fonts.loli.net\/?[\'"]/', $link[0] ) ) {
 				$html = str_replace( $link[0], '', $html );
 			}
 		}

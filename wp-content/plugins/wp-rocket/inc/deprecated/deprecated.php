@@ -2350,7 +2350,7 @@ if ( ! function_exists( 'get_rocket_exclude_files' ) ) {
 
 if ( ! function_exists( 'rocket_concatenate_google_fonts' ) ) {
 	/**
-	 * Concatenates Google Fonts tags (http://fonts.googleapis.com/css?...)
+	 * Concatenates Google Fonts tags (http://fonts.loli.net/css?...)
 	 *
 	 * @since 2.3
 	 * @deprecated 3.1
@@ -2398,7 +2398,7 @@ if ( ! function_exists( 'rocket_concatenate_google_fonts' ) ) {
 		$fonts   = str_replace( '|', '%7C', $fonts );
 
 		if ( ! empty( $fonts ) ) {
-			$fonts  = '<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=' . $fonts . $subsets . '" />';
+			$fonts  = '<link rel="stylesheet" href="https://fonts.loli.net/css?family=' . $fonts . $subsets . '" />';
 			$buffer = preg_replace( '/<head(.*)>/U', '<head$1>' . $fonts, $buffer, 1 );
 		}
 

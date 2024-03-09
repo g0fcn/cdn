@@ -76,7 +76,7 @@ class Subscriber implements Subscriber_Interface, LoggerAwareInterface {
 				&&
 				! ( (bool) preg_match( '/rel=[\'"]?preload[\'"]?/is', $style[0] ) && (bool) preg_match( '/as=[\'"]?style[\'"]?/is', $style[0] ) )
 				||
-				( strstr( $style['url'], '//fonts.googleapis.com/css' ) )
+				( strstr( $style['url'], '//fonts.loli.net/css' ) )
 			) {
 				$this->logger::notice(
 					"Skipped URL: {$style['url']}",
