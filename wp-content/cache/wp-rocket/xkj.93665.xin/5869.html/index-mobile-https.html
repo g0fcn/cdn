@@ -1,0 +1,502 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head><meta charset="UTF-8" /><script>if(navigator.userAgent.match(/MSIE|Internet Explorer/i)||navigator.userAgent.match(/Trident\/7\..*?rv:11/i)){var href=document.location.href;if(!href.match(/[?&]nowprocket/)){if(href.indexOf("?")==-1){if(href.indexOf("#")==-1){document.location.href=href+"?nowprocket=1"}else{document.location.href=href.replace("#","?nowprocket=1#")}}else{if(href.indexOf("#")==-1){document.location.href=href+"&nowprocket=1"}else{document.location.href=href.replace("#","&nowprocket=1#")}}}}</script><script>class RocketLazyLoadScripts{constructor(){this.v="1.2.5.1",this.triggerEvents=["keydown","mousedown","mousemove","touchmove","touchstart","touchend","wheel"],this.userEventHandler=this._triggerListener.bind(this),this.touchStartHandler=this._onTouchStart.bind(this),this.touchMoveHandler=this._onTouchMove.bind(this),this.touchEndHandler=this._onTouchEnd.bind(this),this.clickHandler=this._onClick.bind(this),this.interceptedClicks=[],this.interceptedClickListeners=[],this._interceptClickListeners(this),window.addEventListener("pageshow",e=>{this.persisted=e.persisted,this.everythingLoaded&&this._triggerLastFunctions()}),document.addEventListener("DOMContentLoaded",()=>{this._preconnect3rdParties()}),this.delayedScripts={normal:[],async:[],defer:[]},this.trash=[],this.allJQueries=[]}_addUserInteractionListener(e){if(document.hidden){e._triggerListener();return}this.triggerEvents.forEach(t=>window.addEventListener(t,e.userEventHandler,{passive:!0})),window.addEventListener("touchstart",e.touchStartHandler,{passive:!0}),window.addEventListener("mousedown",e.touchStartHandler),document.addEventListener("visibilitychange",e.userEventHandler)}_removeUserInteractionListener(){this.triggerEvents.forEach(e=>window.removeEventListener(e,this.userEventHandler,{passive:!0})),document.removeEventListener("visibilitychange",this.userEventHandler)}_onTouchStart(e){"HTML"!==e.target.tagName&&(window.addEventListener("touchend",this.touchEndHandler),window.addEventListener("mouseup",this.touchEndHandler),window.addEventListener("touchmove",this.touchMoveHandler,{passive:!0}),window.addEventListener("mousemove",this.touchMoveHandler),e.target.addEventListener("click",this.clickHandler),this._disableOtherEventListeners(e.target,!0),this._renameDOMAttribute(e.target,"onclick","rocket-onclick"),this._pendingClickStarted())}_onTouchMove(e){window.removeEventListener("touchend",this.touchEndHandler),window.removeEventListener("mouseup",this.touchEndHandler),window.removeEventListener("touchmove",this.touchMoveHandler,{passive:!0}),window.removeEventListener("mousemove",this.touchMoveHandler),e.target.removeEventListener("click",this.clickHandler),this._disableOtherEventListeners(e.target,!1),this._renameDOMAttribute(e.target,"rocket-onclick","onclick"),this._pendingClickFinished()}_onTouchEnd(){window.removeEventListener("touchend",this.touchEndHandler),window.removeEventListener("mouseup",this.touchEndHandler),window.removeEventListener("touchmove",this.touchMoveHandler,{passive:!0}),window.removeEventListener("mousemove",this.touchMoveHandler)}_onClick(e){e.target.removeEventListener("click",this.clickHandler),this._disableOtherEventListeners(e.target,!1),this._renameDOMAttribute(e.target,"rocket-onclick","onclick"),this.interceptedClicks.push(e),e.preventDefault(),e.stopPropagation(),e.stopImmediatePropagation(),this._pendingClickFinished()}_replayClicks(){window.removeEventListener("touchstart",this.touchStartHandler,{passive:!0}),window.removeEventListener("mousedown",this.touchStartHandler),this.interceptedClicks.forEach(e=>{e.target.dispatchEvent(new MouseEvent("click",{view:e.view,bubbles:!0,cancelable:!0}))})}_interceptClickListeners(e){EventTarget.prototype.addEventListenerBase=EventTarget.prototype.addEventListener,EventTarget.prototype.addEventListener=function(t,i,r){"click"!==t||e.windowLoaded||i===e.clickHandler||e.interceptedClickListeners.push({target:this,func:i,options:r}),(this||window).addEventListenerBase(t,i,r)}}_disableOtherEventListeners(e,t){this.interceptedClickListeners.forEach(i=>{i.target===e&&(t?e.removeEventListener("click",i.func,i.options):e.addEventListener("click",i.func,i.options))}),e.parentNode!==document.documentElement&&this._disableOtherEventListeners(e.parentNode,t)}_waitForPendingClicks(){return new Promise(e=>{this._isClickPending?this._pendingClickFinished=e:e()})}_pendingClickStarted(){this._isClickPending=!0}_pendingClickFinished(){this._isClickPending=!1}_renameDOMAttribute(e,t,i){e.hasAttribute&&e.hasAttribute(t)&&(event.target.setAttribute(i,event.target.getAttribute(t)),event.target.removeAttribute(t))}_triggerListener(){this._removeUserInteractionListener(this),"loading"===document.readyState?document.addEventListener("DOMContentLoaded",this._loadEverythingNow.bind(this)):this._loadEverythingNow()}_preconnect3rdParties(){let e=[];document.querySelectorAll("script[type=rocketlazyloadscript][data-rocket-src]").forEach(t=>{let i=t.getAttribute("data-rocket-src");if(i&&0!==i.indexOf("data:")){0===i.indexOf("//")&&(i=location.protocol+i);try{let r=new URL(i).origin;r!==location.origin&&e.push({src:r,crossOrigin:t.crossOrigin||"module"===t.getAttribute("data-rocket-type")})}catch(n){}}}),e=[...new Map(e.map(e=>[JSON.stringify(e),e])).values()],this._batchInjectResourceHints(e,"preconnect")}async _loadEverythingNow(){this.lastBreath=Date.now(),this._delayEventListeners(this),this._delayJQueryReady(this),this._handleDocumentWrite(),this._registerAllDelayedScripts(),this._preloadAllScripts(),await this._loadScriptsFromList(this.delayedScripts.normal),await this._loadScriptsFromList(this.delayedScripts.defer),await this._loadScriptsFromList(this.delayedScripts.async);try{await this._triggerDOMContentLoaded(),await this._pendingWebpackRequests(this),await this._triggerWindowLoad()}catch(e){console.error(e)}window.dispatchEvent(new Event("rocket-allScriptsLoaded")),this.everythingLoaded=!0,this._waitForPendingClicks().then(()=>{this._replayClicks()}),this._emptyTrash()}_registerAllDelayedScripts(){document.querySelectorAll("script[type=rocketlazyloadscript]").forEach(e=>{e.hasAttribute("data-rocket-src")?e.hasAttribute("async")&&!1!==e.async?this.delayedScripts.async.push(e):e.hasAttribute("defer")&&!1!==e.defer||"module"===e.getAttribute("data-rocket-type")?this.delayedScripts.defer.push(e):this.delayedScripts.normal.push(e):this.delayedScripts.normal.push(e)})}async _transformScript(e){if(await this._littleBreath(),!0===e.noModule&&"noModule"in HTMLScriptElement.prototype){e.setAttribute("data-rocket-status","skipped");return}return new Promise(t=>{let i;function r(){(i||e).setAttribute("data-rocket-status","executed"),t()}try{if(navigator.userAgent.indexOf("Firefox/")>0||""===navigator.vendor)i=document.createElement("script"),[...e.attributes].forEach(e=>{let t=e.nodeName;"type"!==t&&("data-rocket-type"===t&&(t="type"),"data-rocket-src"===t&&(t="src"),i.setAttribute(t,e.nodeValue))}),e.text&&(i.text=e.text),i.hasAttribute("src")?(i.addEventListener("load",r),i.addEventListener("error",function(){i.setAttribute("data-rocket-status","failed"),t()}),setTimeout(()=>{i.isConnected||t()},1)):(i.text=e.text,r()),e.parentNode.replaceChild(i,e);else{let n=e.getAttribute("data-rocket-type"),s=e.getAttribute("data-rocket-src");n?(e.type=n,e.removeAttribute("data-rocket-type")):e.removeAttribute("type"),e.addEventListener("load",r),e.addEventListener("error",function(){e.setAttribute("data-rocket-status","failed"),t()}),s?(e.removeAttribute("data-rocket-src"),e.src=s):e.src="data:text/javascript;base64,"+window.btoa(unescape(encodeURIComponent(e.text)))}}catch(a){e.setAttribute("data-rocket-status","failed"),t()}})}async _loadScriptsFromList(e){let t=e.shift();return t&&t.isConnected?(await this._transformScript(t),this._loadScriptsFromList(e)):Promise.resolve()}_preloadAllScripts(){this._batchInjectResourceHints([...this.delayedScripts.normal,...this.delayedScripts.defer,...this.delayedScripts.async],"preload")}_batchInjectResourceHints(e,t){var i=document.createDocumentFragment();e.forEach(e=>{let r=e.getAttribute&&e.getAttribute("data-rocket-src")||e.src;if(r){let n=document.createElement("link");n.href=r,n.rel=t,"preconnect"!==t&&(n.as="script"),e.getAttribute&&"module"===e.getAttribute("data-rocket-type")&&(n.crossOrigin=!0),e.crossOrigin&&(n.crossOrigin=e.crossOrigin),e.integrity&&(n.integrity=e.integrity),i.appendChild(n),this.trash.push(n)}}),document.head.appendChild(i)}_delayEventListeners(e){let t={};function i(i,r){return t[r].eventsToRewrite.indexOf(i)>=0&&!e.everythingLoaded?"rocket-"+i:i}function r(e,r){var n;!t[n=e]&&(t[n]={originalFunctions:{add:n.addEventListener,remove:n.removeEventListener},eventsToRewrite:[]},n.addEventListener=function(){arguments[0]=i(arguments[0],n),t[n].originalFunctions.add.apply(n,arguments)},n.removeEventListener=function(){arguments[0]=i(arguments[0],n),t[n].originalFunctions.remove.apply(n,arguments)}),t[e].eventsToRewrite.push(r)}function n(t,i){let r=t[i];t[i]=null,Object.defineProperty(t,i,{get:()=>r||function(){},set(n){e.everythingLoaded?r=n:t["rocket"+i]=r=n}})}r(document,"DOMContentLoaded"),r(window,"DOMContentLoaded"),r(window,"load"),r(window,"pageshow"),r(document,"readystatechange"),n(document,"onreadystatechange"),n(window,"onload"),n(window,"onpageshow")}_delayJQueryReady(e){let t;function i(t){return e.everythingLoaded?t:t.split(" ").map(e=>"load"===e||0===e.indexOf("load.")?"rocket-jquery-load":e).join(" ")}function r(r){if(r&&r.fn&&!e.allJQueries.includes(r)){r.fn.ready=r.fn.init.prototype.ready=function(t){return e.domReadyFired?t.bind(document)(r):document.addEventListener("rocket-DOMContentLoaded",()=>t.bind(document)(r)),r([])};let n=r.fn.on;r.fn.on=r.fn.init.prototype.on=function(){return this[0]===window&&("string"==typeof arguments[0]||arguments[0]instanceof String?arguments[0]=i(arguments[0]):"object"==typeof arguments[0]&&Object.keys(arguments[0]).forEach(e=>{let t=arguments[0][e];delete arguments[0][e],arguments[0][i(e)]=t})),n.apply(this,arguments),this},e.allJQueries.push(r)}t=r}r(window.jQuery),Object.defineProperty(window,"jQuery",{get:()=>t,set(e){r(e)}})}async _pendingWebpackRequests(e){let t=document.querySelector("script[data-webpack]");async function i(){return new Promise(e=>{t.addEventListener("load",e),t.addEventListener("error",e)})}t&&(await i(),await e._requestAnimFrame(),await e._pendingWebpackRequests(e))}async _triggerDOMContentLoaded(){this.domReadyFired=!0,await this._littleBreath(),document.dispatchEvent(new Event("rocket-readystatechange")),await this._littleBreath(),document.rocketonreadystatechange&&document.rocketonreadystatechange(),await this._littleBreath(),document.dispatchEvent(new Event("rocket-DOMContentLoaded")),await this._littleBreath(),window.dispatchEvent(new Event("rocket-DOMContentLoaded"))}async _triggerWindowLoad(){await this._littleBreath(),document.dispatchEvent(new Event("rocket-readystatechange")),await this._littleBreath(),document.rocketonreadystatechange&&document.rocketonreadystatechange(),await this._littleBreath(),window.dispatchEvent(new Event("rocket-load")),await this._littleBreath(),window.rocketonload&&window.rocketonload(),await this._littleBreath(),this.allJQueries.forEach(e=>e(window).trigger("rocket-jquery-load")),await this._littleBreath();let e=new Event("rocket-pageshow");e.persisted=this.persisted,window.dispatchEvent(e),await this._littleBreath(),window.rocketonpageshow&&window.rocketonpageshow({persisted:this.persisted}),this.windowLoaded=!0}_triggerLastFunctions(){document.onreadystatechange&&document.onreadystatechange(),window.onload&&window.onload(),window.onpageshow&&window.onpageshow({persisted:this.persisted})}_handleDocumentWrite(){let e=new Map;document.write=document.writeln=function(t){let i=document.currentScript;i||console.error("WPRocket unable to document.write this: "+t);let r=document.createRange(),n=i.parentElement,s=e.get(i);void 0===s&&(s=i.nextSibling,e.set(i,s));let a=document.createDocumentFragment();r.setStart(a,0),a.appendChild(r.createContextualFragment(t)),n.insertBefore(a,s)}}async _littleBreath(){Date.now()-this.lastBreath>45&&(await this._requestAnimFrame(),this.lastBreath=Date.now())}async _requestAnimFrame(){return document.hidden?new Promise(e=>setTimeout(e)):new Promise(e=>requestAnimationFrame(e))}_emptyTrash(){this.trash.forEach(e=>e.remove())}static run(){let e=new RocketLazyLoadScripts;e._addUserInteractionListener(e)}}RocketLazyLoadScripts.run();</script>
+
+<meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0, maximum-scale=0.0, user-scalable=no">
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+<title>SideStore安装教程 | 心科技圈</title>
+<meta name="description" content="在今天的数字化世界中，苹果的iOS设备用户常常会面临一些限制，其中之一就是对第三方应用的侧载困难。为了解决这个问题，有一些工具如 altStore 和 sideStore 应运而生。本文将聚焦于为什么你应该选择sideStore，并详细介绍了使用该工具的步骤。" />
+<meta name="keywords" content="altstore,sidestore,安装" />
+<meta property="og:type" content="acticle">
+<meta property="og:locale" content="zh-CN" />
+<meta property="og:title" content="SideStore安装教程" />
+<meta property="og:author" content="蜡笔小心" />
+<meta property="og:image" content="https://www.morfans.cn/app/uploads/2023/12/sideStore%E5%9B%BE%E7%89%87.jpg?v=1701804103" />
+<meta property="og:site_name" content="心科技圈">
+<meta property="og:description" content="在今天的数字化世界中，苹果的iOS设备用户常常会面临一些限制，其中之一就是对第三方应用的侧载困难。为了解决这个问题，有一些工具如 altStore 和 sideStore 应运而生。本文将聚焦于为什么你应该选择sideStore，并详细介绍了使用该工具的步骤。" />
+<meta property="og:url" content="https://xkj.93665.xin/5869.html" />
+<meta property="og:release_date" content="2023-12-14 20:51:17" />
+<link rel="shortcut icon" href="https://jsd.cdn.zzko.cn/gh/xinkeji/picx-images-hosting@master/logo.32hpqp54cw.ico">
+<link rel="apple-touch-icon" sizes="114x114" href="https://jsd.cdn.zzko.cn/gh/xinkeji/picx-images-hosting@master/image-(2).ltph2a2n.svg" />
+<link rel="pingback" href="https://xkj.93665.xin/xmlrpc.php">
+<script type="rocketlazyloadscript" data-rocket-type="text/javascript">var ajaxurl = "https://xkj.93665.xin/wp-admin/admin-ajax.php",ap_nonce 	= "6e0e8b20d8",apTemplateUrl = "https://xkj.93665.xin/wp-content/plugins/question-answer-be/templates/js-template";apQuestionID = "0";aplang = {"loading":"\u52a0\u8f7d","sending":"\u53d1\u9001\u8bf7\u6c42","file_size_error":"\u6587\u4ef6\u5927\u5c0f\u5927\u4e8e 0.48 MB","attached_max":"\u60a8\u5df2\u7ecf\u9644\u52a0\u4e86\u5141\u8bb8\u7684\u9644\u4ef6\u7684\u6700\u5927\u6570\u91cf\u3002","commented":"\u8bc4\u8bba\u4e8e","comment":"\u8bc4\u8bba","cancel":"\u53d6\u6d88","update":"\u66f4\u65b0","your_comment":"\u5199\u4e0b\u4f60\u7684\u8bc4\u8bba\u2026","notifications":"\u901a\u77e5","mark_all_seen":"\u6807\u8bb0\u6240\u6709\u4e3a\u53ef\u89c1","search":"\u641c\u7d22","no_permission_comments":"\u62b1\u6b49\uff0c\u60a8\u65e0\u6743\u9605\u8bfb\u8bc4\u8bba\u3002"};disable_q_suggestion = "";</script><meta name='robots' content='max-image-preview:large' />
+<link data-minify="1" rel='stylesheet' id='anspress-fonts-css' href='https://xkj.93665.xin/wp-content/cache/min/1/wp-content/plugins/question-answer-be/templates/css/fonts.css?ver=1711379511' type='text/css' media='all' />
+<link data-minify="1" rel='stylesheet' id='anspress-main-css' href='https://xkj.93665.xin/wp-content/cache/background-css/xkj.93665.xin/wp-content/cache/min/1/wp-content/plugins/question-answer-be/templates/css/main.css?ver=1711379511&wpr_t=1711408396' type='text/css' media='all' />
+<style id='anspress-main-inline-css' type='text/css'>
+
+		#anspress .ap-q-cells{
+				margin-left: 60px;
+		}
+		#anspress .ap-a-cells{
+				margin-left: 60px;
+		}
+</style>
+<link rel='stylesheet' id='begin-style-css' href='https://xkj.93665.xin/wp-content/themes/begin/style.css?ver=2024/02/25' type='text/css' media='all' />
+<link data-minify="1" rel='stylesheet' id='be-css' href='https://xkj.93665.xin/wp-content/cache/min/1/wp-content/themes/begin/css/be.css?ver=1711379511' type='text/css' media='all' />
+<link data-minify="1" rel='stylesheet' id='dashicons-css' href='https://xkj.93665.xin/wp-content/cache/min/1/wp-includes/css/dashicons.min.css?ver=1711379511' type='text/css' media='all' />
+<link data-minify="1" rel='stylesheet' id='fonts-css' href='https://xkj.93665.xin/wp-content/cache/min/1/wp-content/themes/begin/css/fonts/fonts.css?ver=1711379511' type='text/css' media='all' />
+<link data-minify="1" rel='stylesheet' id='be_audio-css' href='https://xkj.93665.xin/wp-content/cache/min/1/wp-content/themes/begin/css/player.css?ver=1711379511' type='text/css' media='all' />
+<script type="rocketlazyloadscript" data-rocket-type="text/javascript" data-rocket-src="https://xkj.93665.xin/wp-includes/js/jquery/jquery.min.js?ver=3.7.1" id="jquery-core-js" defer></script>
+<script type="rocketlazyloadscript" data-minify="1" data-rocket-type="text/javascript" defer data-rocket-src="https://xkj.93665.xin/wp-content/cache/min/1/wp-content/themes/begin/js/jquery.lazyload.js?ver=1711379511" id="lazyload-js"></script>
+<link rel="canonical" href="https://xkj.93665.xin/5869.html" />
+<noscript><style id="rocket-lazyload-nojs-css">.rll-youtube-player, [data-lazy-src]{display:none !important;}</style></noscript><script type="rocketlazyloadscript">
+var _hmt = _hmt || [];
+(function() {
+  var hm = document.createElement("script");
+  hm.src = "https://hm.baidu.com/hm.js?d8e268131370694a85c4e1567759317b";
+  var s = document.getElementsByTagName("script")[0]; 
+  s.parentNode.insertBefore(hm, s);
+})();
+</script>
+
+<style id="wpr-lazyload-bg-container"></style><style id="wpr-lazyload-bg-exclusion"></style>
+<noscript>
+<style id="wpr-lazyload-bg-nostyle">.hovercard-loading-bg{--wpr-bg-458ae66d-4498-4344-b4f5-91bd5ed0a353: url('https://xkj.93665.xin/wp-content/plugins/question-answer-be/templates/images/ripple.gif');}.ap-loading-span{--wpr-bg-57739e41-f4cb-4510-86e1-48cbd2b0da84: url('https://xkj.93665.xin/wp-content/plugins/question-answer-be/templates/images/loading.svg');}.ap-loading-icon i{--wpr-bg-7e3f5f4d-560e-4737-80da-fdad3c275991: url('https://xkj.93665.xin/wp-content/plugins/question-answer-be/templates/images/loading.gif');}.ap-hover-card .ap-user-cover{--wpr-bg-1c7b4f47-f4dc-4aea-93e9-a17d9ea43864: url('https://xkj.93665.xin/wp-content/plugins/question-answer-be/templates/images/small_cover.jpg');}</style>
+</noscript>
+<script type="application/javascript">const rocket_pairs = [{"selector":".hovercard-loading-bg","style":".hovercard-loading-bg{--wpr-bg-458ae66d-4498-4344-b4f5-91bd5ed0a353: url('https:\/\/xkj.93665.xin\/wp-content\/plugins\/question-answer-be\/templates\/images\/ripple.gif');}","hash":"458ae66d-4498-4344-b4f5-91bd5ed0a353","url":"https:\/\/xkj.93665.xin\/wp-content\/plugins\/question-answer-be\/templates\/images\/ripple.gif"},{"selector":".ap-loading-span","style":".ap-loading-span{--wpr-bg-57739e41-f4cb-4510-86e1-48cbd2b0da84: url('https:\/\/xkj.93665.xin\/wp-content\/plugins\/question-answer-be\/templates\/images\/loading.svg');}","hash":"57739e41-f4cb-4510-86e1-48cbd2b0da84","url":"https:\/\/xkj.93665.xin\/wp-content\/plugins\/question-answer-be\/templates\/images\/loading.svg"},{"selector":".ap-loading-icon i","style":".ap-loading-icon i{--wpr-bg-7e3f5f4d-560e-4737-80da-fdad3c275991: url('https:\/\/xkj.93665.xin\/wp-content\/plugins\/question-answer-be\/templates\/images\/loading.gif');}","hash":"7e3f5f4d-560e-4737-80da-fdad3c275991","url":"https:\/\/xkj.93665.xin\/wp-content\/plugins\/question-answer-be\/templates\/images\/loading.gif"},{"selector":".ap-hover-card .ap-user-cover","style":".ap-hover-card .ap-user-cover{--wpr-bg-1c7b4f47-f4dc-4aea-93e9-a17d9ea43864: url('https:\/\/xkj.93665.xin\/wp-content\/plugins\/question-answer-be\/templates\/images\/small_cover.jpg');}","hash":"1c7b4f47-f4dc-4aea-93e9-a17d9ea43864","url":"https:\/\/xkj.93665.xin\/wp-content\/plugins\/question-answer-be\/templates\/images\/small_cover.jpg"}]; const rocket_excluded_pairs = [];</script></head>
+<body class="post-template-default single single-post postid-5869 single-format-standard 8d31" ontouchstart="">
+<script type="rocketlazyloadscript">const SITE_ID = window.location.hostname;if (localStorage.getItem(SITE_ID + '-beNightMode')) {document.body.className += ' night';}</script>
+<span class="be-progress"></span>
+<div id="page" class="hfeed site">
+<header id="masthead" class="site-header site-header-s nav-extend">
+	<div id="header-main" class="header-main top-nav-show">
+				<nav id="header-top" class="header-top">
+			<div class="nav-top betip">
+	
+	<div class="nav-menu-top-box betip">
+		<div class="nav-menu-top">
+			<div class="menu-%e9%a1%b6%e9%83%a8%e8%8f%9c%e5%8d%95-container"><ul id="menu-%e9%a1%b6%e9%83%a8%e8%8f%9c%e5%8d%95" class="top-menu"><li id="menu-item-5133" class="menu-item menu-item-type-taxonomy menu-item-object-category menu-item-has-children menu-item-5133 mega-menu menu-max-col"><a href="https://xkj.93665.xin/youxijiaocheng">游戏教程</a>
+<ul class="sub-menu">
+	<li id="menu-item-5134" class="menu-item menu-item-type-taxonomy menu-item-object-category menu-item-5134 mega-menu menu-max-col"><a href="https://xkj.93665.xin/youxijiaocheng/youxicundang">游戏存档</a></li>
+	<li id="menu-item-5135" class="menu-item menu-item-type-taxonomy menu-item-object-category menu-item-5135 mega-menu menu-max-col"><a href="https://xkj.93665.xin/youxijiaocheng/wangzherongyao">王者荣耀</a></li>
+</ul>
+</li>
+<li id="menu-item-5136" class="menu-item menu-item-type-taxonomy menu-item-object-category menu-item-5136 mega-menu menu-max-col"><a href="https://xkj.93665.xin/wanjijiaocheng">玩机教程</a></li>
+<li id="menu-item-5137" class="menu-item menu-item-type-taxonomy menu-item-object-category current-post-ancestor current-menu-parent current-post-parent menu-item-has-children menu-item-5137 mega-menu menu-max-col"><a href="https://xkj.93665.xin/ziyuanfenxiang">资源分享</a>
+<ul class="sub-menu">
+	<li id="menu-item-5138" class="menu-item menu-item-type-taxonomy menu-item-object-category menu-item-5138 mega-menu menu-max-col"><a href="https://xkj.93665.xin/ziyuanfenxiang/iosruanjian">ios软件</a></li>
+	<li id="menu-item-5139" class="menu-item menu-item-type-taxonomy menu-item-object-category menu-item-5139 mega-menu menu-max-col"><a href="https://xkj.93665.xin/ziyuanfenxiang/testflightyaoqingma">Testflight邀请码</a></li>
+	<li id="menu-item-5141" class="menu-item menu-item-type-taxonomy menu-item-object-category menu-item-5141 mega-menu menu-max-col"><a href="https://xkj.93665.xin/ziyuanfenxiang/anzhuoruanjian">安卓软件</a></li>
+	<li id="menu-item-5142" class="menu-item menu-item-type-taxonomy menu-item-object-category menu-item-5142 mega-menu menu-max-col"><a href="https://xkj.93665.xin/ziyuanfenxiang/yingshiapp">影视APP</a></li>
+	<li id="menu-item-5144" class="menu-item menu-item-type-taxonomy menu-item-object-category menu-item-5144 mega-menu menu-max-col"><a href="https://xkj.93665.xin/ziyuanfenxiang/yueyugongju">越狱工具</a></li>
+</ul>
+</li>
+<li id="menu-item-5143" class="menu-item menu-item-type-taxonomy menu-item-object-category menu-item-5143 mega-menu menu-max-col"><a href="https://xkj.93665.xin/ziyuanfenxiang/diannaoziyuan">电脑资源</a></li>
+<li id="menu-item-6368" class="menu-item menu-item-type-custom menu-item-object-custom menu-item-6368 mega-menu menu-max-col"><a href="https://www.travellings.cn/go.html">开往</a></li>
+<li id="menu-item-6414" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-6414 mega-menu menu-max-col"><a href="https://xkj.93665.xin/wz">网站收藏</a></li>
+<li id="menu-item-6422" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-6422 mega-menu menu-max-col"><a href="https://xkj.93665.xin/questions">问题</a></li>
+</ul></div>		</div>
+				</div>
+</div>
+		</nav>
+				<div id="menu-container" class="be-menu-main">
+			<div id="navigation-top" class="navigation-top menu_c">
+				<div class="be-nav-box">
+					<div class="be-nav-l">
+						<div class="be-nav-logo">
+															<div class="logo-sites">
+																
+	
+			<a href="https://xkj.93665.xin/">
+			<span class="site-name-main">
+									<span class="site-name">心科技圈</span>
+													<span class="site-description">一个综合性玩机教程资源网</span>
+							</span>
+		</a>
+								</div>
+														</div>
+
+													<div class="be-nav-wrap betip">
+								<div id="site-nav-wrap" class="site-nav-main" style="margin-left: 66px">
+									<div id="sidr-close">
+										<div class="toggle-sidr-close"></div>
+									</div>
+									<nav id="site-nav" class="main-nav nav-ace">
+													<div id="navigation-toggle" class="menu-but bars"><div class="menu-but-box"><div class="heng"></div></div></div>
+	
+		<div class="menu-%e9%a1%b6%e9%83%a8%e8%8f%9c%e5%8d%95-container"><ul id="menu-%e9%a1%b6%e9%83%a8%e8%8f%9c%e5%8d%95-1" class="down-menu nav-menu"><li class="menu-item menu-item-type-taxonomy menu-item-object-category menu-item-has-children menu-item-5133 mega-menu menu-max-col"><a href="https://xkj.93665.xin/youxijiaocheng">游戏教程</a>
+<ul class="sub-menu">
+	<li class="menu-item menu-item-type-taxonomy menu-item-object-category menu-item-5134 mega-menu menu-max-col"><a href="https://xkj.93665.xin/youxijiaocheng/youxicundang">游戏存档</a></li>
+	<li class="menu-item menu-item-type-taxonomy menu-item-object-category menu-item-5135 mega-menu menu-max-col"><a href="https://xkj.93665.xin/youxijiaocheng/wangzherongyao">王者荣耀</a></li>
+</ul>
+</li>
+<li class="menu-item menu-item-type-taxonomy menu-item-object-category menu-item-5136 mega-menu menu-max-col"><a href="https://xkj.93665.xin/wanjijiaocheng">玩机教程</a></li>
+<li class="menu-item menu-item-type-taxonomy menu-item-object-category current-post-ancestor current-menu-parent current-post-parent menu-item-has-children menu-item-5137 mega-menu menu-max-col"><a href="https://xkj.93665.xin/ziyuanfenxiang">资源分享</a>
+<ul class="sub-menu">
+	<li class="menu-item menu-item-type-taxonomy menu-item-object-category menu-item-5138 mega-menu menu-max-col"><a href="https://xkj.93665.xin/ziyuanfenxiang/iosruanjian">ios软件</a></li>
+	<li class="menu-item menu-item-type-taxonomy menu-item-object-category menu-item-5139 mega-menu menu-max-col"><a href="https://xkj.93665.xin/ziyuanfenxiang/testflightyaoqingma">Testflight邀请码</a></li>
+	<li class="menu-item menu-item-type-taxonomy menu-item-object-category menu-item-5141 mega-menu menu-max-col"><a href="https://xkj.93665.xin/ziyuanfenxiang/anzhuoruanjian">安卓软件</a></li>
+	<li class="menu-item menu-item-type-taxonomy menu-item-object-category menu-item-5142 mega-menu menu-max-col"><a href="https://xkj.93665.xin/ziyuanfenxiang/yingshiapp">影视APP</a></li>
+	<li class="menu-item menu-item-type-taxonomy menu-item-object-category menu-item-5144 mega-menu menu-max-col"><a href="https://xkj.93665.xin/ziyuanfenxiang/yueyugongju">越狱工具</a></li>
+</ul>
+</li>
+<li class="menu-item menu-item-type-taxonomy menu-item-object-category menu-item-5143 mega-menu menu-max-col"><a href="https://xkj.93665.xin/ziyuanfenxiang/diannaoziyuan">电脑资源</a></li>
+<li class="menu-item menu-item-type-custom menu-item-object-custom menu-item-6368 mega-menu menu-max-col"><a href="https://www.travellings.cn/go.html">开往</a></li>
+<li class="menu-item menu-item-type-post_type menu-item-object-page menu-item-6414 mega-menu menu-max-col"><a href="https://xkj.93665.xin/wz">网站收藏</a></li>
+<li class="menu-item menu-item-type-post_type menu-item-object-page menu-item-6422 mega-menu menu-max-col"><a href="https://xkj.93665.xin/questions">问题</a></li>
+</ul></div>
+									</nav>
+
+									<div class="clear"></div>
+
+									<div class="sidr-login">
+													<div class="mobile-login-point">
+			<div class="mobile-login-author-back"><img src="data:image/svg+xml,%3Csvg%20xmlns='http://www.w3.org/2000/svg'%20viewBox='0%200%200%200'%3E%3C/svg%3E" alt="bj" data-lazy-src="https://s2.loli.net/2021/12/05/FOKvZnDLSYtQk3M.jpg"><noscript><img src="https://s2.loli.net/2021/12/05/FOKvZnDLSYtQk3M.jpg" alt="bj"></noscript></div>
+		</div>
+										</div>
+
+								</div>
+																</div>
+											</div>
+
+					<div class="be-nav-r">
+						
+																						<div class="menu-search-button menu-search-open"><i class="be be-search"></i></div>
+	<div class="menu-search-box">
+		<div class="menu-search-button menu-search-close"><i class="be be-cross"></i></div>
+					<div class="menu-search-choose" title="切换搜索"><span class="search-choose-ico"><i class="be be-more"></i></span></div>
+				<div class="menu-search-item menu-search-wp">
+			<form method="get" id="be-menu-search" autocomplete="off" action="https://xkj.93665.xin/">
+				<span class="menu-search-input">
+					<input type="text" value="" name="s" id="so" class="search-focus" placeholder="输入关键字" required />
+					<button type="submit" id="be-menu-search" class="be-menu-search"><i class="be be-search"></i></button>
+				</span>
+								<div class="clear"></div>
+			</form>
+		</div>
+
+				<div class="menu-search-item menu-search-baidu conceal">
+			<script type="rocketlazyloadscript">
+			function g(formname) {
+				var url = "https://www.baidu.com/baidu";
+				if (formname.s[1].checked) {
+					formname.ct.value = "2097152";
+				} else {
+					formname.ct.value = "0";
+				}
+				formname.action = url;
+				return true;
+			}
+			</script>
+			<form name="f1" onsubmit="return g(this)" target="_blank" autocomplete="off">
+				<span class="menu-search-input">
+					<input name=word class="swap_value search-focus-baidu" placeholder="百度一下" name="q" />
+					<input name=tn type=hidden value="bds" />
+					<input name=cl type=hidden value="3" />
+					<input name=ct type=hidden />
+					<input name=si type=hidden value="xkj.93665.xin" />
+					<button type="submit" id="searchbaidu" class="be-menu-search"><i class="be be-baidu"></i></button>
+					<input name=s class="choose" type=radio />
+					<input name=s class="choose" type=radio checked />
+				</span>
+			</form>
+		</div>
+			</div>
+													
+											</div>
+
+									</div>
+				<div class="clear"></div>
+			</div>
+		</div>
+	</div>
+	</header>
+			
+						<div class="bread-clear"></div>
+			
+					
+
+
+
+<nav class="submenu-nav header-sub">
+		<div class="clear"></div>
+</nav>
+			
+	<div id="content" class="site-content site-small site-no-roll">
+	
+		<div id="primary" class="content-area no-sidebar">
+
+		<main id="main" class="be-main site-main" role="main">
+
+			
+				<article id="post-5869" class="post-item post ms">
+		
+			<header class="entry-header entry-header-c">
+												<h1 class="entry-title">SideStore安装教程</h1>									</header>
+
+		<div class="entry-content">
+			
+			<div class="begin-single-meta begin-single-meta-c"><span class="single-meta-area"><span class="meta-date"><time datetime="2023-12-14 20:51:17">2023年12月14日</time></span><span class="comment"><a href="https://xkj.93665.xin/5869.html#respond"><i class="be be-speechbubble ri"></i><span class="comment-qa"></span><em>评论</em></a></span><span class="views"><i class="be be-eye ri"></i>1,443</span></span></div><span class="s-hide" title="侧边栏"><span class="off-side"></span></span>
+							<div class="single-content">
+																<h2><img decoding="async" class="PostMainImg0" src="data:image/svg+xml,%3Csvg%20xmlns='http://www.w3.org/2000/svg'%20viewBox='0%200%200%200'%3E%3C/svg%3E" alt="解锁iOS侧载自由：使用sideStore轻松搞定ipa签名" data-lazy-src="https://www.morfans.cn/app/uploads/2023/12/sideStore%E5%9B%BE%E7%89%87.jpg?v=1701804103" /><noscript><img decoding="async" class="PostMainImg0" src="https://www.morfans.cn/app/uploads/2023/12/sideStore%E5%9B%BE%E7%89%87.jpg?v=1701804103" alt="解锁iOS侧载自由：使用sideStore轻松搞定ipa签名" /></noscript></h2>
+<article id="post-3458" class="post-3458 post type-post status-publish format-standard has-post-thumbnail hentry category-technical_tutorial category-system_area category-welfare category-soft_share tag-ios tag-linux-2 tag-mac tag-windows tag-17 tag-19 tag-41 mdui-typo">在今天的数字化世界中，苹果的iOS设备用户常常会面临一些限制，其中之一就是对第三方应用的侧载困难。为了解决这个问题，有一些工具如 altStore 和 sideStore 应运而生。本文将聚焦于为什么你应该选择sideStore，并详细介绍了使用该工具的步骤。</p>
+<h2 class="wp-block-heading" data-mdxtoc="mdx-toc-0">为何选择 sideStore 而非 altStore？</h2>
+<p><strong>1. 个性化自由度高</strong></p>
+<p>altStore目前<strong>仅为付费用户提供了自定义软件源的支持</strong>，这意味着自签名应用的获取和后续自动更新相对不便。而sideStore在altStore基础上进行了修改，增加了远程续签和免费开放自定义软件源功能，使其更加灵活便捷。</p>
+<p><strong>2. 省去电脑连接麻烦</strong></p>
+<p>使用altStore需要一台电脑持续开启，并保持与iOS设备相同的网络环境进行续签，这些要求既苛刻又繁琐。而sideStore则通过远程续签功能，摆脱了对电脑的依赖，让整个过程更加简便。</p>
+<h2 class="wp-block-heading" data-mdxtoc="mdx-toc-1">注册全新的Apple ID</h2>
+<p>为了确保账号的稳定性，建议注册一个新的Apple ID用于侧载。sideStore默认连接到公共服务器进行应用续签，如果一个服务器上有太多的Apple ID，苹果可能会进行风控。不知道注册方法的可以参考<a href="https://wiki.sidestore.io/guides/burner-apple-id/" rel="external nofollow" target="_blank">这里</a>。</p>
+<h2 class="wp-block-heading" data-mdxtoc="mdx-toc-2">激活iOS开发者模式</h2>
+<p>若你使用的是iOS或iPadOS 16或更高版本，必须启用开发者模式：</p>
+<ol>
+<li>打开“设置”</li>
+<li>点击“隐私与安全”</li>
+<li>滚动到底部，然后打开开发人员模式</li>
+</ol>
+<h2 class="wp-block-heading" data-mdxtoc="mdx-toc-3">安装sideStore</h2>
+<blockquote class="wp-block-quote"><p>本文不使用sideStore server的原因是因为截至到文章编写时（2023年12月），sideStore server安装的sideStore无法生成正确的配置文件。我们将手动生成配置文件。</p>
+<p><cite>Paxos小声的说</cite></p></blockquote>
+<p>首先下载 <a href="https://altstore.io/" rel="external nofollow" target="_blank">altStore server</a> 和 <a href="https://github.com/SideStore/SideStore/releases" rel="external nofollow" target="_blank">side</a><a href="https://github.com/SideStore/SideStore/releases" rel="external nofollow" target="_blank">St</a><a href="https://github.com/SideStore/SideStore/releases" rel="external nofollow" target="_blank">ore ipa文件</a> 。</p>
+<p>将 Apple 手机或平板连接到电脑，按照 altStore 官网文档中的方法安装 altStore server。安装完成后，使用altStore server 来侧载我们刚刚下载的 sideStore ipa文件。</p>
+<p>安装ipa文件的步骤：</p>
+<ul>
+<li>按住<code>shift</code>键并点击托盘图标，然后选择<code>sideload ipa</code></li>
+<li>选择要安装的设备，并按照软件提示选择文件</li>
+<li>使用之前注册的 Apple ID 登录</li>
+</ul>
+<h2 class="wp-block-heading" data-mdxtoc="mdx-toc-4">生成设备配置文件</h2>
+<p>生成配置文件的步骤可以参考<a href="https://wiki.sidestore.io/guides/getting-started/#pairing-file" rel="external nofollow" target="_blank">官方教程</a>。支持Windows、Linux、MacOS，步骤非常简单，手机或平台连接电脑后，运行下载后的软件即可生成配对文件，然后传到手机里（文件app），当第一次打开 sideStore 时，会弹出选择框给你选择这个文件的。</p>
+<h2 class="wp-block-heading" data-mdxtoc="mdx-toc-5">安装WireGuard</h2>
+<p>最后，需要在iOS的AppStore中安装 <a href="https://apps.apple.com/us/app/wireguard/id1441195209" rel="external nofollow" target="_blank">WireGuard</a>，这个工具用于开启一个虚拟局域网，连接到我们后续会搭建的续签服务器上（因为苹果不允许使用公网，只好假装是局域网）。</p>
+<p>安装WireGuard后，下载<a href="https://github.com/SideStore/SideStore/releases/download/0.3.1/SideStore.conf" rel="external nofollow" target="_blank">配置文件</a>，并导入：</p>
+<ol>
+<li>打开WireGuard应用程序</li>
+<li>点击“Add a tunnel”或右上角的“+”</li>
+<li>选择“Create from file or archive”，然后选择刚刚下载的 <code>SideStore.conf</code>文件</li>
+<li>如果iOS弹窗要求允许 WireGuard 添加 VPN 配置，请点击“允许”</li>
+<li>在软件内会新增一个配置，将 SideStore 的切换开关设定为打开</li>
+</ol>
+</article>
+<article id="post-3458" class="post-3458 post type-post status-publish format-standard has-post-thumbnail hentry category-technical_tutorial category-system_area category-welfare category-soft_share tag-ios tag-linux-2 tag-mac tag-windows tag-17 tag-19 tag-41 mdui-typo">
+<h2 class="wp-block-heading" data-mdxtoc="mdx-toc-6">创建自己的续签服务器Anisette Server</h2>
+<p>在安装完成后，避免使用官方服务器以防止 Apple ID 账号被封。我们选择自己搭建一个服务器，这里使用免费的服务器提供商 <a href="https://render.com/" rel="external nofollow" target="_blank">Ren</a><a href="https://render.com/" rel="external nofollow" target="_blank">d</a><a href="https://render.com/" rel="external nofollow" target="_blank">er</a>。</p>
+<p>具体步骤如下：</p>
+<ol>
+<li>在 Github 上 fork <a href="https://github.com/Dadoum/anisette-v3-server" rel="external nofollow" target="_blank">sideStore 的续签服务器代码仓库</a></li>
+<li>在 Render 中使用Github账号注册一个Render账号</li>
+<li>在 Render 中创建一个<a href="https://dashboard.render.com/select-repo?type=web" rel="external nofollow" target="_blank">新的web服务</a>，选择“Public Git repository”</li>
+<li>填写相关字段，等待服务构建完成</li>
+</ol>
+<p>在页面顶部找到刚刚部署的服务器链接，格式为 <code>https://[your-server-name].onrender.com</code>。</p>
+<h2 class="wp-block-heading" data-mdxtoc="mdx-toc-7">在iOS上配置自签服务器</h2>
+<p>打开 SideStore 设置，将“使用自定义 Anisette 服务器”打开，并填入刚刚创建服务器的地址：</p>
+<ol>
+<li>打开系统设置</li>
+<li>向下滚动找到并点击SideStore</li>
+<li>找到“Danger Zone”</li>
+</ol>
+<ul>
+<li>关闭“Use preferred servers”开关，不使用sideStore的服务器</li>
+<li>在“Anisette URL”中输入刚刚创建服务的URL</li>
+</ul>
+<h2 class="wp-block-heading" data-mdxtoc="mdx-toc-8">大功告成！</h2>
+<p>至此，所有配置已完成。SideStore 的使用方法与 altStore 是一摸一样的，只需多一步先开启 WireGuard。</p>
+<p>当需要侧载新的应用或进行续签时，按照以下步骤操作：</p>
+<ol>
+<li>连接到 WireGuard VPN。</li>
+<li>打开 SideStore。</li>
+<li>点击 SideStore 底部导航菜单中的 “My Apps”。</li>
+<li>执行刷新续签或安装新的 ipa 文件。</li>
+</ol>
+<h2 class="wp-block-heading" data-mdxtoc="mdx-toc-9">使用免费开发者账号的限制</h2>
+<p>需要注意的是，sideStore 使用的是免费的 Apple 开发者账号，相比苹果 Apple 付费开发者账号（688元人民币），有一些限制：</p>
+<ul>
+<li>只能同时侧载3个应用（包括SideStore本身，即只有两个名额）。</li>
+<li>App ID限制为10个，随意安装ipa可能会占用三个名额，但好消息是7天后App ID会过期，可能会有空余名额。</li>
+<li>每 7 天需要进行一次续签，否则将失去一切。</li>
+</ul>
+<p>在这篇博文中，我们详细介绍了使用sideStore解锁iOS设备的自由侧载。相比于其他工具如 altStore等，sideStore 在个性化自由度和操作便捷性上有着明显优势。</p>
+<p>通过注册新的Apple ID、激活iOS开发者模式、安装sideStore、生成设备配置文件、安装WireGuard、创建自签服务器Anisette Server以及在iOS上配置自签服务器等步骤，你可以轻松实现iOS设备的自由侧载，摆脱一些限制，更灵活地使用你喜爱的应用。</p>
+<p>需要注意的是，使用免费开发者账号会有一些限制，包括侧载应用数量和App ID数量的限制，以及7天必须进行续签的要求。然而，通过遵循本文提供的步骤，你可以克服这些限制，享受iOS设备的更多自由。希望这篇博文能帮助你轻松解决iOS侧载的问题，让你的iOS体验更加自由和个性化。</p>
+</article>
+<p><span id="more-5869"></span></p>
+<div style='width:100%,margin-top:20px;text-align:center;'><br/><br/>微信扫描下方的二维码阅读本文<br/><br/><p><img width="150" height="150" alt="SideStore安装教程"  src="data:image/svg+xml,%3Csvg%20xmlns='http://www.w3.org/2000/svg'%20viewBox='0%200%20150%20150'%3E%3C/svg%3E" data-lazy-src="https://xkj.93665.xin/wp-content/plugins/rest-api-to-miniprogram/qrcode/qrcode-5869.png" ><noscript><img width="150" height="150" alt="SideStore安装教程"  src='https://xkj.93665.xin/wp-content/plugins/rest-api-to-miniprogram/qrcode/qrcode-5869.png' ></noscript></p></div></p>				</div>
+
+			
+			
+																
+	<div class="content-empty"></div>
+		<footer class="single-footer">
+		<div class="single-cat-tag"><div class="single-cat">&nbsp;</div></div>	</footer>
+
+				<div class="clear"></div>
+	</div>
+
+	</article>
+
+
+				
+				
+				
+				
+				
+				
+				<nav class="post-nav-img betip" data-aos=fade-up>
+					<div class="nav-img-box post-previous-box ms">
+					<figure class="nav-thumbnail"><div class="textimg">ipa实现永久签名修复失效证书</div><a class="sc" rel="external nofollow"  href="https://xkj.93665.xin/5864.html"><img src="data:image/svg+xml,%3Csvg%20xmlns='http://www.w3.org/2000/svg'%20viewBox='0%200%20280%20210'%3E%3C/svg%3E" alt="ipa实现永久签名修复失效证书" width="280" height="210" data-lazy-src="https://xkj.93665.xin/wp-content/uploads/thumbnail/5867/2023121411242412-280x210-c.png"><noscript><img src="https://xkj.93665.xin/wp-content/uploads/thumbnail/5867/2023121411242412-280x210-c.png" alt="ipa实现永久签名修复失效证书" width="280" height="210"></noscript></a></figure>
+					<a href="https://xkj.93665.xin/5864.html">
+						<div class="nav-img post-previous-img">
+							<div class="post-nav">上一篇</div>
+							<div class="nav-img-t">ipa实现永久签名修复失效证书</div>
+						</div>
+					</a>
+				</div>
+								<div class="nav-img-box post-next-box ms">
+					<figure class="nav-thumbnail"><div class="textimg">我接了一条广告是骗人的，不要上当</div><a class="sc" rel="external nofollow"  href="https://xkj.93665.xin/5885.html"><img src="data:image/svg+xml,%3Csvg%20xmlns='http://www.w3.org/2000/svg'%20viewBox='0%200%20280%20210'%3E%3C/svg%3E" alt="我接了一条广告是骗人的，不要上当" width="280" height="210" data-lazy-src="https://xkj.93665.xin/wp-content/uploads/thumbnail/5887/2023121705564123-280x210-c.jpg"><noscript><img src="https://xkj.93665.xin/wp-content/uploads/thumbnail/5887/2023121705564123-280x210-c.jpg" alt="我接了一条广告是骗人的，不要上当" width="280" height="210"></noscript></a></figure>
+					<a href="https://xkj.93665.xin/5885.html">
+						<div class="nav-img post-next-img">
+							<div class="post-nav">下一篇</div>
+							<div class="nav-img-t">我接了一条广告是骗人的，不要上当</div>
+						</div>
+					</a>
+				</div>
+							<div class="clear"></div>
+</nav>
+
+				
+					
+	
+<!-- 引用 -->
+
+<div id="comments" class="comments-area">
+	
+	
+			<div class="scroll-comments"></div>
+		<div id="respond" class="comment-respond ms" data-aos=fade-up>
+							<span class="show-layer">					<div class="comment-nologin">
+													<h3 id="reply-title" class="comment-reply-title">发表评论</h3>
+												<p class="comment-form-comment"><textarea id="comment" name="comment" rows="2" tabindex="35" placeholder="赠人玫瑰，手留余香..." onfocus="this.placeholder=''" onblur="this.placeholder='赠人玫瑰，手留余香...'"></textarea></p>
+					</div>
+					<p class="form-submit">
+						<input id="submit" class="bk da" name="submit" type="submit" tabindex="36" value="提交"/>
+					</p>
+				</span>					</div>
+	
+	
+</div>
+
+			
+		</main>
+	</div>
+
+</div>
+<div class="clear"></div>
+<footer id="colophon" class="site-footer" role="contentinfo">
+	<div class="site-info">
+		<div class="site-copyright">
+			<p style="padding-left: 40px; text-align: left;">Copyright ©  心科技圈  版权所有.</p>
+<p style="text-align: center;">
+		</div>
+		<div class="add-info">
+						<div class="clear"></div>
+										<span class="yb-info">
+					<a href="https://beian.miit.gov.cn/" rel="external nofollow" target="_blank">苏ICP备17071546号</a>
+				</span>
+								</div>
+					<div class="clear"></div>
+	</div>
+				<ul id="scroll" class="scroll scroll-hide">
+	
+	
+	
+	<li><span class="scroll-h ms fo"><i class="be be-arrowup"></i></span></li>	<li><span class="scroll-b ms fo"><i class="be be-arrowdown"></i></span></li>					<ul class="night-day">
+			<li class="foh"><span class="night-main"><span class="m-night fo ms"><span class="m-moon"><span></span></span></span></span></li>
+			<li class="foh"><span class="m-day fo ms"><i class="be be-loader"></i></span></li>
+		</ul>
+					
+										<li><span class="rounded-full fo ms"><i class="be be-more"></i></span></li>
+								
+		</ul>
+							<script type="rocketlazyloadscript" data-rocket-type="text/javascript" id="rocket-browser-checker-js-after">
+/* <![CDATA[ */
+"use strict";var _createClass=function(){function defineProperties(target,props){for(var i=0;i<props.length;i++){var descriptor=props[i];descriptor.enumerable=descriptor.enumerable||!1,descriptor.configurable=!0,"value"in descriptor&&(descriptor.writable=!0),Object.defineProperty(target,descriptor.key,descriptor)}}return function(Constructor,protoProps,staticProps){return protoProps&&defineProperties(Constructor.prototype,protoProps),staticProps&&defineProperties(Constructor,staticProps),Constructor}}();function _classCallCheck(instance,Constructor){if(!(instance instanceof Constructor))throw new TypeError("Cannot call a class as a function")}var RocketBrowserCompatibilityChecker=function(){function RocketBrowserCompatibilityChecker(options){_classCallCheck(this,RocketBrowserCompatibilityChecker),this.passiveSupported=!1,this._checkPassiveOption(this),this.options=!!this.passiveSupported&&options}return _createClass(RocketBrowserCompatibilityChecker,[{key:"_checkPassiveOption",value:function(self){try{var options={get passive(){return!(self.passiveSupported=!0)}};window.addEventListener("test",null,options),window.removeEventListener("test",null,options)}catch(err){self.passiveSupported=!1}}},{key:"initRequestIdleCallback",value:function(){!1 in window&&(window.requestIdleCallback=function(cb){var start=Date.now();return setTimeout(function(){cb({didTimeout:!1,timeRemaining:function(){return Math.max(0,50-(Date.now()-start))}})},1)}),!1 in window&&(window.cancelIdleCallback=function(id){return clearTimeout(id)})}},{key:"isDataSaverModeOn",value:function(){return"connection"in navigator&&!0===navigator.connection.saveData}},{key:"supportsLinkPrefetch",value:function(){var elem=document.createElement("link");return elem.relList&&elem.relList.supports&&elem.relList.supports("prefetch")&&window.IntersectionObserver&&"isIntersecting"in IntersectionObserverEntry.prototype}},{key:"isSlowConnection",value:function(){return"connection"in navigator&&"effectiveType"in navigator.connection&&("2g"===navigator.connection.effectiveType||"slow-2g"===navigator.connection.effectiveType)}}]),RocketBrowserCompatibilityChecker}();
+/* ]]> */
+</script>
+<script type="text/javascript" id="rocket-preload-links-js-extra">
+/* <![CDATA[ */
+var RocketPreloadLinksConfig = {"excludeUris":"\/(?:.+\/)?feed(?:\/(?:.+\/?)?)?$|\/(?:.+\/)?embed\/|\/(index.php\/)?(.*)wp-json(\/.*|$)|\/refer\/|\/go\/|\/recommend\/|\/recommends\/","usesTrailingSlash":"","imageExt":"jpg|jpeg|gif|png|tiff|bmp|webp|avif|pdf|doc|docx|xls|xlsx|php","fileExt":"jpg|jpeg|gif|png|tiff|bmp|webp|avif|pdf|doc|docx|xls|xlsx|php|html|htm","siteUrl":"https:\/\/xkj.93665.xin","onHoverDelay":"100","rateThrottle":"3"};
+/* ]]> */
+</script>
+<script type="rocketlazyloadscript" data-rocket-type="text/javascript" id="rocket-preload-links-js-after">
+/* <![CDATA[ */
+(function() {
+"use strict";var r="function"==typeof Symbol&&"symbol"==typeof Symbol.iterator?function(e){return typeof e}:function(e){return e&&"function"==typeof Symbol&&e.constructor===Symbol&&e!==Symbol.prototype?"symbol":typeof e},e=function(){function i(e,t){for(var n=0;n<t.length;n++){var i=t[n];i.enumerable=i.enumerable||!1,i.configurable=!0,"value"in i&&(i.writable=!0),Object.defineProperty(e,i.key,i)}}return function(e,t,n){return t&&i(e.prototype,t),n&&i(e,n),e}}();function i(e,t){if(!(e instanceof t))throw new TypeError("Cannot call a class as a function")}var t=function(){function n(e,t){i(this,n),this.browser=e,this.config=t,this.options=this.browser.options,this.prefetched=new Set,this.eventTime=null,this.threshold=1111,this.numOnHover=0}return e(n,[{key:"init",value:function(){!this.browser.supportsLinkPrefetch()||this.browser.isDataSaverModeOn()||this.browser.isSlowConnection()||(this.regex={excludeUris:RegExp(this.config.excludeUris,"i"),images:RegExp(".("+this.config.imageExt+")$","i"),fileExt:RegExp(".("+this.config.fileExt+")$","i")},this._initListeners(this))}},{key:"_initListeners",value:function(e){-1<this.config.onHoverDelay&&document.addEventListener("mouseover",e.listener.bind(e),e.listenerOptions),document.addEventListener("mousedown",e.listener.bind(e),e.listenerOptions),document.addEventListener("touchstart",e.listener.bind(e),e.listenerOptions)}},{key:"listener",value:function(e){var t=e.target.closest("a"),n=this._prepareUrl(t);if(null!==n)switch(e.type){case"mousedown":case"touchstart":this._addPrefetchLink(n);break;case"mouseover":this._earlyPrefetch(t,n,"mouseout")}}},{key:"_earlyPrefetch",value:function(t,e,n){var i=this,r=setTimeout(function(){if(r=null,0===i.numOnHover)setTimeout(function(){return i.numOnHover=0},1e3);else if(i.numOnHover>i.config.rateThrottle)return;i.numOnHover++,i._addPrefetchLink(e)},this.config.onHoverDelay);t.addEventListener(n,function e(){t.removeEventListener(n,e,{passive:!0}),null!==r&&(clearTimeout(r),r=null)},{passive:!0})}},{key:"_addPrefetchLink",value:function(i){return this.prefetched.add(i.href),new Promise(function(e,t){var n=document.createElement("link");n.rel="prefetch",n.href=i.href,n.onload=e,n.onerror=t,document.head.appendChild(n)}).catch(function(){})}},{key:"_prepareUrl",value:function(e){if(null===e||"object"!==(void 0===e?"undefined":r(e))||!1 in e||-1===["http:","https:"].indexOf(e.protocol))return null;var t=e.href.substring(0,this.config.siteUrl.length),n=this._getPathname(e.href,t),i={original:e.href,protocol:e.protocol,origin:t,pathname:n,href:t+n};return this._isLinkOk(i)?i:null}},{key:"_getPathname",value:function(e,t){var n=t?e.substring(this.config.siteUrl.length):e;return n.startsWith("/")||(n="/"+n),this._shouldAddTrailingSlash(n)?n+"/":n}},{key:"_shouldAddTrailingSlash",value:function(e){return this.config.usesTrailingSlash&&!e.endsWith("/")&&!this.regex.fileExt.test(e)}},{key:"_isLinkOk",value:function(e){return null!==e&&"object"===(void 0===e?"undefined":r(e))&&(!this.prefetched.has(e.href)&&e.origin===this.config.siteUrl&&-1===e.href.indexOf("?")&&-1===e.href.indexOf("#")&&!this.regex.excludeUris.test(e.href)&&!this.regex.images.test(e.href))}}],[{key:"run",value:function(){"undefined"!=typeof RocketPreloadLinksConfig&&new n(new RocketBrowserCompatibilityChecker({capture:!0,passive:!0}),RocketPreloadLinksConfig).init()}}]),n}();t.run();
+}());
+/* ]]> */
+</script>
+<script type="text/javascript" id="rocket_lazyload_css-js-extra">
+/* <![CDATA[ */
+var rocket_lazyload_css_data = {"threshold":"300"};
+/* ]]> */
+</script>
+<script type="text/javascript" id="rocket_lazyload_css-js-after">
+/* <![CDATA[ */
+!function o(n,c,a){function s(t,e){if(!c[t]){if(!n[t]){var r="function"==typeof require&&require;if(!e&&r)return r(t,!0);if(u)return u(t,!0);throw(r=new Error("Cannot find module '"+t+"'")).code="MODULE_NOT_FOUND",r}r=c[t]={exports:{}},n[t][0].call(r.exports,function(e){return s(n[t][1][e]||e)},r,r.exports,o,n,c,a)}return c[t].exports}for(var u="function"==typeof require&&require,e=0;e<a.length;e++)s(a[e]);return s}({1:[function(e,t,r){"use strict";!function(){const r="undefined"==typeof rocket_pairs?[]:rocket_pairs,e="undefined"==typeof rocket_excluded_pairs?[]:rocket_excluded_pairs;e.map(t=>{var e=t.selector;const r=document.querySelectorAll(e);r.forEach(e=>{e.setAttribute("data-rocket-lazy-bg-".concat(t.hash),"excluded")})});const o=document.querySelector("#wpr-lazyload-bg-container");var t=rocket_lazyload_css_data.threshold||300;const n=new IntersectionObserver(e=>{e.forEach(t=>{if(t.isIntersecting){const e=r.filter(e=>t.target.matches(e.selector));e.map(t=>{var e;t&&((e=document.createElement("style")).textContent=t.style,o.insertAdjacentElement("afterend",e),t.elements.forEach(e=>{n.unobserve(e),e.setAttribute("data-rocket-lazy-bg-".concat(t.hash),"loaded")}))})}})},{rootMargin:t+"px"});function c(){0<(0<arguments.length&&void 0!==arguments[0]?arguments[0]:[]).length&&r.forEach(t=>{try{const e=document.querySelectorAll(t.selector);e.forEach(e=>{"loaded"!==e.getAttribute("data-rocket-lazy-bg-".concat(t.hash))&&"excluded"!==e.getAttribute("data-rocket-lazy-bg-".concat(t.hash))&&(n.observe(e),(t.elements||(t.elements=[])).push(e))})}catch(e){console.error(e)}})}c();const a=function(){const o=window.MutationObserver;return function(e,t){if(e&&1===e.nodeType){const r=new o(t);return r.observe(e,{attributes:!0,childList:!0,subtree:!0}),r}}}();t=document.querySelector("body"),a(t,c)}()},{}]},{},[1]);
+//# sourceMappingURL=lazyload-css.min.js.map
+/* ]]> */
+</script>
+<script type="text/javascript" id="wp-postviews-cache-js-extra">
+/* <![CDATA[ */
+var viewsCacheL10n = {"admin_ajax_url":"https:\/\/xkj.93665.xin\/wp-admin\/admin-ajax.php","post_id":"5869"};
+/* ]]> */
+</script>
+<script type="rocketlazyloadscript" data-minify="1" data-rocket-type="text/javascript" data-rocket-src="https://xkj.93665.xin/wp-content/cache/min/1/wp-content/themes/begin/js/postviews-cache.js?ver=1711379511" id="wp-postviews-cache-js" defer></script>
+<script type="text/javascript" id="captcha-js-extra">
+/* <![CDATA[ */
+var verify_ajax = {"ajax_url":"https:\/\/xkj.93665.xin\/wp-admin\/admin-ajax.php","img_url":"https:\/\/xkj.93665.xin\/wp-content\/themes\/begin\/img\/default\/captcha\/"};
+/* ]]> */
+</script>
+<script type="rocketlazyloadscript" data-minify="1" data-rocket-type="text/javascript" data-rocket-src="https://xkj.93665.xin/wp-content/cache/min/1/wp-content/themes/begin/js/captcha.js?ver=1711379511" id="captcha-js" defer></script>
+<script type="rocketlazyloadscript" data-rocket-type="text/javascript" data-rocket-src="https://xkj.93665.xin/wp-includes/js/clipboard.min.js?ver=2.0.11" id="clipboard-js" defer></script>
+<script type="text/javascript" id="superfish-js-extra">
+/* <![CDATA[ */
+var assetsData = {"postID":"5869"};
+var homeData = {"homeurl":"https:\/\/xkj.93665.xin"};
+/* ]]> */
+</script>
+<script type="rocketlazyloadscript" data-minify="1" data-rocket-type="text/javascript" defer data-rocket-src="https://xkj.93665.xin/wp-content/cache/min/1/wp-content/themes/begin/js/superfish.js?ver=1711379511" id="superfish-js"></script>
+<script type="rocketlazyloadscript" data-rocket-type="text/javascript" id="superfish-js-after">
+/* <![CDATA[ */
+var fallwidth = {fall_width: 233};
+/* ]]> */
+</script>
+<script type="rocketlazyloadscript" data-minify="1" data-rocket-type="text/javascript" defer data-rocket-src="https://xkj.93665.xin/wp-content/cache/min/1/wp-content/themes/begin/js/begin-script.js?ver=1711379511" id="be_script-js"></script>
+<script type="rocketlazyloadscript" data-rocket-type="text/javascript" id="be_script-js-after">
+/* <![CDATA[ */
+var ajax_content = {"ajax_url":"https:\/\/xkj.93665.xin\/wp-admin\/admin-ajax.php"};var Offset = {"header_h":"80"};var captcha = {"verify":"1"};var emilc = {"ecy":""};var aosstate = {"aos":"0"};var collect_new     = {"ajax_url":"https:\/\/xkj.93665.xin\/wp-admin\/admin-ajax.php"};var collect_views   = {"ajax_url":"https:\/\/xkj.93665.xin\/wp-admin\/admin-ajax.php"};var collect_comment = {"ajax_url":"https:\/\/xkj.93665.xin\/wp-admin\/admin-ajax.php"};var collect_cat     = {"ajax_url":"https:\/\/xkj.93665.xin\/wp-admin\/admin-ajax.php"};var collect_asset   = {"ajax_url":"https:\/\/xkj.93665.xin\/wp-admin\/admin-ajax.php"};var collect_qa      = {"ajax_url":"https:\/\/xkj.93665.xin\/wp-admin\/admin-ajax.php"};
+var bea_ajax_params = {"bea_ajax_nonce":"bdcb6300dd","bea_ajax_url":"https:\/\/xkj.93665.xin\/wp-admin\/admin-ajax.php"};var be_mail_contact_form = {"mail_ajaxurl":"https:\/\/xkj.93665.xin\/wp-admin\/admin-ajax.php"};var ajax_sort = {"ajax_url":"https:\/\/xkj.93665.xin\/wp-admin\/admin-ajax.php"};var random_post = {"ajax_url":"https:\/\/xkj.93665.xin\/wp-admin\/admin-ajax.php"};var ajax_ac = {"ajaxurl":"https:\/\/xkj.93665.xin\/wp-admin\/admin-ajax.php"};var ajax_load_login = {"ajax_url":"https:\/\/xkj.93665.xin\/wp-admin\/admin-ajax.php"};var ajax_pages_login = {"ajax_url":"https:\/\/xkj.93665.xin\/wp-admin\/admin-ajax.php"};var ajax_searchhot = {"ajax_url":"https:\/\/xkj.93665.xin\/wp-admin\/admin-ajax.php"};
+var host = {"site":"https:\/\/xkj.93665.xin"};var plt =  {"time":"30"};
+/* ]]> */
+</script>
+<script type="rocketlazyloadscript" data-minify="1" data-rocket-type="text/javascript" defer data-rocket-src="https://xkj.93665.xin/wp-content/cache/min/1/wp-content/themes/begin/js/ajax-tab.js?ver=1711379511" id="ajax_tab-js"></script>
+<script type="rocketlazyloadscript" data-rocket-type="text/javascript" id="ajax_tab-js-after">
+/* <![CDATA[ */
+var ajax_tab = {"ajax_url":"https:\/\/xkj.93665.xin\/wp-admin\/admin-ajax.php"}; var Ajax_post_id = {"post_not_id":5869};
+/* ]]> */
+</script>
+<script type="rocketlazyloadscript" data-minify="1" data-rocket-type="text/javascript" defer data-rocket-src="https://xkj.93665.xin/wp-content/cache/min/1/wp-content/themes/begin/js/owl.js?ver=1711379511" id="owl-js"></script>
+<script type="rocketlazyloadscript" data-rocket-type="text/javascript" id="owl-js-after">
+/* <![CDATA[ */
+var Timeout = {"owl_time":"4000"};var gridcarousel = {"grid_carousel_f":"4"};var flexiselitems = {"flexisel_f":"5"};var slider_items_n = {"slider_sn":"4"};
+/* ]]> */
+</script>
+<script type="rocketlazyloadscript" data-minify="1" data-rocket-type="text/javascript" defer data-rocket-src="https://xkj.93665.xin/wp-content/cache/min/1/wp-content/themes/begin/js/ias.js?ver=1711379511" id="ias-js"></script>
+<script type="rocketlazyloadscript" data-minify="1" data-rocket-type="text/javascript" data-rocket-src="https://xkj.93665.xin/wp-content/cache/min/1/wp-content/themes/begin/js/nice-select.js?ver=1711379511" id="nice-select-js" defer></script>
+<script type="rocketlazyloadscript" data-minify="1" data-rocket-type="text/javascript" defer data-rocket-src="https://xkj.93665.xin/wp-content/cache/min/1/wp-content/themes/begin/js/fancybox.js?ver=1711379511" id="fancybox-js"></script>
+<script type="rocketlazyloadscript" data-rocket-type="text/javascript" data-rocket-src="https://xkj.93665.xin/wp-includes/js/comment-reply.min.js?ver=6.4.3" id="comment-reply-js" async="async" data-wp-strategy="async"></script>
+<script type="text/javascript" id="be_audio-js-extra">
+/* <![CDATA[ */
+var aiStrings = {"play_title":"\u64ad\u653e %s","pause_title":"\u6682\u505c %s","previous":"\u4e0a\u4e00\u66f2","next":"\u4e0b\u4e00\u66f2","toggle_list_repeat":"\u5207\u6362\u5217\u8868\u5faa\u73af\u64ad\u653e","toggle_track_repeat":"\u5355\u66f2\u5faa\u73af","toggle_list_visible":"\u663e\u793a\u9690\u85cf\u5217\u8868","volume_up":"\u589e\u5927\u97f3\u91cf","volume_down":"\u51cf\u5c0f\u97f3\u91cf","shuffle":"\u968f\u673a\u64ad\u653e"};
+/* ]]> */
+</script>
+<script type="rocketlazyloadscript" data-minify="1" data-rocket-type="text/javascript" data-rocket-src="https://xkj.93665.xin/wp-content/cache/min/1/wp-content/themes/begin/js/player.js?ver=1711379512" id="be_audio-js" defer></script>
+<script>window.lazyLoadOptions=[{elements_selector:"img[data-lazy-src],.rocket-lazyload,iframe[data-lazy-src]",data_src:"lazy-src",data_srcset:"lazy-srcset",data_sizes:"lazy-sizes",class_loading:"lazyloading",class_loaded:"lazyloaded",threshold:300,callback_loaded:function(element){if(element.tagName==="IFRAME"&&element.dataset.rocketLazyload=="fitvidscompatible"){if(element.classList.contains("lazyloaded")){if(typeof window.jQuery!="undefined"){if(jQuery.fn.fitVids){jQuery(element).parent().fitVids()}}}}}},{elements_selector:".rocket-lazyload",data_src:"lazy-src",data_srcset:"lazy-srcset",data_sizes:"lazy-sizes",class_loading:"lazyloading",class_loaded:"lazyloaded",threshold:300,}];window.addEventListener('LazyLoad::Initialized',function(e){var lazyLoadInstance=e.detail.instance;if(window.MutationObserver){var observer=new MutationObserver(function(mutations){var image_count=0;var iframe_count=0;var rocketlazy_count=0;mutations.forEach(function(mutation){for(var i=0;i<mutation.addedNodes.length;i++){if(typeof mutation.addedNodes[i].getElementsByTagName!=='function'){continue}
+if(typeof mutation.addedNodes[i].getElementsByClassName!=='function'){continue}
+images=mutation.addedNodes[i].getElementsByTagName('img');is_image=mutation.addedNodes[i].tagName=="IMG";iframes=mutation.addedNodes[i].getElementsByTagName('iframe');is_iframe=mutation.addedNodes[i].tagName=="IFRAME";rocket_lazy=mutation.addedNodes[i].getElementsByClassName('rocket-lazyload');image_count+=images.length;iframe_count+=iframes.length;rocketlazy_count+=rocket_lazy.length;if(is_image){image_count+=1}
+if(is_iframe){iframe_count+=1}}});if(image_count>0||iframe_count>0||rocketlazy_count>0){lazyLoadInstance.update()}});var b=document.getElementsByTagName("body")[0];var config={childList:!0,subtree:!0};observer.observe(b,config)}},!1)</script><script data-no-minify="1" async src="https://xkj.93665.xin/wp-content/plugins/wp-rocket/assets/js/lazyload/17.8.3/lazyload.min.js"></script></footer>
+</div>
+</body>
+</html>
+<!-- This website is like a Rocket, isn't it? Performance optimized by WP Rocket. Learn more: https://wp-rocket.me - Debug: cached@1711379597 -->
